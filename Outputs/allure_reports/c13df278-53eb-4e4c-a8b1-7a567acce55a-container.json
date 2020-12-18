@@ -1,0 +1,1 @@
+{"uuid": "34879467-ec8f-4f32-806e-115daf428453", "children": ["2a05496c-1e60-4928-b9c7-783ca933f581"], "befores": [{"name": "refresh_invest_page", "status": "passed", "start": 1608220230130, "stop": 1608220230130}], "afters": [{"name": "refresh_invest_page::0", "status": "passed", "start": 1608220253484, "stop": 1608220258181}], "start": 1608220230130, "stop": 1608220258181}

@@ -1,0 +1,43 @@
+[32mINFO    [0m root:basepage.py:21 等待元素('xpath', "//input[@name='phone']")可见
+[32mINFO    [0m root:basepage.py:26 开始时间2020-12-16 23:30:40.365664，结束时间2020-12-16 23:30:40.386598，等待时长0:00:00.020934
+[32mINFO    [0m root:basepage.py:36 开始查找('xpath', "//input[@name='phone']")元素
+[32mINFO    [0m root:basepage.py:65 给元素('xpath', "//input[@name='phone']")输入('18684720553',)文本值
+[32mINFO    [0m root:basepage.py:21 等待元素('xpath', "//input[@name='password']")可见
+[32mINFO    [0m root:basepage.py:26 开始时间2020-12-16 23:30:40.476332，结束时间2020-12-16 23:30:40.501266，等待时长0:00:00.024934
+[32mINFO    [0m root:basepage.py:36 开始查找('xpath', "//input[@name='password']")元素
+[32mINFO    [0m root:basepage.py:65 给元素('xpath', "//input[@name='password']")输入('python',)文本值
+[32mINFO    [0m root:basepage.py:21 等待元素('xpath', '//button[@type="button"]')可见
+[32mINFO    [0m root:basepage.py:26 开始时间2020-12-16 23:30:40.574070，结束时间2020-12-16 23:30:40.593019，等待时长0:00:00.018949
+[32mINFO    [0m root:basepage.py:36 开始查找('xpath', '//button[@type="button"]')元素
+[32mINFO    [0m root:basepage.py:50 开始点击元素('xpath', '//button[@type="button"]')
+[32mINFO    [0m root:basepage.py:21 等待元素('xpath', '//a[@class="btn btn-special"]')可见
+[32mINFO    [0m root:basepage.py:26 开始时间2020-12-16 23:30:40.642887，结束时间2020-12-16 23:30:42.954729，等待时长0:00:02.311842
+[32mINFO    [0m root:basepage.py:21 等待元素('xpath', '//a[@class="btn btn-special"]')可见
+[32mINFO    [0m root:basepage.py:26 开始时间2020-12-16 23:30:42.954729，结束时间2020-12-16 23:30:42.971658，等待时长0:00:00.016929
+[32mINFO    [0m root:basepage.py:36 开始查找('xpath', '//a[@class="btn btn-special"]')元素
+[32mINFO    [0m root:basepage.py:50 开始点击元素('xpath', '//a[@class="btn btn-special"]')
+[32mINFO    [0m root:test_invest.py:64 *********投资用例：异常场景：投资金额为非100的整数倍、错误的格式等*********
+[32mINFO    [0m root:basepage.py:21 等待元素('xpath', "//input[contains(@class,'invest-unit-investinput')]")可见
+[32mINFO    [0m root:basepage.py:26 开始时间2020-12-16 23:30:47.506531，结束时间2020-12-16 23:30:47.526476，等待时长0:00:00.019945
+[32mINFO    [0m root:basepage.py:36 开始查找('xpath', "//input[contains(@class,'invest-unit-investinput')]")元素
+[32mINFO    [0m root:basepage.py:79 元素('xpath', "//input[contains(@class,'invest-unit-investinput')]")的属性data-amount的值为4914593462.98
+[32mINFO    [0m root:basepage.py:21 等待元素('xpath', "//input[contains(@class,'invest-unit-investinput')]")可见
+[32mINFO    [0m root:basepage.py:26 开始时间2020-12-16 23:30:47.538445，结束时间2020-12-16 23:30:47.552408，等待时长0:00:00.013963
+[32mINFO    [0m root:basepage.py:36 开始查找('xpath', "//input[contains(@class,'invest-unit-investinput')]")元素
+[32mINFO    [0m root:basepage.py:65 给元素('xpath', "//input[contains(@class,'invest-unit-investinput')]")输入(-10,)文本值
+[32mINFO    [0m root:basepage.py:21 等待元素('xpath', '//button[text()="投标"]')可见
+[32mINFO    [0m root:basepage.py:26 开始时间2020-12-16 23:30:47.614242，结束时间2020-12-16 23:30:47.636184，等待时长0:00:00.021942
+[32mINFO    [0m root:basepage.py:36 开始查找('xpath', '//button[text()="投标"]')元素
+[32mINFO    [0m root:basepage.py:50 开始点击元素('xpath', '//button[text()="投标"]')
+[32mINFO    [0m root:basepage.py:21 等待元素('xpath', '//div[contains(@class,"layui-layer-dialog")]//div[@class="text-center"]')可见
+[32mINFO    [0m root:basepage.py:26 开始时间2020-12-16 23:30:47.683060，结束时间2020-12-16 23:30:48.215634，等待时长0:00:00.532574
+[32mINFO    [0m root:basepage.py:36 开始查找('xpath', '//div[contains(@class,"layui-layer-dialog")]//div[@class="text-center"]')元素
+[32mINFO    [0m root:basepage.py:94 获取('xpath', '//div[contains(@class,"layui-layer-dialog")]//div[@class="text-center"]')元素的文本值为请正确填写投标金额
+[32mINFO    [0m root:basepage.py:21 等待元素('xpath', '//div[contains(@class,"layui-layer-dialog")]//a')可见
+[32mINFO    [0m root:basepage.py:26 开始时间2020-12-16 23:30:48.230594，结束时间2020-12-16 23:30:48.251537，等待时长0:00:00.020943
+[32mINFO    [0m root:basepage.py:36 开始查找('xpath', '//div[contains(@class,"layui-layer-dialog")]//a')元素
+[32mINFO    [0m root:basepage.py:50 开始点击元素('xpath', '//div[contains(@class,"layui-layer-dialog")]//a')
+[32mINFO    [0m root:basepage.py:21 等待元素('xpath', "//input[contains(@class,'invest-unit-investinput')]")可见
+[32mINFO    [0m root:basepage.py:26 开始时间2020-12-16 23:30:52.256826，结束时间2020-12-16 23:30:52.276772，等待时长0:00:00.019946
+[32mINFO    [0m root:basepage.py:36 开始查找('xpath', "//input[contains(@class,'invest-unit-investinput')]")元素
+[32mINFO    [0m root:basepage.py:79 元素('xpath', "//input[contains(@class,'invest-unit-investinput')]")的属性data-amount的值为4914593462.98

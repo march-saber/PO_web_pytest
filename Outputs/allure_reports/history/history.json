@@ -1,0 +1,254 @@
+{
+  "3fa87e1b4faf6bdec7defaf1ecb0cfc3" : {
+    "statistic" : {
+      "failed" : 0,
+      "broken" : 1,
+      "skipped" : 0,
+      "passed" : 0,
+      "unknown" : 0,
+      "total" : 1
+    },
+    "items" : [ {
+      "uid" : "68dac9e2dd143840",
+      "reportUrl" : "http://localhost:8080/job/po_web_pytest_allure/8/allure/#testresult/68dac9e2dd143840",
+      "status" : "broken",
+      "statusDetails" : "selenium.common.exceptions.SessionNotCreatedException: Message: session not created\nfrom timeout: Timed out receiving message from renderer: 600.000\n  (Session info: chrome=87.0.4280.88)",
+      "time" : {
+        "start" : 1608297310674,
+        "stop" : 1608297310674,
+        "duration" : 0
+      }
+    } ]
+  },
+  "6a46fcdafac322ca966e3107b2e7a7bd" : {
+    "statistic" : {
+      "failed" : 0,
+      "broken" : 1,
+      "skipped" : 0,
+      "passed" : 0,
+      "unknown" : 0,
+      "total" : 1
+    },
+    "items" : [ {
+      "uid" : "749e192c710c85ef",
+      "reportUrl" : "http://localhost:8080/job/po_web_pytest_allure/8/allure/#testresult/749e192c710c85ef",
+      "status" : "broken",
+      "statusDetails" : "selenium.common.exceptions.SessionNotCreatedException: Message: session not created\nfrom timeout: Timed out receiving message from renderer: 600.000\n  (Session info: chrome=87.0.4280.88)",
+      "time" : {
+        "start" : 1608296704914,
+        "stop" : 1608296704914,
+        "duration" : 0
+      }
+    } ]
+  },
+  "308aaeb32698655c72872f8225ec1a01" : {
+    "statistic" : {
+      "failed" : 0,
+      "broken" : 1,
+      "skipped" : 0,
+      "passed" : 0,
+      "unknown" : 0,
+      "total" : 1
+    },
+    "items" : [ {
+      "uid" : "a5d8becc9cadefa0",
+      "reportUrl" : "http://localhost:8080/job/po_web_pytest_allure/8/allure/#testresult/a5d8becc9cadefa0",
+      "status" : "broken",
+      "statusDetails" : "selenium.common.exceptions.SessionNotCreatedException: Message: session not created\nfrom timeout: Timed out receiving message from renderer: 600.000\n  (Session info: chrome=87.0.4280.88)",
+      "time" : {
+        "start" : 1608296704988,
+        "stop" : 1608296704988,
+        "duration" : 0
+      }
+    } ]
+  },
+  "98ee763b71a2e5d2e8433e177b71f895" : {
+    "statistic" : {
+      "failed" : 0,
+      "broken" : 1,
+      "skipped" : 0,
+      "passed" : 0,
+      "unknown" : 0,
+      "total" : 1
+    },
+    "items" : [ {
+      "uid" : "8fa077334e0caa56",
+      "reportUrl" : "http://localhost:8080/job/po_web_pytest_allure/8/allure/#testresult/8fa077334e0caa56",
+      "status" : "broken",
+      "statusDetails" : "selenium.common.exceptions.SessionNotCreatedException: Message: session not created\nfrom timeout: Timed out receiving message from renderer: 600.000\n  (Session info: chrome=87.0.4280.88)",
+      "time" : {
+        "start" : 1608296098258,
+        "stop" : 1608296098258,
+        "duration" : 0
+      }
+    } ]
+  },
+  "68cf2b0989aa4e51d177a21c2d251b6c" : {
+    "statistic" : {
+      "failed" : 0,
+      "broken" : 1,
+      "skipped" : 0,
+      "passed" : 0,
+      "unknown" : 0,
+      "total" : 1
+    },
+    "items" : [ {
+      "uid" : "583f184e6ae215b0",
+      "reportUrl" : "http://localhost:8080/job/po_web_pytest_allure/8/allure/#testresult/583f184e6ae215b0",
+      "status" : "broken",
+      "statusDetails" : "selenium.common.exceptions.SessionNotCreatedException: Message: session not created\nfrom timeout: Timed out receiving message from renderer: 600.000\n  (Session info: chrome=87.0.4280.88)",
+      "time" : {
+        "start" : 1608296704626,
+        "stop" : 1608296704626,
+        "duration" : 0
+      }
+    } ]
+  },
+  "e808f409f9a6a0d9576803deec618e46" : {
+    "statistic" : {
+      "failed" : 0,
+      "broken" : 1,
+      "skipped" : 0,
+      "passed" : 0,
+      "unknown" : 0,
+      "total" : 1
+    },
+    "items" : [ {
+      "uid" : "f5bc2b8f39217e4f",
+      "reportUrl" : "http://localhost:8080/job/po_web_pytest_allure/8/allure/#testresult/f5bc2b8f39217e4f",
+      "status" : "broken",
+      "statusDetails" : "selenium.common.exceptions.SessionNotCreatedException: Message: session not created\nfrom timeout: Timed out receiving message from renderer: 600.000\n  (Session info: chrome=87.0.4280.88)",
+      "time" : {
+        "start" : 1608297310554,
+        "stop" : 1608297310554,
+        "duration" : 0
+      }
+    } ]
+  },
+  "50b62d68a5c78b16f277d604e09ea628" : {
+    "statistic" : {
+      "failed" : 0,
+      "broken" : 1,
+      "skipped" : 0,
+      "passed" : 0,
+      "unknown" : 0,
+      "total" : 1
+    },
+    "items" : [ {
+      "uid" : "f99ebe27ee3d90fb",
+      "reportUrl" : "http://localhost:8080/job/po_web_pytest_allure/8/allure/#testresult/f99ebe27ee3d90fb",
+      "status" : "broken",
+      "statusDetails" : "selenium.common.exceptions.SessionNotCreatedException: Message: session not created\nfrom timeout: Timed out receiving message from renderer: 600.000\n  (Session info: chrome=87.0.4280.88)",
+      "time" : {
+        "start" : 1608296704472,
+        "stop" : 1608296704472,
+        "duration" : 0
+      }
+    } ]
+  },
+  "a36133c378b3a5afdbb3e7c51818e254" : {
+    "statistic" : {
+      "failed" : 0,
+      "broken" : 1,
+      "skipped" : 0,
+      "passed" : 0,
+      "unknown" : 0,
+      "total" : 1
+    },
+    "items" : [ {
+      "uid" : "c5ee2890508cfd47",
+      "reportUrl" : "http://localhost:8080/job/po_web_pytest_allure/8/allure/#testresult/c5ee2890508cfd47",
+      "status" : "broken",
+      "statusDetails" : "selenium.common.exceptions.SessionNotCreatedException: Message: session not created\nfrom timeout: Timed out receiving message from renderer: 600.000\n  (Session info: chrome=87.0.4280.88)",
+      "time" : {
+        "start" : 1608297310625,
+        "stop" : 1608297310625,
+        "duration" : 0
+      }
+    } ]
+  },
+  "39d42cf2c7c141d97498c560376ba8de" : {
+    "statistic" : {
+      "failed" : 0,
+      "broken" : 1,
+      "skipped" : 0,
+      "passed" : 0,
+      "unknown" : 0,
+      "total" : 1
+    },
+    "items" : [ {
+      "uid" : "d4c44af2d728a1e1",
+      "reportUrl" : "http://localhost:8080/job/po_web_pytest_allure/8/allure/#testresult/d4c44af2d728a1e1",
+      "status" : "broken",
+      "statusDetails" : "selenium.common.exceptions.SessionNotCreatedException: Message: session not created\nfrom timeout: Timed out receiving message from renderer: 600.000\n  (Session info: chrome=87.0.4280.88)",
+      "time" : {
+        "start" : 1608296704750,
+        "stop" : 1608296704750,
+        "duration" : 0
+      }
+    } ]
+  },
+  "927c5b8192699a1d43136b38a24cf63d" : {
+    "statistic" : {
+      "failed" : 0,
+      "broken" : 1,
+      "skipped" : 0,
+      "passed" : 0,
+      "unknown" : 0,
+      "total" : 1
+    },
+    "items" : [ {
+      "uid" : "3613ed0f5e83226c",
+      "reportUrl" : "http://localhost:8080/job/po_web_pytest_allure/8/allure/#testresult/3613ed0f5e83226c",
+      "status" : "broken",
+      "statusDetails" : "selenium.common.exceptions.SessionNotCreatedException: Message: session not created\nfrom timeout: Timed out receiving message from renderer: 600.000\n  (Session info: chrome=87.0.4280.88)",
+      "time" : {
+        "start" : 1608297310586,
+        "stop" : 1608297310586,
+        "duration" : 0
+      }
+    } ]
+  },
+  "b02b37708606b3cffe23de3f4e6f6bde" : {
+    "statistic" : {
+      "failed" : 0,
+      "broken" : 1,
+      "skipped" : 0,
+      "passed" : 0,
+      "unknown" : 0,
+      "total" : 1
+    },
+    "items" : [ {
+      "uid" : "c391adb10b6c257d",
+      "reportUrl" : "http://localhost:8080/job/po_web_pytest_allure/8/allure/#testresult/c391adb10b6c257d",
+      "status" : "broken",
+      "statusDetails" : "selenium.common.exceptions.SessionNotCreatedException: Message: session not created\nfrom timeout: Timed out receiving message from renderer: 600.000\n  (Session info: chrome=87.0.4280.88)",
+      "time" : {
+        "start" : 1608296705199,
+        "stop" : 1608296705199,
+        "duration" : 0
+      }
+    } ]
+  },
+  "1ca2a0bcdd063cb4082bd327f249bc82" : {
+    "statistic" : {
+      "failed" : 0,
+      "broken" : 1,
+      "skipped" : 0,
+      "passed" : 0,
+      "unknown" : 0,
+      "total" : 1
+    },
+    "items" : [ {
+      "uid" : "8baf2f18e9879dae",
+      "reportUrl" : "http://localhost:8080/job/po_web_pytest_allure/8/allure/#testresult/8baf2f18e9879dae",
+      "status" : "broken",
+      "statusDetails" : "selenium.common.exceptions.SessionNotCreatedException: Message: session not created\nfrom timeout: Timed out receiving message from renderer: 600.000\n  (Session info: chrome=87.0.4280.88)",
+      "time" : {
+        "start" : 1608296705118,
+        "stop" : 1608296705118,
+        "duration" : 0
+      }
+    } ]
+  }
+}

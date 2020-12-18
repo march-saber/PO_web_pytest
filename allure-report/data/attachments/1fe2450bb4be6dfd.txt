@@ -1,0 +1,21 @@
+[32mINFO    [0m root:test_invest.py:82 *********投资用例：正常场景-投资成功*********
+[32mINFO    [0m root:basepage.py:21 等待元素('xpath', "//input[contains(@class,'invest-unit-investinput')]")可见
+[32mINFO    [0m root:basepage.py:26 开始时间2020-12-17 23:03:48.571625，结束时间2020-12-17 23:03:48.586637，等待时长0:00:00.015012
+[32mINFO    [0m root:basepage.py:36 开始查找('xpath', "//input[contains(@class,'invest-unit-investinput')]")元素
+[32mINFO    [0m root:basepage.py:79 元素('xpath', "//input[contains(@class,'invest-unit-investinput')]")的属性data-amount的值为4914578063.26
+[32mINFO    [0m root:basepage.py:21 等待元素('xpath', "//input[contains(@class,'invest-unit-investinput')]")可见
+[32mINFO    [0m root:basepage.py:26 开始时间2020-12-17 23:03:48.603592，结束时间2020-12-17 23:03:48.614564，等待时长0:00:00.010972
+[32mINFO    [0m root:basepage.py:36 开始查找('xpath', "//input[contains(@class,'invest-unit-investinput')]")元素
+[32mINFO    [0m root:basepage.py:65 给元素('xpath', "//input[contains(@class,'invest-unit-investinput')]")输入(1000,)文本值
+[32mINFO    [0m root:basepage.py:21 等待元素('xpath', '//button[text()="投标"]')可见
+[32mINFO    [0m root:basepage.py:26 开始时间2020-12-17 23:03:48.672410，结束时间2020-12-17 23:03:48.693200，等待时长0:00:00.020790
+[32mINFO    [0m root:basepage.py:36 开始查找('xpath', '//button[text()="投标"]')元素
+[32mINFO    [0m root:basepage.py:50 开始点击元素('xpath', '//button[text()="投标"]')
+[32mINFO    [0m root:basepage.py:21 等待元素('xpath', "//div[@class='layui-layer-content']//button[text()='查看并激活']")可见
+[32mINFO    [0m root:basepage.py:26 开始时间2020-12-17 23:03:48.745068，结束时间2020-12-17 23:03:49.279631，等待时长0:00:00.534563
+[32mINFO    [0m root:basepage.py:36 开始查找('xpath', "//div[@class='layui-layer-content']//button[text()='查看并激活']")元素
+[32mINFO    [0m root:basepage.py:50 开始点击元素('xpath', "//div[@class='layui-layer-content']//button[text()='查看并激活']")
+[32mINFO    [0m root:basepage.py:21 等待元素('xpath', '//li[@class="color_sub"]')可见
+[32mINFO    [0m root:basepage.py:26 开始时间2020-12-17 23:04:14.922824，结束时间2020-12-17 23:04:14.942772，等待时长0:00:00.019948
+[32mINFO    [0m root:basepage.py:36 开始查找('xpath', '//li[@class="color_sub"]')元素
+[32mINFO    [0m root:basepage.py:94 获取('xpath', '//li[@class="color_sub"]')元素的文本值为4914577063.26元

@@ -1,0 +1,16 @@
+[32mINFO    [0m root:basepage.py:21 等待元素('xpath', "//input[@name='phone']")可见
+[32mINFO    [0m root:basepage.py:26 开始时间2020-12-17 23:02:49.253994，结束时间2020-12-17 23:02:49.267959，等待时长0:00:00.013965
+[32mINFO    [0m root:basepage.py:36 开始查找('xpath', "//input[@name='phone']")元素
+[32mINFO    [0m root:basepage.py:65 给元素('xpath', "//input[@name='phone']")输入('18684720559',)文本值
+[32mINFO    [0m root:basepage.py:21 等待元素('xpath', "//input[@name='password']")可见
+[32mINFO    [0m root:basepage.py:26 开始时间2020-12-17 23:02:49.398608，结束时间2020-12-17 23:02:49.412571，等待时长0:00:00.013963
+[32mINFO    [0m root:basepage.py:36 开始查找('xpath', "//input[@name='password']")元素
+[32mINFO    [0m root:basepage.py:65 给元素('xpath', "//input[@name='password']")输入('python',)文本值
+[32mINFO    [0m root:basepage.py:21 等待元素('xpath', '//button[@type="button"]')可见
+[32mINFO    [0m root:basepage.py:26 开始时间2020-12-17 23:02:49.471412，结束时间2020-12-17 23:02:49.487370，等待时长0:00:00.015958
+[32mINFO    [0m root:basepage.py:36 开始查找('xpath', '//button[@type="button"]')元素
+[32mINFO    [0m root:basepage.py:50 开始点击元素('xpath', '//button[@type="button"]')
+[32mINFO    [0m root:basepage.py:21 等待元素('xpath', "//div[@class='layui-layer-content']")可见
+[32mINFO    [0m root:basepage.py:26 开始时间2020-12-17 23:02:49.532251，结束时间2020-12-17 23:02:50.054416，等待时长0:00:00.522165
+[32mINFO    [0m root:basepage.py:36 开始查找('xpath', "//div[@class='layui-layer-content']")元素
+[32mINFO    [0m root:basepage.py:94 获取('xpath', "//div[@class='layui-layer-content']")元素的文本值为此账号没有经过授权，请联系管理员!

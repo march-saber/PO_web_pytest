@@ -1,0 +1,228 @@
+{
+  "uid" : "8057664d88e7f150",
+  "name" : "test_invest_0_failed_by_No100[data0]",
+  "fullName" : "testcase.test_invest.TestInvest#test_invest_0_failed_by_No100",
+  "historyId" : "b02b37708606b3cffe23de3f4e6f6bde",
+  "time" : {
+    "start" : 1608299415799,
+    "stop" : 1608299420511,
+    "duration" : 4712
+  },
+  "status" : "passed",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ {
+    "name" : "open_invest_url",
+    "time" : {
+      "start" : 1608299401958,
+      "stop" : 1608299415798,
+      "duration" : 13840
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "hasContent" : false,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false
+  }, {
+    "name" : "refresh_invest_page",
+    "time" : {
+      "start" : 1608299415799,
+      "stop" : 1608299415799,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "hasContent" : false,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false
+  } ],
+  "testStage" : {
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ {
+      "uid" : "fa6b499840ffdd5a",
+      "name" : "log",
+      "source" : "fa6b499840ffdd5a.txt",
+      "type" : "text/plain",
+      "size" : 4907
+    } ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "hasContent" : true,
+    "attachmentsCount" : 1,
+    "shouldDisplayMessage" : false
+  },
+  "afterStages" : [ {
+    "name" : "open_invest_url::0",
+    "time" : {
+      "start" : 1608299503178,
+      "stop" : 1608299505270,
+      "duration" : 2092
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "hasContent" : false,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false
+  }, {
+    "name" : "refresh_invest_page::0",
+    "time" : {
+      "start" : 1608299420514,
+      "stop" : 1608299424392,
+      "duration" : 3878
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "hasContent" : false,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false
+  } ],
+  "labels" : [ {
+    "name" : "tag",
+    "value" : "@pytest.mark.usefixtures('refresh_invest_page')"
+  }, {
+    "name" : "tag",
+    "value" : "smoke1"
+  }, {
+    "name" : "parentSuite",
+    "value" : "testcase"
+  }, {
+    "name" : "suite",
+    "value" : "test_invest"
+  }, {
+    "name" : "subSuite",
+    "value" : "TestInvest"
+  }, {
+    "name" : "host",
+    "value" : "DESKTOP-J6CF24D"
+  }, {
+    "name" : "thread",
+    "value" : "59000-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "testcase.test_invest"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ {
+    "name" : "data",
+    "value" : "{'money': -10, 'check': '请正确填写投标金额'}"
+  } ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ {
+      "uid" : "acefbbd7a2be8bf9",
+      "status" : "passed",
+      "time" : {
+        "start" : 1608298527150,
+        "stop" : 1608298532806,
+        "duration" : 5656
+      }
+    }, {
+      "uid" : "20485a2729a0eb93",
+      "status" : "broken",
+      "statusDetails" : "selenium.common.exceptions.SessionNotCreatedException: Message: session not created\nfrom timeout: Timed out receiving message from renderer: 600.000\n  (Session info: chrome=87.0.4280.88)",
+      "time" : {
+        "start" : 1608296705199,
+        "stop" : 1608296705199,
+        "duration" : 0
+      }
+    }, {
+      "uid" : "bd6d7b9601fcf409",
+      "status" : "passed",
+      "time" : {
+        "start" : 1608220186439,
+        "stop" : 1608220192737,
+        "duration" : 6298
+      }
+    }, {
+      "uid" : "65bb2f7740c94785",
+      "status" : "broken",
+      "statusDetails" : "selenium.common.exceptions.SessionNotCreatedException: Message: session not created\nfrom timeout: Timed out receiving message from renderer: 600.000\n  (Session info: chrome=87.0.4280.88)",
+      "time" : {
+        "start" : 1608218594958,
+        "stop" : 1608218594958,
+        "duration" : 0
+      }
+    }, {
+      "uid" : "91ade04cd38c68ed",
+      "status" : "passed",
+      "time" : {
+        "start" : 1608217635663,
+        "stop" : 1608217640583,
+        "duration" : 4920
+      }
+    }, {
+      "uid" : "a2dbddccaae01d88",
+      "status" : "passed",
+      "time" : {
+        "start" : 1608217391201,
+        "stop" : 1608217396237,
+        "duration" : 5036
+      }
+    }, {
+      "uid" : "29b0d611bbb92ca2",
+      "status" : "passed",
+      "time" : {
+        "start" : 1608216510723,
+        "stop" : 1608216521647,
+        "duration" : 10924
+      }
+    }, {
+      "uid" : "4d0fe402fda2572",
+      "status" : "passed",
+      "time" : {
+        "start" : 1608132647507,
+        "stop" : 1608132652288,
+        "duration" : 4781
+      }
+    } ],
+    "categories" : [ ],
+    "history" : {
+      "statistic" : {
+        "failed" : 0,
+        "broken" : 1,
+        "skipped" : 0,
+        "passed" : 1,
+        "unknown" : 0,
+        "total" : 2
+      },
+      "items" : [ {
+        "uid" : "c391adb10b6c257d",
+        "reportUrl" : "http://localhost:8080/job/po_web_pytest_allure/8/allure/#testresult/c391adb10b6c257d",
+        "status" : "broken",
+        "statusDetails" : "selenium.common.exceptions.SessionNotCreatedException: Message: session not created\nfrom timeout: Timed out receiving message from renderer: 600.000\n  (Session info: chrome=87.0.4280.88)",
+        "time" : {
+          "start" : 1608296705199,
+          "stop" : 1608296705199,
+          "duration" : 0
+        }
+      } ]
+    },
+    "tags" : [ "smoke1", "@pytest.mark.usefixtures('refresh_invest_page')" ]
+  },
+  "source" : "8057664d88e7f150.json",
+  "parameterValues" : [ "{'money': -10, 'check': '请正确填写投标金额'}" ]
+}

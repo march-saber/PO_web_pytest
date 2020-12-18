@@ -1,0 +1,229 @@
+{
+  "uid" : "f89092dd62afbbc9",
+  "name" : "test_login_1_failed_error_data[data0]",
+  "fullName" : "testcase.test_1login_pytest.TestLogin#test_login_1_failed_error_data",
+  "historyId" : "6a46fcdafac322ca966e3107b2e7a7bd",
+  "time" : {
+    "start" : 1608299394830,
+    "stop" : 1608299395518,
+    "duration" : 688
+  },
+  "status" : "passed",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ {
+    "name" : "refresh_page",
+    "time" : {
+      "start" : 1608299394829,
+      "stop" : 1608299394829,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "hasContent" : false,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false
+  }, {
+    "name" : "open_url",
+    "time" : {
+      "start" : 1608299386276,
+      "stop" : 1608299392839,
+      "duration" : 6563
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "hasContent" : false,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false
+  } ],
+  "testStage" : {
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ {
+      "uid" : "6cbcac824975b71a",
+      "name" : "log",
+      "source" : "6cbcac824975b71a.txt",
+      "type" : "text/plain",
+      "size" : 1698
+    } ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "hasContent" : true,
+    "attachmentsCount" : 1,
+    "shouldDisplayMessage" : false
+  },
+  "afterStages" : [ {
+    "name" : "refresh_page::0",
+    "time" : {
+      "start" : 1608299395518,
+      "stop" : 1608299395714,
+      "duration" : 196
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "hasContent" : false,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false
+  }, {
+    "name" : "open_url::0",
+    "time" : {
+      "start" : 1608299399836,
+      "stop" : 1608299401956,
+      "duration" : 2120
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "hasContent" : false,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false
+  } ],
+  "labels" : [ {
+    "name" : "tag",
+    "value" : "@pytest.mark.usefixtures('refresh_page')"
+  }, {
+    "name" : "tag",
+    "value" : "login"
+  }, {
+    "name" : "parentSuite",
+    "value" : "testcase"
+  }, {
+    "name" : "suite",
+    "value" : "test_1login_pytest"
+  }, {
+    "name" : "subSuite",
+    "value" : "TestLogin"
+  }, {
+    "name" : "host",
+    "value" : "DESKTOP-J6CF24D"
+  }, {
+    "name" : "thread",
+    "value" : "59000-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "testcase.test_1login_pytest"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ {
+    "name" : "data",
+    "value" : "{'user': '18684720559', 'passwd': 'python', 'check': '此账号没有经过授权，请联系管理员!'}"
+  } ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ {
+      "uid" : "bab0c6fd0241f493",
+      "status" : "passed",
+      "time" : {
+        "start" : 1608298464208,
+        "stop" : 1608298464975,
+        "duration" : 767
+      }
+    }, {
+      "uid" : "9460a0b76ce5ef62",
+      "status" : "broken",
+      "statusDetails" : "selenium.common.exceptions.SessionNotCreatedException: Message: session not created\nfrom timeout: Timed out receiving message from renderer: 600.000\n  (Session info: chrome=87.0.4280.88)",
+      "time" : {
+        "start" : 1608296704914,
+        "stop" : 1608296704914,
+        "duration" : 0
+      }
+    }, {
+      "uid" : "db3222819ef75685",
+      "status" : "broken",
+      "statusDetails" : "selenium.common.exceptions.SessionNotCreatedException: Message: session not created\nfrom timeout: Timed out receiving message from renderer: 600.000\n  (Session info: chrome=87.0.4280.88)",
+      "time" : {
+        "start" : 1608220170524,
+        "stop" : 1608220170524,
+        "duration" : 0
+      }
+    }, {
+      "uid" : "1bff1ddc142686a",
+      "status" : "passed",
+      "time" : {
+        "start" : 1608218583465,
+        "stop" : 1608218584965,
+        "duration" : 1500
+      }
+    }, {
+      "uid" : "6a934031c89e84f5",
+      "status" : "passed",
+      "time" : {
+        "start" : 1608217605571,
+        "stop" : 1608217606265,
+        "duration" : 694
+      }
+    }, {
+      "uid" : "2fac105c27896c43",
+      "status" : "passed",
+      "time" : {
+        "start" : 1608217369253,
+        "stop" : 1608217370076,
+        "duration" : 823
+      }
+    }, {
+      "uid" : "afe7b90a27fb792e",
+      "status" : "broken",
+      "statusDetails" : "selenium.common.exceptions.SessionNotCreatedException: Message: session not created\nfrom timeout: Timed out receiving message from renderer: 600.000\n  (Session info: chrome=87.0.4280.88)",
+      "time" : {
+        "start" : 1608216465259,
+        "stop" : 1608216465259,
+        "duration" : 0
+      }
+    }, {
+      "uid" : "b34febac5dc966ee",
+      "status" : "passed",
+      "time" : {
+        "start" : 1608132624949,
+        "stop" : 1608132625724,
+        "duration" : 775
+      }
+    } ],
+    "categories" : [ ],
+    "history" : {
+      "statistic" : {
+        "failed" : 0,
+        "broken" : 1,
+        "skipped" : 0,
+        "passed" : 1,
+        "unknown" : 0,
+        "total" : 2
+      },
+      "items" : [ {
+        "uid" : "749e192c710c85ef",
+        "reportUrl" : "http://localhost:8080/job/po_web_pytest_allure/8/allure/#testresult/749e192c710c85ef",
+        "status" : "broken",
+        "statusDetails" : "selenium.common.exceptions.SessionNotCreatedException: Message: session not created\nfrom timeout: Timed out receiving message from renderer: 600.000\n  (Session info: chrome=87.0.4280.88)",
+        "time" : {
+          "start" : 1608296704914,
+          "stop" : 1608296704914,
+          "duration" : 0
+        }
+      } ]
+    },
+    "tags" : [ "login", "@pytest.mark.usefixtures('refresh_page')" ]
+  },
+  "source" : "f89092dd62afbbc9.json",
+  "parameterValues" : [ "{'user': '18684720559', 'passwd': 'python', 'check': '此账号没有经过授权，请联系管理员!'}" ]
+}

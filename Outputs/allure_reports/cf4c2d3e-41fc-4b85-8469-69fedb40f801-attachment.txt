@@ -1,0 +1,23 @@
+INFO     root:test_invest.py:82 *********投资用例：正常场景-投资成功*********
+INFO     root:basepage.py:21 等待元素('xpath', "//input[contains(@class,'invest-unit-investinput')]")可见
+INFO     root:basepage.py:26 开始时间2020-12-17 23:50:30.131539，结束时间2020-12-17 23:50:30.190558，等待时长0:00:00.059019
+INFO     root:basepage.py:36 开始查找('xpath', "//input[contains(@class,'invest-unit-investinput')]")元素
+INFO     root:basepage.py:79 元素('xpath', "//input[contains(@class,'invest-unit-investinput')]")的属性data-amount的值为4914573863.26
+INFO     root:basepage.py:21 等待元素('xpath', "//input[contains(@class,'invest-unit-investinput')]")可见
+INFO     root:basepage.py:26 开始时间2020-12-17 23:50:30.225535，结束时间2020-12-17 23:50:30.267423，等待时长0:00:00.041888
+INFO     root:basepage.py:36 开始查找('xpath', "//input[contains(@class,'invest-unit-investinput')]")元素
+INFO     root:basepage.py:65 给元素('xpath', "//input[contains(@class,'invest-unit-investinput')]")输入(1000,)文本值
+INFO     root:basepage.py:21 等待元素('xpath', '//button[text()="投标"]')可见
+INFO     root:basepage.py:26 开始时间2020-12-17 23:50:30.424167，结束时间2020-12-17 23:50:30.470798，等待时长0:00:00.046631
+INFO     root:basepage.py:36 开始查找('xpath', '//button[text()="投标"]')元素
+INFO     root:basepage.py:50 开始点击元素('xpath', '//button[text()="投标"]')
+INFO     root:basepage.py:21 等待元素('xpath', "//div[@class='layui-layer-content']//button[text()='查看并激活']")可见
+ERROR    root:basepage.py:29 等待元素可见失败
+Traceback (most recent call last):
+  File "F:\PycharmProjects\POitem1\Common\basepage.py", line 24, in wait_eleVisible
+    WebDriverWait(self.driver,timeout,frequency).until(EC.visibility_of_element_located(loc))
+  File "d:\python\python37\lib\site-packages\selenium\webdriver\support\wait.py", line 80, in until
+    raise TimeoutException(message, screen, stacktrace)
+selenium.common.exceptions.TimeoutException: Message: 
+
+INFO     root:basepage.py:108 网页截图成功。图片存储在：F:\PycharmProjects\POitem1\Outputs/screenshots/投标页面_投资成功的提示框 - 点击查看并激活_2020-12-17 23_50_53.png

@@ -1,0 +1,871 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8"/>
+    <title>Test Report</title>
+    <link href="assets/style.css" rel="stylesheet" type="text/css"/></head>
+  <body onLoad="init()">
+    <script>/* This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this file,
+ * You can obtain one at http://mozilla.org/MPL/2.0/. */
+
+
+function toArray(iter) {
+    if (iter === null) {
+        return null;
+    }
+    return Array.prototype.slice.call(iter);
+}
+
+function find(selector, elem) { // eslint-disable-line no-redeclare
+    if (!elem) {
+        elem = document;
+    }
+    return elem.querySelector(selector);
+}
+
+function find_all(selector, elem) {
+    if (!elem) {
+        elem = document;
+    }
+    return toArray(elem.querySelectorAll(selector));
+}
+
+function sort_column(elem) {
+    toggle_sort_states(elem);
+    const colIndex = toArray(elem.parentNode.childNodes).indexOf(elem);
+    let key;
+    if (elem.classList.contains('result')) {
+        key = key_result;
+    } else if (elem.classList.contains('links')) {
+        key = key_link;
+    } else {
+        key = key_alpha;
+    }
+    sort_table(elem, key(colIndex));
+}
+
+function show_all_extras() { // eslint-disable-line no-unused-vars
+    find_all('.col-result').forEach(show_extras);
+}
+
+function hide_all_extras() { // eslint-disable-line no-unused-vars
+    find_all('.col-result').forEach(hide_extras);
+}
+
+function show_extras(colresult_elem) {
+    const extras = colresult_elem.parentNode.nextElementSibling;
+    const expandcollapse = colresult_elem.firstElementChild;
+    extras.classList.remove('collapsed');
+    expandcollapse.classList.remove('expander');
+    expandcollapse.classList.add('collapser');
+}
+
+function hide_extras(colresult_elem) {
+    const extras = colresult_elem.parentNode.nextElementSibling;
+    const expandcollapse = colresult_elem.firstElementChild;
+    extras.classList.add('collapsed');
+    expandcollapse.classList.remove('collapser');
+    expandcollapse.classList.add('expander');
+}
+
+function show_filters() {
+    const filter_items = document.getElementsByClassName('filter');
+    for (let i = 0; i < filter_items.length; i++)
+        filter_items[i].hidden = false;
+}
+
+function add_collapse() {
+    // Add links for show/hide all
+    const resulttable = find('table#results-table');
+    const showhideall = document.createElement('p');
+    showhideall.innerHTML = '<a href="javascript:show_all_extras()">Show all details</a> / ' +
+                            '<a href="javascript:hide_all_extras()">Hide all details</a>';
+    resulttable.parentElement.insertBefore(showhideall, resulttable);
+
+    // Add show/hide link to each result
+    find_all('.col-result').forEach(function(elem) {
+        const collapsed = get_query_parameter('collapsed') || 'Passed';
+        const extras = elem.parentNode.nextElementSibling;
+        const expandcollapse = document.createElement('span');
+        if (extras.classList.contains('collapsed')) {
+            expandcollapse.classList.add('expander');
+        } else if (collapsed.includes(elem.innerHTML)) {
+            extras.classList.add('collapsed');
+            expandcollapse.classList.add('expander');
+        } else {
+            expandcollapse.classList.add('collapser');
+        }
+        elem.appendChild(expandcollapse);
+
+        elem.addEventListener('click', function(event) {
+            if (event.currentTarget.parentNode.nextElementSibling.classList.contains('collapsed')) {
+                show_extras(event.currentTarget);
+            } else {
+                hide_extras(event.currentTarget);
+            }
+        });
+    });
+}
+
+function get_query_parameter(name) {
+    const match = RegExp('[?&]' + name + '=([^&]*)').exec(window.location.search);
+    return match && decodeURIComponent(match[1].replace(/\+/g, ' '));
+}
+
+function init () { // eslint-disable-line no-unused-vars
+    reset_sort_headers();
+
+    add_collapse();
+
+    show_filters();
+
+    sort_column(find('.initial-sort'));
+
+    find_all('.sortable').forEach(function(elem) {
+        elem.addEventListener('click',
+            function() {
+                sort_column(elem);
+            }, false);
+    });
+}
+
+function sort_table(clicked, key_func) {
+    const rows = find_all('.results-table-row');
+    const reversed = !clicked.classList.contains('asc');
+    const sorted_rows = sort(rows, key_func, reversed);
+    /* Whole table is removed here because browsers acts much slower
+     * when appending existing elements.
+     */
+    const thead = document.getElementById('results-table-head');
+    document.getElementById('results-table').remove();
+    const parent = document.createElement('table');
+    parent.id = 'results-table';
+    parent.appendChild(thead);
+    sorted_rows.forEach(function(elem) {
+        parent.appendChild(elem);
+    });
+    document.getElementsByTagName('BODY')[0].appendChild(parent);
+}
+
+function sort(items, key_func, reversed) {
+    const sort_array = items.map(function(item, i) {
+        return [key_func(item), i];
+    });
+
+    sort_array.sort(function(a, b) {
+        const key_a = a[0];
+        const key_b = b[0];
+
+        if (key_a == key_b) return 0;
+
+        if (reversed) {
+            return key_a < key_b ? 1 : -1;
+        } else {
+            return key_a > key_b ? 1 : -1;
+        }
+    });
+
+    return sort_array.map(function(item) {
+        const index = item[1];
+        return items[index];
+    });
+}
+
+function key_alpha(col_index) {
+    return function(elem) {
+        return elem.childNodes[1].childNodes[col_index].firstChild.data.toLowerCase();
+    };
+}
+
+function key_link(col_index) {
+    return function(elem) {
+        const dataCell = elem.childNodes[1].childNodes[col_index].firstChild;
+        return dataCell == null ? '' : dataCell.innerText.toLowerCase();
+    };
+}
+
+function key_result(col_index) {
+    return function(elem) {
+        const strings = ['Error', 'Failed', 'Rerun', 'XFailed', 'XPassed',
+            'Skipped', 'Passed'];
+        return strings.indexOf(elem.childNodes[1].childNodes[col_index].firstChild.data);
+    };
+}
+
+function reset_sort_headers() {
+    find_all('.sort-icon').forEach(function(elem) {
+        elem.parentNode.removeChild(elem);
+    });
+    find_all('.sortable').forEach(function(elem) {
+        const icon = document.createElement('div');
+        icon.className = 'sort-icon';
+        icon.textContent = 'vvv';
+        elem.insertBefore(icon, elem.firstChild);
+        elem.classList.remove('desc', 'active');
+        elem.classList.add('asc', 'inactive');
+    });
+}
+
+function toggle_sort_states(elem) {
+    //if active, toggle between asc and desc
+    if (elem.classList.contains('active')) {
+        elem.classList.toggle('asc');
+        elem.classList.toggle('desc');
+    }
+
+    //if inactive, reset all other functions and add ascending active
+    if (elem.classList.contains('inactive')) {
+        reset_sort_headers();
+        elem.classList.remove('inactive');
+        elem.classList.add('active');
+    }
+}
+
+function is_all_rows_hidden(value) {
+    return value.hidden == false;
+}
+
+function filter_table(elem) { // eslint-disable-line no-unused-vars
+    const outcome_att = 'data-test-result';
+    const outcome = elem.getAttribute(outcome_att);
+    const class_outcome = outcome + ' results-table-row';
+    const outcome_rows = document.getElementsByClassName(class_outcome);
+
+    for(let i = 0; i < outcome_rows.length; i++){
+        outcome_rows[i].hidden = !elem.checked;
+    }
+
+    const rows = find_all('.results-table-row').filter(is_all_rows_hidden);
+    const all_rows_hidden = rows.length == 0 ? true : false;
+    const not_found_message = document.getElementById('not-found-message');
+    not_found_message.hidden = !all_rows_hidden;
+}
+</script>
+    <h1>pytest_run_report.html</h1>
+    <p>Report generated on 16-Dec-2020 at 22:12:13 by <a href="https://pypi.python.org/pypi/pytest-html">pytest-html</a> v3.1.0</p>
+    <h2>Environment</h2>
+    <table id="environment">
+      <tr>
+        <td>JAVA_HOME</td>
+        <td>D:\Program Files\Java\jdk-10.0.1</td></tr>
+      <tr>
+        <td>Packages</td>
+        <td>{"pluggy": "0.13.1", "py": "1.9.0", "pytest": "6.1.2"}</td></tr>
+      <tr>
+        <td>Platform</td>
+        <td>Windows-10-10.0.18362-SP0</td></tr>
+      <tr>
+        <td>Plugins</td>
+        <td>{"html": "3.1.0", "metadata": "1.11.0"}</td></tr>
+      <tr>
+        <td>Python</td>
+        <td>3.7.0</td></tr></table>
+    <h2>Summary</h2>
+    <p>12 tests ran in 125.43 seconds. </p>
+    <p class="filter" hidden="true">(Un)check the boxes to filter the results.</p><input checked="true" class="filter" data-test-result="passed" hidden="true" name="filter_checkbox" onChange="filter_table(this)" type="checkbox"/><span class="passed">12 passed</span>, <input checked="true" class="filter" data-test-result="skipped" disabled="true" hidden="true" name="filter_checkbox" onChange="filter_table(this)" type="checkbox"/><span class="skipped">0 skipped</span>, <input checked="true" class="filter" data-test-result="failed" disabled="true" hidden="true" name="filter_checkbox" onChange="filter_table(this)" type="checkbox"/><span class="failed">0 failed</span>, <input checked="true" class="filter" data-test-result="error" disabled="true" hidden="true" name="filter_checkbox" onChange="filter_table(this)" type="checkbox"/><span class="error">0 errors</span>, <input checked="true" class="filter" data-test-result="xfailed" disabled="true" hidden="true" name="filter_checkbox" onChange="filter_table(this)" type="checkbox"/><span class="xfailed">0 expected failures</span>, <input checked="true" class="filter" data-test-result="xpassed" disabled="true" hidden="true" name="filter_checkbox" onChange="filter_table(this)" type="checkbox"/><span class="xpassed">0 unexpected passes</span>
+    <h2>Results</h2>
+    <table id="results-table">
+      <thead id="results-table-head">
+        <tr>
+          <th class="sortable result initial-sort" col="result">Result</th>
+          <th class="sortable" col="name">Test</th>
+          <th class="sortable" col="duration">Duration</th>
+          <th class="sortable links" col="links">Links</th></tr>
+        <tr hidden="true" id="not-found-message">
+          <th colspan="4">No results found. Try to check the filters</th></tr></thead>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">testcase/test_1login_pytest.py::TestLogin::test_login_0_failed_wrong_datas[data0]</td>
+          <td class="col-duration">7.82</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log"> ------------------------------Captured stderr call------------------------------ <br/> Wed, 16 Dec 2020 22:10:15  INFO basepage.py wait_eleVisible [ line:21 ] 等待元素(&#x27;xpath&#x27;, &quot;//input[@name=&#x27;phone&#x27;]&quot;)可见
+ Wed, 16 Dec 2020 22:10:15  INFO basepage.py wait_eleVisible [ line:26 ] 开始时间2020-12-16 22:10:15.557994，结束时间2020-12-16 22:10:15.580932，等待时长0:00:00.022938
+ Wed, 16 Dec 2020 22:10:15  INFO basepage.py get_element [ line:36 ] 开始查找(&#x27;xpath&#x27;, &quot;//input[@name=&#x27;phone&#x27;]&quot;)元素
+ Wed, 16 Dec 2020 22:10:15  INFO basepage.py input_text [ line:65 ] 给元素(&#x27;xpath&#x27;, &quot;//input[@name=&#x27;phone&#x27;]&quot;)输入(&#x27;18684720553&#x27;,)文本值
+ Wed, 16 Dec 2020 22:10:15  INFO basepage.py wait_eleVisible [ line:21 ] 等待元素(&#x27;xpath&#x27;, &quot;//input[@name=&#x27;password&#x27;]&quot;)可见
+ Wed, 16 Dec 2020 22:10:15  INFO basepage.py wait_eleVisible [ line:26 ] 开始时间2020-12-16 22:10:15.672687，结束时间2020-12-16 22:10:15.695627，等待时长0:00:00.022940
+ Wed, 16 Dec 2020 22:10:15  INFO basepage.py get_element [ line:36 ] 开始查找(&#x27;xpath&#x27;, &quot;//input[@name=&#x27;password&#x27;]&quot;)元素
+ Wed, 16 Dec 2020 22:10:15  INFO basepage.py input_text [ line:65 ] 给元素(&#x27;xpath&#x27;, &quot;//input[@name=&#x27;password&#x27;]&quot;)输入(&#x27;&#x27;,)文本值
+ Wed, 16 Dec 2020 22:10:15  INFO basepage.py wait_eleVisible [ line:21 ] 等待元素(&#x27;xpath&#x27;, &#x27;//button[@type=&quot;button&quot;]&#x27;)可见
+ Wed, 16 Dec 2020 22:10:15  INFO basepage.py wait_eleVisible [ line:26 ] 开始时间2020-12-16 22:10:15.775411，结束时间2020-12-16 22:10:15.794360，等待时长0:00:00.018949
+ Wed, 16 Dec 2020 22:10:15  INFO basepage.py get_element [ line:36 ] 开始查找(&#x27;xpath&#x27;, &#x27;//button[@type=&quot;button&quot;]&#x27;)元素
+ Wed, 16 Dec 2020 22:10:15  INFO basepage.py click_element [ line:50 ] 开始点击元素(&#x27;xpath&#x27;, &#x27;//button[@type=&quot;button&quot;]&#x27;)
+ Wed, 16 Dec 2020 22:10:15  INFO basepage.py wait_eleVisible [ line:21 ] 等待元素(&#x27;xpath&#x27;, &quot;//div[@class=&#x27;form-error-info&#x27;]&quot;)可见
+ Wed, 16 Dec 2020 22:10:15  INFO basepage.py wait_eleVisible [ line:26 ] 开始时间2020-12-16 22:10:15.839241，结束时间2020-12-16 22:10:15.860186，等待时长0:00:00.020945
+ Wed, 16 Dec 2020 22:10:15  INFO basepage.py get_element [ line:36 ] 开始查找(&#x27;xpath&#x27;, &quot;//div[@class=&#x27;form-error-info&#x27;]&quot;)元素
+ Wed, 16 Dec 2020 22:10:15  INFO basepage.py get_element_text [ line:94 ] 获取(&#x27;xpath&#x27;, &quot;//div[@class=&#x27;form-error-info&#x27;]&quot;)元素的文本值为请输入密码
+<br/> -------------------------------Captured log call-------------------------------- <br/>INFO     root:basepage.py:21 等待元素(&#x27;xpath&#x27;, &quot;//input[@name=&#x27;phone&#x27;]&quot;)可见
+INFO     root:basepage.py:26 开始时间2020-12-16 22:10:15.557994，结束时间2020-12-16 22:10:15.580932，等待时长0:00:00.022938
+INFO     root:basepage.py:36 开始查找(&#x27;xpath&#x27;, &quot;//input[@name=&#x27;phone&#x27;]&quot;)元素
+INFO     root:basepage.py:65 给元素(&#x27;xpath&#x27;, &quot;//input[@name=&#x27;phone&#x27;]&quot;)输入(&#x27;18684720553&#x27;,)文本值
+INFO     root:basepage.py:21 等待元素(&#x27;xpath&#x27;, &quot;//input[@name=&#x27;password&#x27;]&quot;)可见
+INFO     root:basepage.py:26 开始时间2020-12-16 22:10:15.672687，结束时间2020-12-16 22:10:15.695627，等待时长0:00:00.022940
+INFO     root:basepage.py:36 开始查找(&#x27;xpath&#x27;, &quot;//input[@name=&#x27;password&#x27;]&quot;)元素
+INFO     root:basepage.py:65 给元素(&#x27;xpath&#x27;, &quot;//input[@name=&#x27;password&#x27;]&quot;)输入(&#x27;&#x27;,)文本值
+INFO     root:basepage.py:21 等待元素(&#x27;xpath&#x27;, &#x27;//button[@type=&quot;button&quot;]&#x27;)可见
+INFO     root:basepage.py:26 开始时间2020-12-16 22:10:15.775411，结束时间2020-12-16 22:10:15.794360，等待时长0:00:00.018949
+INFO     root:basepage.py:36 开始查找(&#x27;xpath&#x27;, &#x27;//button[@type=&quot;button&quot;]&#x27;)元素
+INFO     root:basepage.py:50 开始点击元素(&#x27;xpath&#x27;, &#x27;//button[@type=&quot;button&quot;]&#x27;)
+INFO     root:basepage.py:21 等待元素(&#x27;xpath&#x27;, &quot;//div[@class=&#x27;form-error-info&#x27;]&quot;)可见
+INFO     root:basepage.py:26 开始时间2020-12-16 22:10:15.839241，结束时间2020-12-16 22:10:15.860186，等待时长0:00:00.020945
+INFO     root:basepage.py:36 开始查找(&#x27;xpath&#x27;, &quot;//div[@class=&#x27;form-error-info&#x27;]&quot;)元素
+INFO     root:basepage.py:94 获取(&#x27;xpath&#x27;, &quot;//div[@class=&#x27;form-error-info&#x27;]&quot;)元素的文本值为请输入密码<br/></div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">testcase/test_1login_pytest.py::TestLogin::test_login_0_failed_wrong_datas[data1]</td>
+          <td class="col-duration">0.55</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log"> ------------------------------Captured stderr call------------------------------ <br/> Wed, 16 Dec 2020 22:10:16  INFO basepage.py wait_eleVisible [ line:21 ] 等待元素(&#x27;xpath&#x27;, &quot;//input[@name=&#x27;phone&#x27;]&quot;)可见
+ Wed, 16 Dec 2020 22:10:16  INFO basepage.py wait_eleVisible [ line:26 ] 开始时间2020-12-16 22:10:16.220223，结束时间2020-12-16 22:10:16.235181，等待时长0:00:00.014958
+ Wed, 16 Dec 2020 22:10:16  INFO basepage.py get_element [ line:36 ] 开始查找(&#x27;xpath&#x27;, &quot;//input[@name=&#x27;phone&#x27;]&quot;)元素
+ Wed, 16 Dec 2020 22:10:16  INFO basepage.py input_text [ line:65 ] 给元素(&#x27;xpath&#x27;, &quot;//input[@name=&#x27;phone&#x27;]&quot;)输入(&#x27;&#x27;,)文本值
+ Wed, 16 Dec 2020 22:10:16  INFO basepage.py wait_eleVisible [ line:21 ] 等待元素(&#x27;xpath&#x27;, &quot;//input[@name=&#x27;password&#x27;]&quot;)可见
+ Wed, 16 Dec 2020 22:10:16  INFO basepage.py wait_eleVisible [ line:26 ] 开始时间2020-12-16 22:10:16.282056，结束时间2020-12-16 22:10:16.302007，等待时长0:00:00.019951
+ Wed, 16 Dec 2020 22:10:16  INFO basepage.py get_element [ line:36 ] 开始查找(&#x27;xpath&#x27;, &quot;//input[@name=&#x27;password&#x27;]&quot;)元素
+ Wed, 16 Dec 2020 22:10:16  INFO basepage.py input_text [ line:65 ] 给元素(&#x27;xpath&#x27;, &quot;//input[@name=&#x27;password&#x27;]&quot;)输入(&#x27;python&#x27;,)文本值
+ Wed, 16 Dec 2020 22:10:16  INFO basepage.py wait_eleVisible [ line:21 ] 等待元素(&#x27;xpath&#x27;, &#x27;//button[@type=&quot;button&quot;]&#x27;)可见
+ Wed, 16 Dec 2020 22:10:16  INFO basepage.py wait_eleVisible [ line:26 ] 开始时间2020-12-16 22:10:16.391764，结束时间2020-12-16 22:10:16.408719，等待时长0:00:00.016955
+ Wed, 16 Dec 2020 22:10:16  INFO basepage.py get_element [ line:36 ] 开始查找(&#x27;xpath&#x27;, &#x27;//button[@type=&quot;button&quot;]&#x27;)元素
+ Wed, 16 Dec 2020 22:10:16  INFO basepage.py click_element [ line:50 ] 开始点击元素(&#x27;xpath&#x27;, &#x27;//button[@type=&quot;button&quot;]&#x27;)
+ Wed, 16 Dec 2020 22:10:16  INFO basepage.py wait_eleVisible [ line:21 ] 等待元素(&#x27;xpath&#x27;, &quot;//div[@class=&#x27;form-error-info&#x27;]&quot;)可见
+ Wed, 16 Dec 2020 22:10:16  INFO basepage.py wait_eleVisible [ line:26 ] 开始时间2020-12-16 22:10:16.456592，结束时间2020-12-16 22:10:16.477535，等待时长0:00:00.020943
+ Wed, 16 Dec 2020 22:10:16  INFO basepage.py get_element [ line:36 ] 开始查找(&#x27;xpath&#x27;, &quot;//div[@class=&#x27;form-error-info&#x27;]&quot;)元素
+ Wed, 16 Dec 2020 22:10:16  INFO basepage.py get_element_text [ line:94 ] 获取(&#x27;xpath&#x27;, &quot;//div[@class=&#x27;form-error-info&#x27;]&quot;)元素的文本值为请输入手机号
+<br/> -------------------------------Captured log call-------------------------------- <br/>INFO     root:basepage.py:21 等待元素(&#x27;xpath&#x27;, &quot;//input[@name=&#x27;phone&#x27;]&quot;)可见
+INFO     root:basepage.py:26 开始时间2020-12-16 22:10:16.220223，结束时间2020-12-16 22:10:16.235181，等待时长0:00:00.014958
+INFO     root:basepage.py:36 开始查找(&#x27;xpath&#x27;, &quot;//input[@name=&#x27;phone&#x27;]&quot;)元素
+INFO     root:basepage.py:65 给元素(&#x27;xpath&#x27;, &quot;//input[@name=&#x27;phone&#x27;]&quot;)输入(&#x27;&#x27;,)文本值
+INFO     root:basepage.py:21 等待元素(&#x27;xpath&#x27;, &quot;//input[@name=&#x27;password&#x27;]&quot;)可见
+INFO     root:basepage.py:26 开始时间2020-12-16 22:10:16.282056，结束时间2020-12-16 22:10:16.302007，等待时长0:00:00.019951
+INFO     root:basepage.py:36 开始查找(&#x27;xpath&#x27;, &quot;//input[@name=&#x27;password&#x27;]&quot;)元素
+INFO     root:basepage.py:65 给元素(&#x27;xpath&#x27;, &quot;//input[@name=&#x27;password&#x27;]&quot;)输入(&#x27;python&#x27;,)文本值
+INFO     root:basepage.py:21 等待元素(&#x27;xpath&#x27;, &#x27;//button[@type=&quot;button&quot;]&#x27;)可见
+INFO     root:basepage.py:26 开始时间2020-12-16 22:10:16.391764，结束时间2020-12-16 22:10:16.408719，等待时长0:00:00.016955
+INFO     root:basepage.py:36 开始查找(&#x27;xpath&#x27;, &#x27;//button[@type=&quot;button&quot;]&#x27;)元素
+INFO     root:basepage.py:50 开始点击元素(&#x27;xpath&#x27;, &#x27;//button[@type=&quot;button&quot;]&#x27;)
+INFO     root:basepage.py:21 等待元素(&#x27;xpath&#x27;, &quot;//div[@class=&#x27;form-error-info&#x27;]&quot;)可见
+INFO     root:basepage.py:26 开始时间2020-12-16 22:10:16.456592，结束时间2020-12-16 22:10:16.477535，等待时长0:00:00.020943
+INFO     root:basepage.py:36 开始查找(&#x27;xpath&#x27;, &quot;//div[@class=&#x27;form-error-info&#x27;]&quot;)元素
+INFO     root:basepage.py:94 获取(&#x27;xpath&#x27;, &quot;//div[@class=&#x27;form-error-info&#x27;]&quot;)元素的文本值为请输入手机号<br/></div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">testcase/test_1login_pytest.py::TestLogin::test_login_0_failed_wrong_datas[data2]</td>
+          <td class="col-duration">0.53</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log"> ------------------------------Captured stderr call------------------------------ <br/> Wed, 16 Dec 2020 22:10:16  INFO basepage.py wait_eleVisible [ line:21 ] 等待元素(&#x27;xpath&#x27;, &quot;//input[@name=&#x27;phone&#x27;]&quot;)可见
+ Wed, 16 Dec 2020 22:10:16  INFO basepage.py wait_eleVisible [ line:26 ] 开始时间2020-12-16 22:10:16.775737，结束时间2020-12-16 22:10:16.792691，等待时长0:00:00.016954
+ Wed, 16 Dec 2020 22:10:16  INFO basepage.py get_element [ line:36 ] 开始查找(&#x27;xpath&#x27;, &quot;//input[@name=&#x27;phone&#x27;]&quot;)元素
+ Wed, 16 Dec 2020 22:10:16  INFO basepage.py input_text [ line:65 ] 给元素(&#x27;xpath&#x27;, &quot;//input[@name=&#x27;phone&#x27;]&quot;)输入(&#x27;186847&#x27;,)文本值
+ Wed, 16 Dec 2020 22:10:16  INFO basepage.py wait_eleVisible [ line:21 ] 等待元素(&#x27;xpath&#x27;, &quot;//input[@name=&#x27;password&#x27;]&quot;)可见
+ Wed, 16 Dec 2020 22:10:16  INFO basepage.py wait_eleVisible [ line:26 ] 开始时间2020-12-16 22:10:16.865496，结束时间2020-12-16 22:10:16.881455，等待时长0:00:00.015959
+ Wed, 16 Dec 2020 22:10:16  INFO basepage.py get_element [ line:36 ] 开始查找(&#x27;xpath&#x27;, &quot;//input[@name=&#x27;password&#x27;]&quot;)元素
+ Wed, 16 Dec 2020 22:10:16  INFO basepage.py input_text [ line:65 ] 给元素(&#x27;xpath&#x27;, &quot;//input[@name=&#x27;password&#x27;]&quot;)输入(&#x27;python&#x27;,)文本值
+ Wed, 16 Dec 2020 22:10:16  INFO basepage.py wait_eleVisible [ line:21 ] 等待元素(&#x27;xpath&#x27;, &#x27;//button[@type=&quot;button&quot;]&#x27;)可见
+ Wed, 16 Dec 2020 22:10:16  INFO basepage.py wait_eleVisible [ line:26 ] 开始时间2020-12-16 22:10:16.965229，结束时间2020-12-16 22:10:16.981186，等待时长0:00:00.015957
+ Wed, 16 Dec 2020 22:10:16  INFO basepage.py get_element [ line:36 ] 开始查找(&#x27;xpath&#x27;, &#x27;//button[@type=&quot;button&quot;]&#x27;)元素
+ Wed, 16 Dec 2020 22:10:16  INFO basepage.py click_element [ line:50 ] 开始点击元素(&#x27;xpath&#x27;, &#x27;//button[@type=&quot;button&quot;]&#x27;)
+ Wed, 16 Dec 2020 22:10:17  INFO basepage.py wait_eleVisible [ line:21 ] 等待元素(&#x27;xpath&#x27;, &quot;//div[@class=&#x27;form-error-info&#x27;]&quot;)可见
+ Wed, 16 Dec 2020 22:10:17  INFO basepage.py wait_eleVisible [ line:26 ] 开始时间2020-12-16 22:10:17.024071，结束时间2020-12-16 22:10:17.044018，等待时长0:00:00.019947
+ Wed, 16 Dec 2020 22:10:17  INFO basepage.py get_element [ line:36 ] 开始查找(&#x27;xpath&#x27;, &quot;//div[@class=&#x27;form-error-info&#x27;]&quot;)元素
+ Wed, 16 Dec 2020 22:10:17  INFO basepage.py get_element_text [ line:94 ] 获取(&#x27;xpath&#x27;, &quot;//div[@class=&#x27;form-error-info&#x27;]&quot;)元素的文本值为请输入正确的手机号
+<br/> -------------------------------Captured log call-------------------------------- <br/>INFO     root:basepage.py:21 等待元素(&#x27;xpath&#x27;, &quot;//input[@name=&#x27;phone&#x27;]&quot;)可见
+INFO     root:basepage.py:26 开始时间2020-12-16 22:10:16.775737，结束时间2020-12-16 22:10:16.792691，等待时长0:00:00.016954
+INFO     root:basepage.py:36 开始查找(&#x27;xpath&#x27;, &quot;//input[@name=&#x27;phone&#x27;]&quot;)元素
+INFO     root:basepage.py:65 给元素(&#x27;xpath&#x27;, &quot;//input[@name=&#x27;phone&#x27;]&quot;)输入(&#x27;186847&#x27;,)文本值
+INFO     root:basepage.py:21 等待元素(&#x27;xpath&#x27;, &quot;//input[@name=&#x27;password&#x27;]&quot;)可见
+INFO     root:basepage.py:26 开始时间2020-12-16 22:10:16.865496，结束时间2020-12-16 22:10:16.881455，等待时长0:00:00.015959
+INFO     root:basepage.py:36 开始查找(&#x27;xpath&#x27;, &quot;//input[@name=&#x27;password&#x27;]&quot;)元素
+INFO     root:basepage.py:65 给元素(&#x27;xpath&#x27;, &quot;//input[@name=&#x27;password&#x27;]&quot;)输入(&#x27;python&#x27;,)文本值
+INFO     root:basepage.py:21 等待元素(&#x27;xpath&#x27;, &#x27;//button[@type=&quot;button&quot;]&#x27;)可见
+INFO     root:basepage.py:26 开始时间2020-12-16 22:10:16.965229，结束时间2020-12-16 22:10:16.981186，等待时长0:00:00.015957
+INFO     root:basepage.py:36 开始查找(&#x27;xpath&#x27;, &#x27;//button[@type=&quot;button&quot;]&#x27;)元素
+INFO     root:basepage.py:50 开始点击元素(&#x27;xpath&#x27;, &#x27;//button[@type=&quot;button&quot;]&#x27;)
+INFO     root:basepage.py:21 等待元素(&#x27;xpath&#x27;, &quot;//div[@class=&#x27;form-error-info&#x27;]&quot;)可见
+INFO     root:basepage.py:26 开始时间2020-12-16 22:10:17.024071，结束时间2020-12-16 22:10:17.044018，等待时长0:00:00.019947
+INFO     root:basepage.py:36 开始查找(&#x27;xpath&#x27;, &quot;//div[@class=&#x27;form-error-info&#x27;]&quot;)元素
+INFO     root:basepage.py:94 获取(&#x27;xpath&#x27;, &quot;//div[@class=&#x27;form-error-info&#x27;]&quot;)元素的文本值为请输入正确的手机号<br/></div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">testcase/test_1login_pytest.py::TestLogin::test_login_0_failed_wrong_datas[data3]</td>
+          <td class="col-duration">0.56</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log"> ------------------------------Captured stderr call------------------------------ <br/> Wed, 16 Dec 2020 22:10:17  INFO basepage.py wait_eleVisible [ line:21 ] 等待元素(&#x27;xpath&#x27;, &quot;//input[@name=&#x27;phone&#x27;]&quot;)可见
+ Wed, 16 Dec 2020 22:10:17  INFO basepage.py wait_eleVisible [ line:26 ] 开始时间2020-12-16 22:10:17.311303，结束时间2020-12-16 22:10:17.324269，等待时长0:00:00.012966
+ Wed, 16 Dec 2020 22:10:17  INFO basepage.py get_element [ line:36 ] 开始查找(&#x27;xpath&#x27;, &quot;//input[@name=&#x27;phone&#x27;]&quot;)元素
+ Wed, 16 Dec 2020 22:10:17  INFO basepage.py input_text [ line:65 ] 给元素(&#x27;xpath&#x27;, &quot;//input[@name=&#x27;phone&#x27;]&quot;)输入(&#x27;186847055311&#x27;,)文本值
+ Wed, 16 Dec 2020 22:10:17  INFO basepage.py wait_eleVisible [ line:21 ] 等待元素(&#x27;xpath&#x27;, &quot;//input[@name=&#x27;password&#x27;]&quot;)可见
+ Wed, 16 Dec 2020 22:10:17  INFO basepage.py wait_eleVisible [ line:26 ] 开始时间2020-12-16 22:10:17.411038，结束时间2020-12-16 22:10:17.429987，等待时长0:00:00.018949
+ Wed, 16 Dec 2020 22:10:17  INFO basepage.py get_element [ line:36 ] 开始查找(&#x27;xpath&#x27;, &quot;//input[@name=&#x27;password&#x27;]&quot;)元素
+ Wed, 16 Dec 2020 22:10:17  INFO basepage.py input_text [ line:65 ] 给元素(&#x27;xpath&#x27;, &quot;//input[@name=&#x27;password&#x27;]&quot;)输入(&#x27;python&#x27;,)文本值
+ Wed, 16 Dec 2020 22:10:17  INFO basepage.py wait_eleVisible [ line:21 ] 等待元素(&#x27;xpath&#x27;, &#x27;//button[@type=&quot;button&quot;]&#x27;)可见
+ Wed, 16 Dec 2020 22:10:17  INFO basepage.py wait_eleVisible [ line:26 ] 开始时间2020-12-16 22:10:17.515758，结束时间2020-12-16 22:10:17.536705，等待时长0:00:00.020947
+ Wed, 16 Dec 2020 22:10:17  INFO basepage.py get_element [ line:36 ] 开始查找(&#x27;xpath&#x27;, &#x27;//button[@type=&quot;button&quot;]&#x27;)元素
+ Wed, 16 Dec 2020 22:10:17  INFO basepage.py click_element [ line:50 ] 开始点击元素(&#x27;xpath&#x27;, &#x27;//button[@type=&quot;button&quot;]&#x27;)
+ Wed, 16 Dec 2020 22:10:17  INFO basepage.py wait_eleVisible [ line:21 ] 等待元素(&#x27;xpath&#x27;, &quot;//div[@class=&#x27;form-error-info&#x27;]&quot;)可见
+ Wed, 16 Dec 2020 22:10:17  INFO basepage.py wait_eleVisible [ line:26 ] 开始时间2020-12-16 22:10:17.588562，结束时间2020-12-16 22:10:17.608508，等待时长0:00:00.019946
+ Wed, 16 Dec 2020 22:10:17  INFO basepage.py get_element [ line:36 ] 开始查找(&#x27;xpath&#x27;, &quot;//div[@class=&#x27;form-error-info&#x27;]&quot;)元素
+ Wed, 16 Dec 2020 22:10:17  INFO basepage.py get_element_text [ line:94 ] 获取(&#x27;xpath&#x27;, &quot;//div[@class=&#x27;form-error-info&#x27;]&quot;)元素的文本值为请输入正确的手机号
+<br/> -------------------------------Captured log call-------------------------------- <br/>INFO     root:basepage.py:21 等待元素(&#x27;xpath&#x27;, &quot;//input[@name=&#x27;phone&#x27;]&quot;)可见
+INFO     root:basepage.py:26 开始时间2020-12-16 22:10:17.311303，结束时间2020-12-16 22:10:17.324269，等待时长0:00:00.012966
+INFO     root:basepage.py:36 开始查找(&#x27;xpath&#x27;, &quot;//input[@name=&#x27;phone&#x27;]&quot;)元素
+INFO     root:basepage.py:65 给元素(&#x27;xpath&#x27;, &quot;//input[@name=&#x27;phone&#x27;]&quot;)输入(&#x27;186847055311&#x27;,)文本值
+INFO     root:basepage.py:21 等待元素(&#x27;xpath&#x27;, &quot;//input[@name=&#x27;password&#x27;]&quot;)可见
+INFO     root:basepage.py:26 开始时间2020-12-16 22:10:17.411038，结束时间2020-12-16 22:10:17.429987，等待时长0:00:00.018949
+INFO     root:basepage.py:36 开始查找(&#x27;xpath&#x27;, &quot;//input[@name=&#x27;password&#x27;]&quot;)元素
+INFO     root:basepage.py:65 给元素(&#x27;xpath&#x27;, &quot;//input[@name=&#x27;password&#x27;]&quot;)输入(&#x27;python&#x27;,)文本值
+INFO     root:basepage.py:21 等待元素(&#x27;xpath&#x27;, &#x27;//button[@type=&quot;button&quot;]&#x27;)可见
+INFO     root:basepage.py:26 开始时间2020-12-16 22:10:17.515758，结束时间2020-12-16 22:10:17.536705，等待时长0:00:00.020947
+INFO     root:basepage.py:36 开始查找(&#x27;xpath&#x27;, &#x27;//button[@type=&quot;button&quot;]&#x27;)元素
+INFO     root:basepage.py:50 开始点击元素(&#x27;xpath&#x27;, &#x27;//button[@type=&quot;button&quot;]&#x27;)
+INFO     root:basepage.py:21 等待元素(&#x27;xpath&#x27;, &quot;//div[@class=&#x27;form-error-info&#x27;]&quot;)可见
+INFO     root:basepage.py:26 开始时间2020-12-16 22:10:17.588562，结束时间2020-12-16 22:10:17.608508，等待时长0:00:00.019946
+INFO     root:basepage.py:36 开始查找(&#x27;xpath&#x27;, &quot;//div[@class=&#x27;form-error-info&#x27;]&quot;)元素
+INFO     root:basepage.py:94 获取(&#x27;xpath&#x27;, &quot;//div[@class=&#x27;form-error-info&#x27;]&quot;)元素的文本值为请输入正确的手机号<br/></div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">testcase/test_1login_pytest.py::TestLogin::test_login_1_failed_error_data[data0]</td>
+          <td class="col-duration">1.04</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log"> ------------------------------Captured stderr call------------------------------ <br/> Wed, 16 Dec 2020 22:10:17  INFO basepage.py wait_eleVisible [ line:21 ] 等待元素(&#x27;xpath&#x27;, &quot;//input[@name=&#x27;phone&#x27;]&quot;)可见
+ Wed, 16 Dec 2020 22:10:17  INFO basepage.py wait_eleVisible [ line:26 ] 开始时间2020-12-16 22:10:17.879784，结束时间2020-12-16 22:10:17.893748，等待时长0:00:00.013964
+ Wed, 16 Dec 2020 22:10:17  INFO basepage.py get_element [ line:36 ] 开始查找(&#x27;xpath&#x27;, &quot;//input[@name=&#x27;phone&#x27;]&quot;)元素
+ Wed, 16 Dec 2020 22:10:17  INFO basepage.py input_text [ line:65 ] 给元素(&#x27;xpath&#x27;, &quot;//input[@name=&#x27;phone&#x27;]&quot;)输入(&#x27;18684720559&#x27;,)文本值
+ Wed, 16 Dec 2020 22:10:17  INFO basepage.py wait_eleVisible [ line:21 ] 等待元素(&#x27;xpath&#x27;, &quot;//input[@name=&#x27;password&#x27;]&quot;)可见
+ Wed, 16 Dec 2020 22:10:17  INFO basepage.py wait_eleVisible [ line:26 ] 开始时间2020-12-16 22:10:17.973533，结束时间2020-12-16 22:10:17.990488，等待时长0:00:00.016955
+ Wed, 16 Dec 2020 22:10:17  INFO basepage.py get_element [ line:36 ] 开始查找(&#x27;xpath&#x27;, &quot;//input[@name=&#x27;password&#x27;]&quot;)元素
+ Wed, 16 Dec 2020 22:10:17  INFO basepage.py input_text [ line:65 ] 给元素(&#x27;xpath&#x27;, &quot;//input[@name=&#x27;password&#x27;]&quot;)输入(&#x27;python&#x27;,)文本值
+ Wed, 16 Dec 2020 22:10:18  INFO basepage.py wait_eleVisible [ line:21 ] 等待元素(&#x27;xpath&#x27;, &#x27;//button[@type=&quot;button&quot;]&#x27;)可见
+ Wed, 16 Dec 2020 22:10:18  INFO basepage.py wait_eleVisible [ line:26 ] 开始时间2020-12-16 22:10:18.068279，结束时间2020-12-16 22:10:18.086231，等待时长0:00:00.017952
+ Wed, 16 Dec 2020 22:10:18  INFO basepage.py get_element [ line:36 ] 开始查找(&#x27;xpath&#x27;, &#x27;//button[@type=&quot;button&quot;]&#x27;)元素
+ Wed, 16 Dec 2020 22:10:18  INFO basepage.py click_element [ line:50 ] 开始点击元素(&#x27;xpath&#x27;, &#x27;//button[@type=&quot;button&quot;]&#x27;)
+ Wed, 16 Dec 2020 22:10:18  INFO basepage.py wait_eleVisible [ line:21 ] 等待元素(&#x27;xpath&#x27;, &quot;//div[@class=&#x27;layui-layer-content&#x27;]&quot;)可见
+ Wed, 16 Dec 2020 22:10:18  INFO basepage.py wait_eleVisible [ line:26 ] 开始时间2020-12-16 22:10:18.130114，结束时间2020-12-16 22:10:18.659697，等待时长0:00:00.529583
+ Wed, 16 Dec 2020 22:10:18  INFO basepage.py get_element [ line:36 ] 开始查找(&#x27;xpath&#x27;, &quot;//div[@class=&#x27;layui-layer-content&#x27;]&quot;)元素
+ Wed, 16 Dec 2020 22:10:18  INFO basepage.py get_element_text [ line:94 ] 获取(&#x27;xpath&#x27;, &quot;//div[@class=&#x27;layui-layer-content&#x27;]&quot;)元素的文本值为此账号没有经过授权，请联系管理员!
+<br/> -------------------------------Captured log call-------------------------------- <br/>INFO     root:basepage.py:21 等待元素(&#x27;xpath&#x27;, &quot;//input[@name=&#x27;phone&#x27;]&quot;)可见
+INFO     root:basepage.py:26 开始时间2020-12-16 22:10:17.879784，结束时间2020-12-16 22:10:17.893748，等待时长0:00:00.013964
+INFO     root:basepage.py:36 开始查找(&#x27;xpath&#x27;, &quot;//input[@name=&#x27;phone&#x27;]&quot;)元素
+INFO     root:basepage.py:65 给元素(&#x27;xpath&#x27;, &quot;//input[@name=&#x27;phone&#x27;]&quot;)输入(&#x27;18684720559&#x27;,)文本值
+INFO     root:basepage.py:21 等待元素(&#x27;xpath&#x27;, &quot;//input[@name=&#x27;password&#x27;]&quot;)可见
+INFO     root:basepage.py:26 开始时间2020-12-16 22:10:17.973533，结束时间2020-12-16 22:10:17.990488，等待时长0:00:00.016955
+INFO     root:basepage.py:36 开始查找(&#x27;xpath&#x27;, &quot;//input[@name=&#x27;password&#x27;]&quot;)元素
+INFO     root:basepage.py:65 给元素(&#x27;xpath&#x27;, &quot;//input[@name=&#x27;password&#x27;]&quot;)输入(&#x27;python&#x27;,)文本值
+INFO     root:basepage.py:21 等待元素(&#x27;xpath&#x27;, &#x27;//button[@type=&quot;button&quot;]&#x27;)可见
+INFO     root:basepage.py:26 开始时间2020-12-16 22:10:18.068279，结束时间2020-12-16 22:10:18.086231，等待时长0:00:00.017952
+INFO     root:basepage.py:36 开始查找(&#x27;xpath&#x27;, &#x27;//button[@type=&quot;button&quot;]&#x27;)元素
+INFO     root:basepage.py:50 开始点击元素(&#x27;xpath&#x27;, &#x27;//button[@type=&quot;button&quot;]&#x27;)
+INFO     root:basepage.py:21 等待元素(&#x27;xpath&#x27;, &quot;//div[@class=&#x27;layui-layer-content&#x27;]&quot;)可见
+INFO     root:basepage.py:26 开始时间2020-12-16 22:10:18.130114，结束时间2020-12-16 22:10:18.659697，等待时长0:00:00.529583
+INFO     root:basepage.py:36 开始查找(&#x27;xpath&#x27;, &quot;//div[@class=&#x27;layui-layer-content&#x27;]&quot;)元素
+INFO     root:basepage.py:94 获取(&#x27;xpath&#x27;, &quot;//div[@class=&#x27;layui-layer-content&#x27;]&quot;)元素的文本值为此账号没有经过授权，请联系管理员!<br/></div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">testcase/test_1login_pytest.py::TestLogin::test_login_1_failed_error_data[data1]</td>
+          <td class="col-duration">1.06</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log"> ------------------------------Captured stderr call------------------------------ <br/> Wed, 16 Dec 2020 22:10:18  INFO basepage.py wait_eleVisible [ line:21 ] 等待元素(&#x27;xpath&#x27;, &quot;//input[@name=&#x27;phone&#x27;]&quot;)可见
+ Wed, 16 Dec 2020 22:10:18  INFO basepage.py wait_eleVisible [ line:26 ] 开始时间2020-12-16 22:10:18.922995，结束时间2020-12-16 22:10:18.936956，等待时长0:00:00.013961
+ Wed, 16 Dec 2020 22:10:18  INFO basepage.py get_element [ line:36 ] 开始查找(&#x27;xpath&#x27;, &quot;//input[@name=&#x27;phone&#x27;]&quot;)元素
+ Wed, 16 Dec 2020 22:10:18  INFO basepage.py input_text [ line:65 ] 给元素(&#x27;xpath&#x27;, &quot;//input[@name=&#x27;phone&#x27;]&quot;)输入(&#x27;18684720553&#x27;,)文本值
+ Wed, 16 Dec 2020 22:10:19  INFO basepage.py wait_eleVisible [ line:21 ] 等待元素(&#x27;xpath&#x27;, &quot;//input[@name=&#x27;password&#x27;]&quot;)可见
+ Wed, 16 Dec 2020 22:10:19  INFO basepage.py wait_eleVisible [ line:26 ] 开始时间2020-12-16 22:10:19.017749，结束时间2020-12-16 22:10:19.029709，等待时长0:00:00.011960
+ Wed, 16 Dec 2020 22:10:19  INFO basepage.py get_element [ line:36 ] 开始查找(&#x27;xpath&#x27;, &quot;//input[@name=&#x27;password&#x27;]&quot;)元素
+ Wed, 16 Dec 2020 22:10:19  INFO basepage.py input_text [ line:65 ] 给元素(&#x27;xpath&#x27;, &quot;//input[@name=&#x27;password&#x27;]&quot;)输入(&#x27;python11&#x27;,)文本值
+ Wed, 16 Dec 2020 22:10:19  INFO basepage.py wait_eleVisible [ line:21 ] 等待元素(&#x27;xpath&#x27;, &#x27;//button[@type=&quot;button&quot;]&#x27;)可见
+ Wed, 16 Dec 2020 22:10:19  INFO basepage.py wait_eleVisible [ line:26 ] 开始时间2020-12-16 22:10:19.104507，结束时间2020-12-16 22:10:19.118471，等待时长0:00:00.013964
+ Wed, 16 Dec 2020 22:10:19  INFO basepage.py get_element [ line:36 ] 开始查找(&#x27;xpath&#x27;, &#x27;//button[@type=&quot;button&quot;]&#x27;)元素
+ Wed, 16 Dec 2020 22:10:19  INFO basepage.py click_element [ line:50 ] 开始点击元素(&#x27;xpath&#x27;, &#x27;//button[@type=&quot;button&quot;]&#x27;)
+ Wed, 16 Dec 2020 22:10:19  INFO basepage.py wait_eleVisible [ line:21 ] 等待元素(&#x27;xpath&#x27;, &quot;//div[@class=&#x27;layui-layer-content&#x27;]&quot;)可见
+ Wed, 16 Dec 2020 22:10:19  INFO basepage.py wait_eleVisible [ line:26 ] 开始时间2020-12-16 22:10:19.162353，结束时间2020-12-16 22:10:19.687947，等待时长0:00:00.525594
+ Wed, 16 Dec 2020 22:10:19  INFO basepage.py get_element [ line:36 ] 开始查找(&#x27;xpath&#x27;, &quot;//div[@class=&#x27;layui-layer-content&#x27;]&quot;)元素
+ Wed, 16 Dec 2020 22:10:19  INFO basepage.py get_element_text [ line:94 ] 获取(&#x27;xpath&#x27;, &quot;//div[@class=&#x27;layui-layer-content&#x27;]&quot;)元素的文本值为帐号或密码错误!
+<br/> -------------------------------Captured log call-------------------------------- <br/>INFO     root:basepage.py:21 等待元素(&#x27;xpath&#x27;, &quot;//input[@name=&#x27;phone&#x27;]&quot;)可见
+INFO     root:basepage.py:26 开始时间2020-12-16 22:10:18.922995，结束时间2020-12-16 22:10:18.936956，等待时长0:00:00.013961
+INFO     root:basepage.py:36 开始查找(&#x27;xpath&#x27;, &quot;//input[@name=&#x27;phone&#x27;]&quot;)元素
+INFO     root:basepage.py:65 给元素(&#x27;xpath&#x27;, &quot;//input[@name=&#x27;phone&#x27;]&quot;)输入(&#x27;18684720553&#x27;,)文本值
+INFO     root:basepage.py:21 等待元素(&#x27;xpath&#x27;, &quot;//input[@name=&#x27;password&#x27;]&quot;)可见
+INFO     root:basepage.py:26 开始时间2020-12-16 22:10:19.017749，结束时间2020-12-16 22:10:19.029709，等待时长0:00:00.011960
+INFO     root:basepage.py:36 开始查找(&#x27;xpath&#x27;, &quot;//input[@name=&#x27;password&#x27;]&quot;)元素
+INFO     root:basepage.py:65 给元素(&#x27;xpath&#x27;, &quot;//input[@name=&#x27;password&#x27;]&quot;)输入(&#x27;python11&#x27;,)文本值
+INFO     root:basepage.py:21 等待元素(&#x27;xpath&#x27;, &#x27;//button[@type=&quot;button&quot;]&#x27;)可见
+INFO     root:basepage.py:26 开始时间2020-12-16 22:10:19.104507，结束时间2020-12-16 22:10:19.118471，等待时长0:00:00.013964
+INFO     root:basepage.py:36 开始查找(&#x27;xpath&#x27;, &#x27;//button[@type=&quot;button&quot;]&#x27;)元素
+INFO     root:basepage.py:50 开始点击元素(&#x27;xpath&#x27;, &#x27;//button[@type=&quot;button&quot;]&#x27;)
+INFO     root:basepage.py:21 等待元素(&#x27;xpath&#x27;, &quot;//div[@class=&#x27;layui-layer-content&#x27;]&quot;)可见
+INFO     root:basepage.py:26 开始时间2020-12-16 22:10:19.162353，结束时间2020-12-16 22:10:19.687947，等待时长0:00:00.525594
+INFO     root:basepage.py:36 开始查找(&#x27;xpath&#x27;, &quot;//div[@class=&#x27;layui-layer-content&#x27;]&quot;)元素
+INFO     root:basepage.py:94 获取(&#x27;xpath&#x27;, &quot;//div[@class=&#x27;layui-layer-content&#x27;]&quot;)元素的文本值为帐号或密码错误!<br/></div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">testcase/test_1login_pytest.py::TestLogin::test_login_2_success</td>
+          <td class="col-duration">5.68</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log"> ------------------------------Captured stderr call------------------------------ <br/> Wed, 16 Dec 2020 22:10:19  INFO basepage.py wait_eleVisible [ line:21 ] 等待元素(&#x27;xpath&#x27;, &quot;//input[@name=&#x27;phone&#x27;]&quot;)可见
+ Wed, 16 Dec 2020 22:10:19  INFO basepage.py wait_eleVisible [ line:26 ] 开始时间2020-12-16 22:10:19.986175，结束时间2020-12-16 22:10:19.999115，等待时长0:00:00.012940
+ Wed, 16 Dec 2020 22:10:20  INFO basepage.py get_element [ line:36 ] 开始查找(&#x27;xpath&#x27;, &quot;//input[@name=&#x27;phone&#x27;]&quot;)元素
+ Wed, 16 Dec 2020 22:10:20  INFO basepage.py input_text [ line:65 ] 给元素(&#x27;xpath&#x27;, &quot;//input[@name=&#x27;phone&#x27;]&quot;)输入(&#x27;18684720553&#x27;,)文本值
+ Wed, 16 Dec 2020 22:10:20  INFO basepage.py wait_eleVisible [ line:21 ] 等待元素(&#x27;xpath&#x27;, &quot;//input[@name=&#x27;password&#x27;]&quot;)可见
+ Wed, 16 Dec 2020 22:10:20  INFO basepage.py wait_eleVisible [ line:26 ] 开始时间2020-12-16 22:10:20.077905，结束时间2020-12-16 22:10:20.093863，等待时长0:00:00.015958
+ Wed, 16 Dec 2020 22:10:20  INFO basepage.py get_element [ line:36 ] 开始查找(&#x27;xpath&#x27;, &quot;//input[@name=&#x27;password&#x27;]&quot;)元素
+ Wed, 16 Dec 2020 22:10:20  INFO basepage.py input_text [ line:65 ] 给元素(&#x27;xpath&#x27;, &quot;//input[@name=&#x27;password&#x27;]&quot;)输入(&#x27;python&#x27;,)文本值
+ Wed, 16 Dec 2020 22:10:20  INFO basepage.py wait_eleVisible [ line:21 ] 等待元素(&#x27;xpath&#x27;, &#x27;//button[@type=&quot;button&quot;]&#x27;)可见
+ Wed, 16 Dec 2020 22:10:20  INFO basepage.py wait_eleVisible [ line:26 ] 开始时间2020-12-16 22:10:20.163677，结束时间2020-12-16 22:10:20.179633，等待时长0:00:00.015956
+ Wed, 16 Dec 2020 22:10:20  INFO basepage.py get_element [ line:36 ] 开始查找(&#x27;xpath&#x27;, &#x27;//button[@type=&quot;button&quot;]&#x27;)元素
+ Wed, 16 Dec 2020 22:10:20  INFO basepage.py click_element [ line:50 ] 开始点击元素(&#x27;xpath&#x27;, &#x27;//button[@type=&quot;button&quot;]&#x27;)
+ Wed, 16 Dec 2020 22:10:20  INFO basepage.py wait_eleVisible [ line:21 ] 等待元素(&#x27;xpath&#x27;, &#x27;//a[text()=&quot;关于我们&quot;]&#x27;)可见
+ Wed, 16 Dec 2020 22:10:20  INFO basepage.py wait_eleVisible [ line:26 ] 开始时间2020-12-16 22:10:20.224514，结束时间2020-12-16 22:10:20.246452，等待时长0:00:00.021938
+ Wed, 16 Dec 2020 22:10:20  INFO basepage.py get_element [ line:36 ] 开始查找(&#x27;xpath&#x27;, &#x27;//a[@href=&quot;/Member/index.html&quot;]&#x27;)元素
+<br/> -------------------------------Captured log call-------------------------------- <br/>INFO     root:basepage.py:21 等待元素(&#x27;xpath&#x27;, &quot;//input[@name=&#x27;phone&#x27;]&quot;)可见
+INFO     root:basepage.py:26 开始时间2020-12-16 22:10:19.986175，结束时间2020-12-16 22:10:19.999115，等待时长0:00:00.012940
+INFO     root:basepage.py:36 开始查找(&#x27;xpath&#x27;, &quot;//input[@name=&#x27;phone&#x27;]&quot;)元素
+INFO     root:basepage.py:65 给元素(&#x27;xpath&#x27;, &quot;//input[@name=&#x27;phone&#x27;]&quot;)输入(&#x27;18684720553&#x27;,)文本值
+INFO     root:basepage.py:21 等待元素(&#x27;xpath&#x27;, &quot;//input[@name=&#x27;password&#x27;]&quot;)可见
+INFO     root:basepage.py:26 开始时间2020-12-16 22:10:20.077905，结束时间2020-12-16 22:10:20.093863，等待时长0:00:00.015958
+INFO     root:basepage.py:36 开始查找(&#x27;xpath&#x27;, &quot;//input[@name=&#x27;password&#x27;]&quot;)元素
+INFO     root:basepage.py:65 给元素(&#x27;xpath&#x27;, &quot;//input[@name=&#x27;password&#x27;]&quot;)输入(&#x27;python&#x27;,)文本值
+INFO     root:basepage.py:21 等待元素(&#x27;xpath&#x27;, &#x27;//button[@type=&quot;button&quot;]&#x27;)可见
+INFO     root:basepage.py:26 开始时间2020-12-16 22:10:20.163677，结束时间2020-12-16 22:10:20.179633，等待时长0:00:00.015956
+INFO     root:basepage.py:36 开始查找(&#x27;xpath&#x27;, &#x27;//button[@type=&quot;button&quot;]&#x27;)元素
+INFO     root:basepage.py:50 开始点击元素(&#x27;xpath&#x27;, &#x27;//button[@type=&quot;button&quot;]&#x27;)
+INFO     root:basepage.py:21 等待元素(&#x27;xpath&#x27;, &#x27;//a[text()=&quot;关于我们&quot;]&#x27;)可见
+INFO     root:basepage.py:26 开始时间2020-12-16 22:10:20.224514，结束时间2020-12-16 22:10:20.246452，等待时长0:00:00.021938
+INFO     root:basepage.py:36 开始查找(&#x27;xpath&#x27;, &#x27;//a[@href=&quot;/Member/index.html&quot;]&#x27;)元素<br/></div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">testcase/test_invest.py::TestInvest::test_invest_0_failed_by_No100[data0]</td>
+          <td class="col-duration">24.48</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log"> -----------------------------Captured stderr setup------------------------------ <br/> Wed, 16 Dec 2020 22:10:33  INFO basepage.py wait_eleVisible [ line:21 ] 等待元素(&#x27;xpath&#x27;, &quot;//input[@name=&#x27;phone&#x27;]&quot;)可见
+ Wed, 16 Dec 2020 22:10:33  INFO basepage.py wait_eleVisible [ line:26 ] 开始时间2020-12-16 22:10:33.351628，结束时间2020-12-16 22:10:33.375565，等待时长0:00:00.023937
+ Wed, 16 Dec 2020 22:10:33  INFO basepage.py get_element [ line:36 ] 开始查找(&#x27;xpath&#x27;, &quot;//input[@name=&#x27;phone&#x27;]&quot;)元素
+ Wed, 16 Dec 2020 22:10:33  INFO basepage.py input_text [ line:65 ] 给元素(&#x27;xpath&#x27;, &quot;//input[@name=&#x27;phone&#x27;]&quot;)输入(&#x27;18684720553&#x27;,)文本值
+ Wed, 16 Dec 2020 22:10:33  INFO basepage.py wait_eleVisible [ line:21 ] 等待元素(&#x27;xpath&#x27;, &quot;//input[@name=&#x27;password&#x27;]&quot;)可见
+ Wed, 16 Dec 2020 22:10:33  INFO basepage.py wait_eleVisible [ line:26 ] 开始时间2020-12-16 22:10:33.469313，结束时间2020-12-16 22:10:33.502236，等待时长0:00:00.032923
+ Wed, 16 Dec 2020 22:10:33  INFO basepage.py get_element [ line:36 ] 开始查找(&#x27;xpath&#x27;, &quot;//input[@name=&#x27;password&#x27;]&quot;)元素
+ Wed, 16 Dec 2020 22:10:33  INFO basepage.py input_text [ line:65 ] 给元素(&#x27;xpath&#x27;, &quot;//input[@name=&#x27;password&#x27;]&quot;)输入(&#x27;python&#x27;,)文本值
+ Wed, 16 Dec 2020 22:10:33  INFO basepage.py wait_eleVisible [ line:21 ] 等待元素(&#x27;xpath&#x27;, &#x27;//button[@type=&quot;button&quot;]&#x27;)可见
+ Wed, 16 Dec 2020 22:10:33  INFO basepage.py wait_eleVisible [ line:26 ] 开始时间2020-12-16 22:10:33.578025，结束时间2020-12-16 22:10:33.596972，等待时长0:00:00.018947
+ Wed, 16 Dec 2020 22:10:33  INFO basepage.py get_element [ line:36 ] 开始查找(&#x27;xpath&#x27;, &#x27;//button[@type=&quot;button&quot;]&#x27;)元素
+ Wed, 16 Dec 2020 22:10:33  INFO basepage.py click_element [ line:50 ] 开始点击元素(&#x27;xpath&#x27;, &#x27;//button[@type=&quot;button&quot;]&#x27;)
+ Wed, 16 Dec 2020 22:10:33  INFO basepage.py wait_eleVisible [ line:21 ] 等待元素(&#x27;xpath&#x27;, &#x27;//a[@class=&quot;btn btn-special&quot;]&#x27;)可见
+ Wed, 16 Dec 2020 22:10:36  INFO basepage.py wait_eleVisible [ line:26 ] 开始时间2020-12-16 22:10:33.636866，结束时间2020-12-16 22:10:36.372550，等待时长0:00:02.735684
+ Wed, 16 Dec 2020 22:10:36  INFO basepage.py wait_eleVisible [ line:21 ] 等待元素(&#x27;xpath&#x27;, &#x27;//a[@class=&quot;btn btn-special&quot;]&#x27;)可见
+ Wed, 16 Dec 2020 22:10:36  INFO basepage.py wait_eleVisible [ line:26 ] 开始时间2020-12-16 22:10:36.373547，结束时间2020-12-16 22:10:36.390534，等待时长0:00:00.016987
+ Wed, 16 Dec 2020 22:10:36  INFO basepage.py get_element [ line:36 ] 开始查找(&#x27;xpath&#x27;, &#x27;//a[@class=&quot;btn btn-special&quot;]&#x27;)元素
+ Wed, 16 Dec 2020 22:10:36  INFO basepage.py click_element [ line:50 ] 开始点击元素(&#x27;xpath&#x27;, &#x27;//a[@class=&quot;btn btn-special&quot;]&#x27;)
+<br/> -------------------------------Captured log setup------------------------------- <br/>INFO     root:basepage.py:21 等待元素(&#x27;xpath&#x27;, &quot;//input[@name=&#x27;phone&#x27;]&quot;)可见
+INFO     root:basepage.py:26 开始时间2020-12-16 22:10:33.351628，结束时间2020-12-16 22:10:33.375565，等待时长0:00:00.023937
+INFO     root:basepage.py:36 开始查找(&#x27;xpath&#x27;, &quot;//input[@name=&#x27;phone&#x27;]&quot;)元素
+INFO     root:basepage.py:65 给元素(&#x27;xpath&#x27;, &quot;//input[@name=&#x27;phone&#x27;]&quot;)输入(&#x27;18684720553&#x27;,)文本值
+INFO     root:basepage.py:21 等待元素(&#x27;xpath&#x27;, &quot;//input[@name=&#x27;password&#x27;]&quot;)可见
+INFO     root:basepage.py:26 开始时间2020-12-16 22:10:33.469313，结束时间2020-12-16 22:10:33.502236，等待时长0:00:00.032923
+INFO     root:basepage.py:36 开始查找(&#x27;xpath&#x27;, &quot;//input[@name=&#x27;password&#x27;]&quot;)元素
+INFO     root:basepage.py:65 给元素(&#x27;xpath&#x27;, &quot;//input[@name=&#x27;password&#x27;]&quot;)输入(&#x27;python&#x27;,)文本值
+INFO     root:basepage.py:21 等待元素(&#x27;xpath&#x27;, &#x27;//button[@type=&quot;button&quot;]&#x27;)可见
+INFO     root:basepage.py:26 开始时间2020-12-16 22:10:33.578025，结束时间2020-12-16 22:10:33.596972，等待时长0:00:00.018947
+INFO     root:basepage.py:36 开始查找(&#x27;xpath&#x27;, &#x27;//button[@type=&quot;button&quot;]&#x27;)元素
+INFO     root:basepage.py:50 开始点击元素(&#x27;xpath&#x27;, &#x27;//button[@type=&quot;button&quot;]&#x27;)
+INFO     root:basepage.py:21 等待元素(&#x27;xpath&#x27;, &#x27;//a[@class=&quot;btn btn-special&quot;]&#x27;)可见
+INFO     root:basepage.py:26 开始时间2020-12-16 22:10:33.636866，结束时间2020-12-16 22:10:36.372550，等待时长0:00:02.735684
+INFO     root:basepage.py:21 等待元素(&#x27;xpath&#x27;, &#x27;//a[@class=&quot;btn btn-special&quot;]&#x27;)可见
+INFO     root:basepage.py:26 开始时间2020-12-16 22:10:36.373547，结束时间2020-12-16 22:10:36.390534，等待时长0:00:00.016987
+INFO     root:basepage.py:36 开始查找(&#x27;xpath&#x27;, &#x27;//a[@class=&quot;btn btn-special&quot;]&#x27;)元素
+INFO     root:basepage.py:50 开始点击元素(&#x27;xpath&#x27;, &#x27;//a[@class=&quot;btn btn-special&quot;]&#x27;)<br/> ------------------------------Captured stderr call------------------------------ <br/> Wed, 16 Dec 2020 22:10:40  INFO test_invest.py test_invest_0_failed_by_No100 [ line:64 ] *********投资用例：异常场景：投资金额为非100的整数倍、错误的格式等*********
+ Wed, 16 Dec 2020 22:10:40  INFO basepage.py wait_eleVisible [ line:21 ] 等待元素(&#x27;xpath&#x27;, &quot;//input[contains(@class,&#x27;invest-unit-investinput&#x27;)]&quot;)可见
+ Wed, 16 Dec 2020 22:10:40  INFO basepage.py wait_eleVisible [ line:26 ] 开始时间2020-12-16 22:10:40.928366，结束时间2020-12-16 22:10:40.950305，等待时长0:00:00.021939
+ Wed, 16 Dec 2020 22:10:40  INFO basepage.py get_element [ line:36 ] 开始查找(&#x27;xpath&#x27;, &quot;//input[contains(@class,&#x27;invest-unit-investinput&#x27;)]&quot;)元素
+ Wed, 16 Dec 2020 22:10:40  INFO basepage.py get_element_attribute [ line:79 ] 元素(&#x27;xpath&#x27;, &quot;//input[contains(@class,&#x27;invest-unit-investinput&#x27;)]&quot;)的属性data-amount的值为4914598462.98
+ Wed, 16 Dec 2020 22:10:40  INFO basepage.py wait_eleVisible [ line:21 ] 等待元素(&#x27;xpath&#x27;, &quot;//input[contains(@class,&#x27;invest-unit-investinput&#x27;)]&quot;)可见
+ Wed, 16 Dec 2020 22:10:40  INFO basepage.py wait_eleVisible [ line:26 ] 开始时间2020-12-16 22:10:40.963271，结束时间2020-12-16 22:10:40.989201，等待时长0:00:00.025930
+ Wed, 16 Dec 2020 22:10:40  INFO basepage.py get_element [ line:36 ] 开始查找(&#x27;xpath&#x27;, &quot;//input[contains(@class,&#x27;invest-unit-investinput&#x27;)]&quot;)元素
+ Wed, 16 Dec 2020 22:10:40  INFO basepage.py input_text [ line:65 ] 给元素(&#x27;xpath&#x27;, &quot;//input[contains(@class,&#x27;invest-unit-investinput&#x27;)]&quot;)输入(-10,)文本值
+ Wed, 16 Dec 2020 22:10:41  INFO basepage.py wait_eleVisible [ line:21 ] 等待元素(&#x27;xpath&#x27;, &#x27;//button[text()=&quot;投标&quot;]&#x27;)可见
+ Wed, 16 Dec 2020 22:10:41  INFO basepage.py wait_eleVisible [ line:26 ] 开始时间2020-12-16 22:10:41.062007，结束时间2020-12-16 22:10:41.090931，等待时长0:00:00.028924
+ Wed, 16 Dec 2020 22:10:41  INFO basepage.py get_element [ line:36 ] 开始查找(&#x27;xpath&#x27;, &#x27;//button[text()=&quot;投标&quot;]&#x27;)元素
+ Wed, 16 Dec 2020 22:10:41  INFO basepage.py click_element [ line:50 ] 开始点击元素(&#x27;xpath&#x27;, &#x27;//button[text()=&quot;投标&quot;]&#x27;)
+ Wed, 16 Dec 2020 22:10:41  INFO basepage.py wait_eleVisible [ line:21 ] 等待元素(&#x27;xpath&#x27;, &#x27;//div[contains(@class,&quot;layui-layer-dialog&quot;)]//div[@class=&quot;text-center&quot;]&#x27;)可见
+ Wed, 16 Dec 2020 22:10:41  INFO basepage.py wait_eleVisible [ line:26 ] 开始时间2020-12-16 22:10:41.142791，结束时间2020-12-16 22:10:41.672375，等待时长0:00:00.529584
+ Wed, 16 Dec 2020 22:10:41  INFO basepage.py get_element [ line:36 ] 开始查找(&#x27;xpath&#x27;, &#x27;//div[contains(@class,&quot;layui-layer-dialog&quot;)]//div[@class=&quot;text-center&quot;]&#x27;)元素
+ Wed, 16 Dec 2020 22:10:41  INFO basepage.py get_element_text [ line:94 ] 获取(&#x27;xpath&#x27;, &#x27;//div[contains(@class,&quot;layui-layer-dialog&quot;)]//div[@class=&quot;text-center&quot;]&#x27;)元素的文本值为请正确填写投标金额
+ Wed, 16 Dec 2020 22:10:41  INFO basepage.py wait_eleVisible [ line:21 ] 等待元素(&#x27;xpath&#x27;, &#x27;//div[contains(@class,&quot;layui-layer-dialog&quot;)]//a&#x27;)可见
+ Wed, 16 Dec 2020 22:10:41  INFO basepage.py wait_eleVisible [ line:26 ] 开始时间2020-12-16 22:10:41.691323，结束时间2020-12-16 22:10:41.711270，等待时长0:00:00.019947
+ Wed, 16 Dec 2020 22:10:41  INFO basepage.py get_element [ line:36 ] 开始查找(&#x27;xpath&#x27;, &#x27;//div[contains(@class,&quot;layui-layer-dialog&quot;)]//a&#x27;)元素
+ Wed, 16 Dec 2020 22:10:41  INFO basepage.py click_element [ line:50 ] 开始点击元素(&#x27;xpath&#x27;, &#x27;//div[contains(@class,&quot;layui-layer-dialog&quot;)]//a&#x27;)
+ Wed, 16 Dec 2020 22:10:45  INFO basepage.py wait_eleVisible [ line:21 ] 等待元素(&#x27;xpath&#x27;, &quot;//input[contains(@class,&#x27;invest-unit-investinput&#x27;)]&quot;)可见
+ Wed, 16 Dec 2020 22:10:45  INFO basepage.py wait_eleVisible [ line:26 ] 开始时间2020-12-16 22:10:45.963898，结束时间2020-12-16 22:10:45.981849，等待时长0:00:00.017951
+ Wed, 16 Dec 2020 22:10:45  INFO basepage.py get_element [ line:36 ] 开始查找(&#x27;xpath&#x27;, &quot;//input[contains(@class,&#x27;invest-unit-investinput&#x27;)]&quot;)元素
+ Wed, 16 Dec 2020 22:10:45  INFO basepage.py get_element_attribute [ line:79 ] 元素(&#x27;xpath&#x27;, &quot;//input[contains(@class,&#x27;invest-unit-investinput&#x27;)]&quot;)的属性data-amount的值为4914598462.98
+<br/> -------------------------------Captured log call-------------------------------- <br/>INFO     root:test_invest.py:64 *********投资用例：异常场景：投资金额为非100的整数倍、错误的格式等*********
+INFO     root:basepage.py:21 等待元素(&#x27;xpath&#x27;, &quot;//input[contains(@class,&#x27;invest-unit-investinput&#x27;)]&quot;)可见
+INFO     root:basepage.py:26 开始时间2020-12-16 22:10:40.928366，结束时间2020-12-16 22:10:40.950305，等待时长0:00:00.021939
+INFO     root:basepage.py:36 开始查找(&#x27;xpath&#x27;, &quot;//input[contains(@class,&#x27;invest-unit-investinput&#x27;)]&quot;)元素
+INFO     root:basepage.py:79 元素(&#x27;xpath&#x27;, &quot;//input[contains(@class,&#x27;invest-unit-investinput&#x27;)]&quot;)的属性data-amount的值为4914598462.98
+INFO     root:basepage.py:21 等待元素(&#x27;xpath&#x27;, &quot;//input[contains(@class,&#x27;invest-unit-investinput&#x27;)]&quot;)可见
+INFO     root:basepage.py:26 开始时间2020-12-16 22:10:40.963271，结束时间2020-12-16 22:10:40.989201，等待时长0:00:00.025930
+INFO     root:basepage.py:36 开始查找(&#x27;xpath&#x27;, &quot;//input[contains(@class,&#x27;invest-unit-investinput&#x27;)]&quot;)元素
+INFO     root:basepage.py:65 给元素(&#x27;xpath&#x27;, &quot;//input[contains(@class,&#x27;invest-unit-investinput&#x27;)]&quot;)输入(-10,)文本值
+INFO     root:basepage.py:21 等待元素(&#x27;xpath&#x27;, &#x27;//button[text()=&quot;投标&quot;]&#x27;)可见
+INFO     root:basepage.py:26 开始时间2020-12-16 22:10:41.062007，结束时间2020-12-16 22:10:41.090931，等待时长0:00:00.028924
+INFO     root:basepage.py:36 开始查找(&#x27;xpath&#x27;, &#x27;//button[text()=&quot;投标&quot;]&#x27;)元素
+INFO     root:basepage.py:50 开始点击元素(&#x27;xpath&#x27;, &#x27;//button[text()=&quot;投标&quot;]&#x27;)
+INFO     root:basepage.py:21 等待元素(&#x27;xpath&#x27;, &#x27;//div[contains(@class,&quot;layui-layer-dialog&quot;)]//div[@class=&quot;text-center&quot;]&#x27;)可见
+INFO     root:basepage.py:26 开始时间2020-12-16 22:10:41.142791，结束时间2020-12-16 22:10:41.672375，等待时长0:00:00.529584
+INFO     root:basepage.py:36 开始查找(&#x27;xpath&#x27;, &#x27;//div[contains(@class,&quot;layui-layer-dialog&quot;)]//div[@class=&quot;text-center&quot;]&#x27;)元素
+INFO     root:basepage.py:94 获取(&#x27;xpath&#x27;, &#x27;//div[contains(@class,&quot;layui-layer-dialog&quot;)]//div[@class=&quot;text-center&quot;]&#x27;)元素的文本值为请正确填写投标金额
+INFO     root:basepage.py:21 等待元素(&#x27;xpath&#x27;, &#x27;//div[contains(@class,&quot;layui-layer-dialog&quot;)]//a&#x27;)可见
+INFO     root:basepage.py:26 开始时间2020-12-16 22:10:41.691323，结束时间2020-12-16 22:10:41.711270，等待时长0:00:00.019947
+INFO     root:basepage.py:36 开始查找(&#x27;xpath&#x27;, &#x27;//div[contains(@class,&quot;layui-layer-dialog&quot;)]//a&#x27;)元素
+INFO     root:basepage.py:50 开始点击元素(&#x27;xpath&#x27;, &#x27;//div[contains(@class,&quot;layui-layer-dialog&quot;)]//a&#x27;)
+INFO     root:basepage.py:21 等待元素(&#x27;xpath&#x27;, &quot;//input[contains(@class,&#x27;invest-unit-investinput&#x27;)]&quot;)可见
+INFO     root:basepage.py:26 开始时间2020-12-16 22:10:45.963898，结束时间2020-12-16 22:10:45.981849，等待时长0:00:00.017951
+INFO     root:basepage.py:36 开始查找(&#x27;xpath&#x27;, &quot;//input[contains(@class,&#x27;invest-unit-investinput&#x27;)]&quot;)元素
+INFO     root:basepage.py:79 元素(&#x27;xpath&#x27;, &quot;//input[contains(@class,&#x27;invest-unit-investinput&#x27;)]&quot;)的属性data-amount的值为4914598462.98<br/></div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">testcase/test_invest.py::TestInvest::test_invest_0_failed_by_No100[data1]</td>
+          <td class="col-duration">9.16</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log"> ------------------------------Captured stderr call------------------------------ <br/> Wed, 16 Dec 2020 22:10:50  INFO test_invest.py test_invest_0_failed_by_No100 [ line:64 ] *********投资用例：异常场景：投资金额为非100的整数倍、错误的格式等*********
+ Wed, 16 Dec 2020 22:10:50  INFO basepage.py wait_eleVisible [ line:21 ] 等待元素(&#x27;xpath&#x27;, &quot;//input[contains(@class,&#x27;invest-unit-investinput&#x27;)]&quot;)可见
+ Wed, 16 Dec 2020 22:10:50  INFO basepage.py wait_eleVisible [ line:26 ] 开始时间2020-12-16 22:10:50.162668，结束时间2020-12-16 22:10:50.180619，等待时长0:00:00.017951
+ Wed, 16 Dec 2020 22:10:50  INFO basepage.py get_element [ line:36 ] 开始查找(&#x27;xpath&#x27;, &quot;//input[contains(@class,&#x27;invest-unit-investinput&#x27;)]&quot;)元素
+ Wed, 16 Dec 2020 22:10:50  INFO basepage.py get_element_attribute [ line:79 ] 元素(&#x27;xpath&#x27;, &quot;//input[contains(@class,&#x27;invest-unit-investinput&#x27;)]&quot;)的属性data-amount的值为4914598462.98
+ Wed, 16 Dec 2020 22:10:50  INFO basepage.py wait_eleVisible [ line:21 ] 等待元素(&#x27;xpath&#x27;, &quot;//input[contains(@class,&#x27;invest-unit-investinput&#x27;)]&quot;)可见
+ Wed, 16 Dec 2020 22:10:50  INFO basepage.py wait_eleVisible [ line:26 ] 开始时间2020-12-16 22:10:50.200568，结束时间2020-12-16 22:10:50.220513，等待时长0:00:00.019945
+ Wed, 16 Dec 2020 22:10:50  INFO basepage.py get_element [ line:36 ] 开始查找(&#x27;xpath&#x27;, &quot;//input[contains(@class,&#x27;invest-unit-investinput&#x27;)]&quot;)元素
+ Wed, 16 Dec 2020 22:10:50  INFO basepage.py input_text [ line:65 ] 给元素(&#x27;xpath&#x27;, &quot;//input[contains(@class,&#x27;invest-unit-investinput&#x27;)]&quot;)输入(0,)文本值
+ Wed, 16 Dec 2020 22:10:50  INFO basepage.py wait_eleVisible [ line:21 ] 等待元素(&#x27;xpath&#x27;, &#x27;//button[text()=&quot;投标&quot;]&#x27;)可见
+ Wed, 16 Dec 2020 22:10:50  INFO basepage.py wait_eleVisible [ line:26 ] 开始时间2020-12-16 22:10:50.276364，结束时间2020-12-16 22:10:50.299302，等待时长0:00:00.022938
+ Wed, 16 Dec 2020 22:10:50  INFO basepage.py get_element [ line:36 ] 开始查找(&#x27;xpath&#x27;, &#x27;//button[text()=&quot;投标&quot;]&#x27;)元素
+ Wed, 16 Dec 2020 22:10:50  INFO basepage.py click_element [ line:50 ] 开始点击元素(&#x27;xpath&#x27;, &#x27;//button[text()=&quot;投标&quot;]&#x27;)
+ Wed, 16 Dec 2020 22:10:50  INFO basepage.py wait_eleVisible [ line:21 ] 等待元素(&#x27;xpath&#x27;, &#x27;//div[contains(@class,&quot;layui-layer-dialog&quot;)]//div[@class=&quot;text-center&quot;]&#x27;)可见
+ Wed, 16 Dec 2020 22:10:50  INFO basepage.py wait_eleVisible [ line:26 ] 开始时间2020-12-16 22:10:50.358145，结束时间2020-12-16 22:10:50.889722，等待时长0:00:00.531577
+ Wed, 16 Dec 2020 22:10:50  INFO basepage.py get_element [ line:36 ] 开始查找(&#x27;xpath&#x27;, &#x27;//div[contains(@class,&quot;layui-layer-dialog&quot;)]//div[@class=&quot;text-center&quot;]&#x27;)元素
+ Wed, 16 Dec 2020 22:10:50  INFO basepage.py get_element_text [ line:94 ] 获取(&#x27;xpath&#x27;, &#x27;//div[contains(@class,&quot;layui-layer-dialog&quot;)]//div[@class=&quot;text-center&quot;]&#x27;)元素的文本值为请正确填写投标金额
+ Wed, 16 Dec 2020 22:10:50  INFO basepage.py wait_eleVisible [ line:21 ] 等待元素(&#x27;xpath&#x27;, &#x27;//div[contains(@class,&quot;layui-layer-dialog&quot;)]//a&#x27;)可见
+ Wed, 16 Dec 2020 22:10:50  INFO basepage.py wait_eleVisible [ line:26 ] 开始时间2020-12-16 22:10:50.908672，结束时间2020-12-16 22:10:50.922634，等待时长0:00:00.013962
+ Wed, 16 Dec 2020 22:10:50  INFO basepage.py get_element [ line:36 ] 开始查找(&#x27;xpath&#x27;, &#x27;//div[contains(@class,&quot;layui-layer-dialog&quot;)]//a&#x27;)元素
+ Wed, 16 Dec 2020 22:10:50  INFO basepage.py click_element [ line:50 ] 开始点击元素(&#x27;xpath&#x27;, &#x27;//div[contains(@class,&quot;layui-layer-dialog&quot;)]//a&#x27;)
+ Wed, 16 Dec 2020 22:10:55  INFO basepage.py wait_eleVisible [ line:21 ] 等待元素(&#x27;xpath&#x27;, &quot;//input[contains(@class,&#x27;invest-unit-investinput&#x27;)]&quot;)可见
+ Wed, 16 Dec 2020 22:10:55  INFO basepage.py wait_eleVisible [ line:26 ] 开始时间2020-12-16 22:10:55.125395，结束时间2020-12-16 22:10:55.141352，等待时长0:00:00.015957
+ Wed, 16 Dec 2020 22:10:55  INFO basepage.py get_element [ line:36 ] 开始查找(&#x27;xpath&#x27;, &quot;//input[contains(@class,&#x27;invest-unit-investinput&#x27;)]&quot;)元素
+ Wed, 16 Dec 2020 22:10:55  INFO basepage.py get_element_attribute [ line:79 ] 元素(&#x27;xpath&#x27;, &quot;//input[contains(@class,&#x27;invest-unit-investinput&#x27;)]&quot;)的属性data-amount的值为4914598462.98
+<br/> -------------------------------Captured log call-------------------------------- <br/>INFO     root:test_invest.py:64 *********投资用例：异常场景：投资金额为非100的整数倍、错误的格式等*********
+INFO     root:basepage.py:21 等待元素(&#x27;xpath&#x27;, &quot;//input[contains(@class,&#x27;invest-unit-investinput&#x27;)]&quot;)可见
+INFO     root:basepage.py:26 开始时间2020-12-16 22:10:50.162668，结束时间2020-12-16 22:10:50.180619，等待时长0:00:00.017951
+INFO     root:basepage.py:36 开始查找(&#x27;xpath&#x27;, &quot;//input[contains(@class,&#x27;invest-unit-investinput&#x27;)]&quot;)元素
+INFO     root:basepage.py:79 元素(&#x27;xpath&#x27;, &quot;//input[contains(@class,&#x27;invest-unit-investinput&#x27;)]&quot;)的属性data-amount的值为4914598462.98
+INFO     root:basepage.py:21 等待元素(&#x27;xpath&#x27;, &quot;//input[contains(@class,&#x27;invest-unit-investinput&#x27;)]&quot;)可见
+INFO     root:basepage.py:26 开始时间2020-12-16 22:10:50.200568，结束时间2020-12-16 22:10:50.220513，等待时长0:00:00.019945
+INFO     root:basepage.py:36 开始查找(&#x27;xpath&#x27;, &quot;//input[contains(@class,&#x27;invest-unit-investinput&#x27;)]&quot;)元素
+INFO     root:basepage.py:65 给元素(&#x27;xpath&#x27;, &quot;//input[contains(@class,&#x27;invest-unit-investinput&#x27;)]&quot;)输入(0,)文本值
+INFO     root:basepage.py:21 等待元素(&#x27;xpath&#x27;, &#x27;//button[text()=&quot;投标&quot;]&#x27;)可见
+INFO     root:basepage.py:26 开始时间2020-12-16 22:10:50.276364，结束时间2020-12-16 22:10:50.299302，等待时长0:00:00.022938
+INFO     root:basepage.py:36 开始查找(&#x27;xpath&#x27;, &#x27;//button[text()=&quot;投标&quot;]&#x27;)元素
+INFO     root:basepage.py:50 开始点击元素(&#x27;xpath&#x27;, &#x27;//button[text()=&quot;投标&quot;]&#x27;)
+INFO     root:basepage.py:21 等待元素(&#x27;xpath&#x27;, &#x27;//div[contains(@class,&quot;layui-layer-dialog&quot;)]//div[@class=&quot;text-center&quot;]&#x27;)可见
+INFO     root:basepage.py:26 开始时间2020-12-16 22:10:50.358145，结束时间2020-12-16 22:10:50.889722，等待时长0:00:00.531577
+INFO     root:basepage.py:36 开始查找(&#x27;xpath&#x27;, &#x27;//div[contains(@class,&quot;layui-layer-dialog&quot;)]//div[@class=&quot;text-center&quot;]&#x27;)元素
+INFO     root:basepage.py:94 获取(&#x27;xpath&#x27;, &#x27;//div[contains(@class,&quot;layui-layer-dialog&quot;)]//div[@class=&quot;text-center&quot;]&#x27;)元素的文本值为请正确填写投标金额
+INFO     root:basepage.py:21 等待元素(&#x27;xpath&#x27;, &#x27;//div[contains(@class,&quot;layui-layer-dialog&quot;)]//a&#x27;)可见
+INFO     root:basepage.py:26 开始时间2020-12-16 22:10:50.908672，结束时间2020-12-16 22:10:50.922634，等待时长0:00:00.013962
+INFO     root:basepage.py:36 开始查找(&#x27;xpath&#x27;, &#x27;//div[contains(@class,&quot;layui-layer-dialog&quot;)]//a&#x27;)元素
+INFO     root:basepage.py:50 开始点击元素(&#x27;xpath&#x27;, &#x27;//div[contains(@class,&quot;layui-layer-dialog&quot;)]//a&#x27;)
+INFO     root:basepage.py:21 等待元素(&#x27;xpath&#x27;, &quot;//input[contains(@class,&#x27;invest-unit-investinput&#x27;)]&quot;)可见
+INFO     root:basepage.py:26 开始时间2020-12-16 22:10:55.125395，结束时间2020-12-16 22:10:55.141352，等待时长0:00:00.015957
+INFO     root:basepage.py:36 开始查找(&#x27;xpath&#x27;, &quot;//input[contains(@class,&#x27;invest-unit-investinput&#x27;)]&quot;)元素
+INFO     root:basepage.py:79 元素(&#x27;xpath&#x27;, &quot;//input[contains(@class,&#x27;invest-unit-investinput&#x27;)]&quot;)的属性data-amount的值为4914598462.98<br/></div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">testcase/test_invest.py::TestInvest::test_invest_0_failed_by_No100[data2]</td>
+          <td class="col-duration">10.76</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log"> ------------------------------Captured stderr call------------------------------ <br/> Wed, 16 Dec 2020 22:10:59  INFO test_invest.py test_invest_0_failed_by_No100 [ line:64 ] *********投资用例：异常场景：投资金额为非100的整数倍、错误的格式等*********
+ Wed, 16 Dec 2020 22:10:59  INFO basepage.py wait_eleVisible [ line:21 ] 等待元素(&#x27;xpath&#x27;, &quot;//input[contains(@class,&#x27;invest-unit-investinput&#x27;)]&quot;)可见
+ Wed, 16 Dec 2020 22:10:59  INFO basepage.py wait_eleVisible [ line:26 ] 开始时间2020-12-16 22:10:59.327188，结束时间2020-12-16 22:10:59.344138，等待时长0:00:00.016950
+ Wed, 16 Dec 2020 22:10:59  INFO basepage.py get_element [ line:36 ] 开始查找(&#x27;xpath&#x27;, &quot;//input[contains(@class,&#x27;invest-unit-investinput&#x27;)]&quot;)元素
+ Wed, 16 Dec 2020 22:10:59  INFO basepage.py get_element_attribute [ line:79 ] 元素(&#x27;xpath&#x27;, &quot;//input[contains(@class,&#x27;invest-unit-investinput&#x27;)]&quot;)的属性data-amount的值为4914598462.98
+ Wed, 16 Dec 2020 22:10:59  INFO basepage.py wait_eleVisible [ line:21 ] 等待元素(&#x27;xpath&#x27;, &quot;//input[contains(@class,&#x27;invest-unit-investinput&#x27;)]&quot;)可见
+ Wed, 16 Dec 2020 22:10:59  INFO basepage.py wait_eleVisible [ line:26 ] 开始时间2020-12-16 22:10:59.360068，结束时间2020-12-16 22:10:59.376025，等待时长0:00:00.015957
+ Wed, 16 Dec 2020 22:10:59  INFO basepage.py get_element [ line:36 ] 开始查找(&#x27;xpath&#x27;, &quot;//input[contains(@class,&#x27;invest-unit-investinput&#x27;)]&quot;)元素
+ Wed, 16 Dec 2020 22:10:59  INFO basepage.py input_text [ line:65 ] 给元素(&#x27;xpath&#x27;, &quot;//input[contains(@class,&#x27;invest-unit-investinput&#x27;)]&quot;)输入(&#x27; &#x27;,)文本值
+ Wed, 16 Dec 2020 22:10:59  INFO basepage.py wait_eleVisible [ line:21 ] 等待元素(&#x27;xpath&#x27;, &#x27;//button[text()=&quot;投标&quot;]&#x27;)可见
+ Wed, 16 Dec 2020 22:10:59  INFO basepage.py wait_eleVisible [ line:26 ] 开始时间2020-12-16 22:10:59.430878，结束时间2020-12-16 22:10:59.456812，等待时长0:00:00.025934
+ Wed, 16 Dec 2020 22:10:59  INFO basepage.py get_element [ line:36 ] 开始查找(&#x27;xpath&#x27;, &#x27;//button[text()=&quot;投标&quot;]&#x27;)元素
+ Wed, 16 Dec 2020 22:10:59  INFO basepage.py click_element [ line:50 ] 开始点击元素(&#x27;xpath&#x27;, &#x27;//button[text()=&quot;投标&quot;]&#x27;)
+ Wed, 16 Dec 2020 22:10:59  INFO basepage.py wait_eleVisible [ line:21 ] 等待元素(&#x27;xpath&#x27;, &#x27;//div[contains(@class,&quot;layui-layer-dialog&quot;)]//div[@class=&quot;text-center&quot;]&#x27;)可见
+ Wed, 16 Dec 2020 22:11:00  INFO basepage.py wait_eleVisible [ line:26 ] 开始时间2020-12-16 22:10:59.516649，结束时间2020-12-16 22:11:00.049226，等待时长0:00:00.532577
+ Wed, 16 Dec 2020 22:11:00  INFO basepage.py get_element [ line:36 ] 开始查找(&#x27;xpath&#x27;, &#x27;//div[contains(@class,&quot;layui-layer-dialog&quot;)]//div[@class=&quot;text-center&quot;]&#x27;)元素
+ Wed, 16 Dec 2020 22:11:00  INFO basepage.py get_element_text [ line:94 ] 获取(&#x27;xpath&#x27;, &#x27;//div[contains(@class,&quot;layui-layer-dialog&quot;)]//div[@class=&quot;text-center&quot;]&#x27;)元素的文本值为请正确填写投标金额
+ Wed, 16 Dec 2020 22:11:00  INFO basepage.py wait_eleVisible [ line:21 ] 等待元素(&#x27;xpath&#x27;, &#x27;//div[contains(@class,&quot;layui-layer-dialog&quot;)]//a&#x27;)可见
+ Wed, 16 Dec 2020 22:11:00  INFO basepage.py wait_eleVisible [ line:26 ] 开始时间2020-12-16 22:11:00.071167，结束时间2020-12-16 22:11:00.087125，等待时长0:00:00.015958
+ Wed, 16 Dec 2020 22:11:00  INFO basepage.py get_element [ line:36 ] 开始查找(&#x27;xpath&#x27;, &#x27;//div[contains(@class,&quot;layui-layer-dialog&quot;)]//a&#x27;)元素
+ Wed, 16 Dec 2020 22:11:00  INFO basepage.py click_element [ line:50 ] 开始点击元素(&#x27;xpath&#x27;, &#x27;//div[contains(@class,&quot;layui-layer-dialog&quot;)]//a&#x27;)
+ Wed, 16 Dec 2020 22:11:04  INFO basepage.py wait_eleVisible [ line:21 ] 等待元素(&#x27;xpath&#x27;, &quot;//input[contains(@class,&#x27;invest-unit-investinput&#x27;)]&quot;)可见
+ Wed, 16 Dec 2020 22:11:04  INFO basepage.py wait_eleVisible [ line:26 ] 开始时间2020-12-16 22:11:04.772620，结束时间2020-12-16 22:11:04.788549，等待时长0:00:00.015929
+ Wed, 16 Dec 2020 22:11:04  INFO basepage.py get_element [ line:36 ] 开始查找(&#x27;xpath&#x27;, &quot;//input[contains(@class,&#x27;invest-unit-investinput&#x27;)]&quot;)元素
+ Wed, 16 Dec 2020 22:11:04  INFO basepage.py get_element_attribute [ line:79 ] 元素(&#x27;xpath&#x27;, &quot;//input[contains(@class,&#x27;invest-unit-investinput&#x27;)]&quot;)的属性data-amount的值为4914598462.98
+<br/> -------------------------------Captured log call-------------------------------- <br/>INFO     root:test_invest.py:64 *********投资用例：异常场景：投资金额为非100的整数倍、错误的格式等*********
+INFO     root:basepage.py:21 等待元素(&#x27;xpath&#x27;, &quot;//input[contains(@class,&#x27;invest-unit-investinput&#x27;)]&quot;)可见
+INFO     root:basepage.py:26 开始时间2020-12-16 22:10:59.327188，结束时间2020-12-16 22:10:59.344138，等待时长0:00:00.016950
+INFO     root:basepage.py:36 开始查找(&#x27;xpath&#x27;, &quot;//input[contains(@class,&#x27;invest-unit-investinput&#x27;)]&quot;)元素
+INFO     root:basepage.py:79 元素(&#x27;xpath&#x27;, &quot;//input[contains(@class,&#x27;invest-unit-investinput&#x27;)]&quot;)的属性data-amount的值为4914598462.98
+INFO     root:basepage.py:21 等待元素(&#x27;xpath&#x27;, &quot;//input[contains(@class,&#x27;invest-unit-investinput&#x27;)]&quot;)可见
+INFO     root:basepage.py:26 开始时间2020-12-16 22:10:59.360068，结束时间2020-12-16 22:10:59.376025，等待时长0:00:00.015957
+INFO     root:basepage.py:36 开始查找(&#x27;xpath&#x27;, &quot;//input[contains(@class,&#x27;invest-unit-investinput&#x27;)]&quot;)元素
+INFO     root:basepage.py:65 给元素(&#x27;xpath&#x27;, &quot;//input[contains(@class,&#x27;invest-unit-investinput&#x27;)]&quot;)输入(&#x27; &#x27;,)文本值
+INFO     root:basepage.py:21 等待元素(&#x27;xpath&#x27;, &#x27;//button[text()=&quot;投标&quot;]&#x27;)可见
+INFO     root:basepage.py:26 开始时间2020-12-16 22:10:59.430878，结束时间2020-12-16 22:10:59.456812，等待时长0:00:00.025934
+INFO     root:basepage.py:36 开始查找(&#x27;xpath&#x27;, &#x27;//button[text()=&quot;投标&quot;]&#x27;)元素
+INFO     root:basepage.py:50 开始点击元素(&#x27;xpath&#x27;, &#x27;//button[text()=&quot;投标&quot;]&#x27;)
+INFO     root:basepage.py:21 等待元素(&#x27;xpath&#x27;, &#x27;//div[contains(@class,&quot;layui-layer-dialog&quot;)]//div[@class=&quot;text-center&quot;]&#x27;)可见
+INFO     root:basepage.py:26 开始时间2020-12-16 22:10:59.516649，结束时间2020-12-16 22:11:00.049226，等待时长0:00:00.532577
+INFO     root:basepage.py:36 开始查找(&#x27;xpath&#x27;, &#x27;//div[contains(@class,&quot;layui-layer-dialog&quot;)]//div[@class=&quot;text-center&quot;]&#x27;)元素
+INFO     root:basepage.py:94 获取(&#x27;xpath&#x27;, &#x27;//div[contains(@class,&quot;layui-layer-dialog&quot;)]//div[@class=&quot;text-center&quot;]&#x27;)元素的文本值为请正确填写投标金额
+INFO     root:basepage.py:21 等待元素(&#x27;xpath&#x27;, &#x27;//div[contains(@class,&quot;layui-layer-dialog&quot;)]//a&#x27;)可见
+INFO     root:basepage.py:26 开始时间2020-12-16 22:11:00.071167，结束时间2020-12-16 22:11:00.087125，等待时长0:00:00.015958
+INFO     root:basepage.py:36 开始查找(&#x27;xpath&#x27;, &#x27;//div[contains(@class,&quot;layui-layer-dialog&quot;)]//a&#x27;)元素
+INFO     root:basepage.py:50 开始点击元素(&#x27;xpath&#x27;, &#x27;//div[contains(@class,&quot;layui-layer-dialog&quot;)]//a&#x27;)
+INFO     root:basepage.py:21 等待元素(&#x27;xpath&#x27;, &quot;//input[contains(@class,&#x27;invest-unit-investinput&#x27;)]&quot;)可见
+INFO     root:basepage.py:26 开始时间2020-12-16 22:11:04.772620，结束时间2020-12-16 22:11:04.788549，等待时长0:00:00.015929
+INFO     root:basepage.py:36 开始查找(&#x27;xpath&#x27;, &quot;//input[contains(@class,&#x27;invest-unit-investinput&#x27;)]&quot;)元素
+INFO     root:basepage.py:79 元素(&#x27;xpath&#x27;, &quot;//input[contains(@class,&#x27;invest-unit-investinput&#x27;)]&quot;)的属性data-amount的值为4914598462.98<br/></div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">testcase/test_invest.py::TestInvest::test_invest_0_failed_by_No100[data3]</td>
+          <td class="col-duration">9.38</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log"> ------------------------------Captured stderr call------------------------------ <br/> Wed, 16 Dec 2020 22:11:10  INFO test_invest.py test_invest_0_failed_by_No100 [ line:64 ] *********投资用例：异常场景：投资金额为非100的整数倍、错误的格式等*********
+ Wed, 16 Dec 2020 22:11:10  INFO basepage.py wait_eleVisible [ line:21 ] 等待元素(&#x27;xpath&#x27;, &quot;//input[contains(@class,&#x27;invest-unit-investinput&#x27;)]&quot;)可见
+ Wed, 16 Dec 2020 22:11:10  INFO basepage.py wait_eleVisible [ line:26 ] 开始时间2020-12-16 22:11:10.098381，结束时间2020-12-16 22:11:10.115305，等待时长0:00:00.016924
+ Wed, 16 Dec 2020 22:11:10  INFO basepage.py get_element [ line:36 ] 开始查找(&#x27;xpath&#x27;, &quot;//input[contains(@class,&#x27;invest-unit-investinput&#x27;)]&quot;)元素
+ Wed, 16 Dec 2020 22:11:10  INFO basepage.py get_element_attribute [ line:79 ] 元素(&#x27;xpath&#x27;, &quot;//input[contains(@class,&#x27;invest-unit-investinput&#x27;)]&quot;)的属性data-amount的值为4914598462.98
+ Wed, 16 Dec 2020 22:11:10  INFO basepage.py wait_eleVisible [ line:21 ] 等待元素(&#x27;xpath&#x27;, &quot;//input[contains(@class,&#x27;invest-unit-investinput&#x27;)]&quot;)可见
+ Wed, 16 Dec 2020 22:11:10  INFO basepage.py wait_eleVisible [ line:26 ] 开始时间2020-12-16 22:11:10.130263，结束时间2020-12-16 22:11:10.146221，等待时长0:00:00.015958
+ Wed, 16 Dec 2020 22:11:10  INFO basepage.py get_element [ line:36 ] 开始查找(&#x27;xpath&#x27;, &quot;//input[contains(@class,&#x27;invest-unit-investinput&#x27;)]&quot;)元素
+ Wed, 16 Dec 2020 22:11:10  INFO basepage.py input_text [ line:65 ] 给元素(&#x27;xpath&#x27;, &quot;//input[contains(@class,&#x27;invest-unit-investinput&#x27;)]&quot;)输入(50,)文本值
+ Wed, 16 Dec 2020 22:11:10  INFO basepage.py wait_eleVisible [ line:21 ] 等待元素(&#x27;xpath&#x27;, &#x27;//button[text()=&quot;投标&quot;]&#x27;)可见
+ Wed, 16 Dec 2020 22:11:10  INFO basepage.py wait_eleVisible [ line:26 ] 开始时间2020-12-16 22:11:10.209053，结束时间2020-12-16 22:11:10.232988，等待时长0:00:00.023935
+ Wed, 16 Dec 2020 22:11:10  INFO basepage.py get_element [ line:36 ] 开始查找(&#x27;xpath&#x27;, &#x27;//button[text()=&quot;投标&quot;]&#x27;)元素
+ Wed, 16 Dec 2020 22:11:10  INFO basepage.py click_element [ line:50 ] 开始点击元素(&#x27;xpath&#x27;, &#x27;//button[text()=&quot;投标&quot;]&#x27;)
+ Wed, 16 Dec 2020 22:11:10  INFO basepage.py wait_eleVisible [ line:21 ] 等待元素(&#x27;xpath&#x27;, &#x27;//div[contains(@class,&quot;layui-layer-dialog&quot;)]//div[@class=&quot;text-center&quot;]&#x27;)可见
+ Wed, 16 Dec 2020 22:11:10  INFO basepage.py wait_eleVisible [ line:26 ] 开始时间2020-12-16 22:11:10.290847，结束时间2020-12-16 22:11:10.822415，等待时长0:00:00.531568
+ Wed, 16 Dec 2020 22:11:10  INFO basepage.py get_element [ line:36 ] 开始查找(&#x27;xpath&#x27;, &#x27;//div[contains(@class,&quot;layui-layer-dialog&quot;)]//div[@class=&quot;text-center&quot;]&#x27;)元素
+ Wed, 16 Dec 2020 22:11:10  INFO basepage.py get_element_text [ line:94 ] 获取(&#x27;xpath&#x27;, &#x27;//div[contains(@class,&quot;layui-layer-dialog&quot;)]//div[@class=&quot;text-center&quot;]&#x27;)元素的文本值为投标金额必须为100的倍数
+ Wed, 16 Dec 2020 22:11:10  INFO basepage.py wait_eleVisible [ line:21 ] 等待元素(&#x27;xpath&#x27;, &#x27;//div[contains(@class,&quot;layui-layer-dialog&quot;)]//a&#x27;)可见
+ Wed, 16 Dec 2020 22:11:10  INFO basepage.py wait_eleVisible [ line:26 ] 开始时间2020-12-16 22:11:10.839367，结束时间2020-12-16 22:11:10.855327，等待时长0:00:00.015960
+ Wed, 16 Dec 2020 22:11:10  INFO basepage.py get_element [ line:36 ] 开始查找(&#x27;xpath&#x27;, &#x27;//div[contains(@class,&quot;layui-layer-dialog&quot;)]//a&#x27;)元素
+ Wed, 16 Dec 2020 22:11:10  INFO basepage.py click_element [ line:50 ] 开始点击元素(&#x27;xpath&#x27;, &#x27;//div[contains(@class,&quot;layui-layer-dialog&quot;)]//a&#x27;)
+ Wed, 16 Dec 2020 22:11:15  INFO basepage.py wait_eleVisible [ line:21 ] 等待元素(&#x27;xpath&#x27;, &quot;//input[contains(@class,&#x27;invest-unit-investinput&#x27;)]&quot;)可见
+ Wed, 16 Dec 2020 22:11:15  INFO basepage.py wait_eleVisible [ line:26 ] 开始时间2020-12-16 22:11:15.076035，结束时间2020-12-16 22:11:15.095983，等待时长0:00:00.019948
+ Wed, 16 Dec 2020 22:11:15  INFO basepage.py get_element [ line:36 ] 开始查找(&#x27;xpath&#x27;, &quot;//input[contains(@class,&#x27;invest-unit-investinput&#x27;)]&quot;)元素
+ Wed, 16 Dec 2020 22:11:15  INFO basepage.py get_element_attribute [ line:79 ] 元素(&#x27;xpath&#x27;, &quot;//input[contains(@class,&#x27;invest-unit-investinput&#x27;)]&quot;)的属性data-amount的值为4914598462.98
+<br/> -------------------------------Captured log call-------------------------------- <br/>INFO     root:test_invest.py:64 *********投资用例：异常场景：投资金额为非100的整数倍、错误的格式等*********
+INFO     root:basepage.py:21 等待元素(&#x27;xpath&#x27;, &quot;//input[contains(@class,&#x27;invest-unit-investinput&#x27;)]&quot;)可见
+INFO     root:basepage.py:26 开始时间2020-12-16 22:11:10.098381，结束时间2020-12-16 22:11:10.115305，等待时长0:00:00.016924
+INFO     root:basepage.py:36 开始查找(&#x27;xpath&#x27;, &quot;//input[contains(@class,&#x27;invest-unit-investinput&#x27;)]&quot;)元素
+INFO     root:basepage.py:79 元素(&#x27;xpath&#x27;, &quot;//input[contains(@class,&#x27;invest-unit-investinput&#x27;)]&quot;)的属性data-amount的值为4914598462.98
+INFO     root:basepage.py:21 等待元素(&#x27;xpath&#x27;, &quot;//input[contains(@class,&#x27;invest-unit-investinput&#x27;)]&quot;)可见
+INFO     root:basepage.py:26 开始时间2020-12-16 22:11:10.130263，结束时间2020-12-16 22:11:10.146221，等待时长0:00:00.015958
+INFO     root:basepage.py:36 开始查找(&#x27;xpath&#x27;, &quot;//input[contains(@class,&#x27;invest-unit-investinput&#x27;)]&quot;)元素
+INFO     root:basepage.py:65 给元素(&#x27;xpath&#x27;, &quot;//input[contains(@class,&#x27;invest-unit-investinput&#x27;)]&quot;)输入(50,)文本值
+INFO     root:basepage.py:21 等待元素(&#x27;xpath&#x27;, &#x27;//button[text()=&quot;投标&quot;]&#x27;)可见
+INFO     root:basepage.py:26 开始时间2020-12-16 22:11:10.209053，结束时间2020-12-16 22:11:10.232988，等待时长0:00:00.023935
+INFO     root:basepage.py:36 开始查找(&#x27;xpath&#x27;, &#x27;//button[text()=&quot;投标&quot;]&#x27;)元素
+INFO     root:basepage.py:50 开始点击元素(&#x27;xpath&#x27;, &#x27;//button[text()=&quot;投标&quot;]&#x27;)
+INFO     root:basepage.py:21 等待元素(&#x27;xpath&#x27;, &#x27;//div[contains(@class,&quot;layui-layer-dialog&quot;)]//div[@class=&quot;text-center&quot;]&#x27;)可见
+INFO     root:basepage.py:26 开始时间2020-12-16 22:11:10.290847，结束时间2020-12-16 22:11:10.822415，等待时长0:00:00.531568
+INFO     root:basepage.py:36 开始查找(&#x27;xpath&#x27;, &#x27;//div[contains(@class,&quot;layui-layer-dialog&quot;)]//div[@class=&quot;text-center&quot;]&#x27;)元素
+INFO     root:basepage.py:94 获取(&#x27;xpath&#x27;, &#x27;//div[contains(@class,&quot;layui-layer-dialog&quot;)]//div[@class=&quot;text-center&quot;]&#x27;)元素的文本值为投标金额必须为100的倍数
+INFO     root:basepage.py:21 等待元素(&#x27;xpath&#x27;, &#x27;//div[contains(@class,&quot;layui-layer-dialog&quot;)]//a&#x27;)可见
+INFO     root:basepage.py:26 开始时间2020-12-16 22:11:10.839367，结束时间2020-12-16 22:11:10.855327，等待时长0:00:00.015960
+INFO     root:basepage.py:36 开始查找(&#x27;xpath&#x27;, &#x27;//div[contains(@class,&quot;layui-layer-dialog&quot;)]//a&#x27;)元素
+INFO     root:basepage.py:50 开始点击元素(&#x27;xpath&#x27;, &#x27;//div[contains(@class,&quot;layui-layer-dialog&quot;)]//a&#x27;)
+INFO     root:basepage.py:21 等待元素(&#x27;xpath&#x27;, &quot;//input[contains(@class,&#x27;invest-unit-investinput&#x27;)]&quot;)可见
+INFO     root:basepage.py:26 开始时间2020-12-16 22:11:15.076035，结束时间2020-12-16 22:11:15.095983，等待时长0:00:00.019948
+INFO     root:basepage.py:36 开始查找(&#x27;xpath&#x27;, &quot;//input[contains(@class,&#x27;invest-unit-investinput&#x27;)]&quot;)元素
+INFO     root:basepage.py:79 元素(&#x27;xpath&#x27;, &quot;//input[contains(@class,&#x27;invest-unit-investinput&#x27;)]&quot;)的属性data-amount的值为4914598462.98<br/></div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">testcase/test_invest.py::TestInvest::test_invest_1_success</td>
+          <td class="col-duration">54.21</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log"> ------------------------------Captured stderr call------------------------------ <br/> Wed, 16 Dec 2020 22:11:19  INFO test_invest.py test_invest_1_success [ line:82 ] *********投资用例：正常场景-投资成功*********
+ Wed, 16 Dec 2020 22:11:19  INFO basepage.py wait_eleVisible [ line:21 ] 等待元素(&#x27;xpath&#x27;, &quot;//input[contains(@class,&#x27;invest-unit-investinput&#x27;)]&quot;)可见
+ Wed, 16 Dec 2020 22:11:19  INFO basepage.py wait_eleVisible [ line:26 ] 开始时间2020-12-16 22:11:19.487242，结束时间2020-12-16 22:11:19.510177，等待时长0:00:00.022935
+ Wed, 16 Dec 2020 22:11:19  INFO basepage.py get_element [ line:36 ] 开始查找(&#x27;xpath&#x27;, &quot;//input[contains(@class,&#x27;invest-unit-investinput&#x27;)]&quot;)元素
+ Wed, 16 Dec 2020 22:11:19  INFO basepage.py get_element_attribute [ line:79 ] 元素(&#x27;xpath&#x27;, &quot;//input[contains(@class,&#x27;invest-unit-investinput&#x27;)]&quot;)的属性data-amount的值为4914598462.98
+ Wed, 16 Dec 2020 22:11:19  INFO basepage.py wait_eleVisible [ line:21 ] 等待元素(&#x27;xpath&#x27;, &quot;//input[contains(@class,&#x27;invest-unit-investinput&#x27;)]&quot;)可见
+ Wed, 16 Dec 2020 22:11:19  INFO basepage.py wait_eleVisible [ line:26 ] 开始时间2020-12-16 22:11:19.526134，结束时间2020-12-16 22:11:19.545084，等待时长0:00:00.018950
+ Wed, 16 Dec 2020 22:11:19  INFO basepage.py get_element [ line:36 ] 开始查找(&#x27;xpath&#x27;, &quot;//input[contains(@class,&#x27;invest-unit-investinput&#x27;)]&quot;)元素
+ Wed, 16 Dec 2020 22:11:19  INFO basepage.py input_text [ line:65 ] 给元素(&#x27;xpath&#x27;, &quot;//input[contains(@class,&#x27;invest-unit-investinput&#x27;)]&quot;)输入(1000,)文本值
+ Wed, 16 Dec 2020 22:11:19  INFO basepage.py wait_eleVisible [ line:21 ] 等待元素(&#x27;xpath&#x27;, &#x27;//button[text()=&quot;投标&quot;]&#x27;)可见
+ Wed, 16 Dec 2020 22:11:19  INFO basepage.py wait_eleVisible [ line:26 ] 开始时间2020-12-16 22:11:19.609914，结束时间2020-12-16 22:11:19.634857，等待时长0:00:00.024943
+ Wed, 16 Dec 2020 22:11:19  INFO basepage.py get_element [ line:36 ] 开始查找(&#x27;xpath&#x27;, &#x27;//button[text()=&quot;投标&quot;]&#x27;)元素
+ Wed, 16 Dec 2020 22:11:19  INFO basepage.py click_element [ line:50 ] 开始点击元素(&#x27;xpath&#x27;, &#x27;//button[text()=&quot;投标&quot;]&#x27;)
+ Wed, 16 Dec 2020 22:11:19  INFO basepage.py wait_eleVisible [ line:21 ] 等待元素(&#x27;xpath&#x27;, &quot;//div[@class=&#x27;layui-layer-content&#x27;]//button[text()=&#x27;查看并激活&#x27;]&quot;)可见
+ Wed, 16 Dec 2020 22:11:20  INFO basepage.py wait_eleVisible [ line:26 ] 开始时间2020-12-16 22:11:19.690695，结束时间2020-12-16 22:11:20.230250，等待时长0:00:00.539555
+ Wed, 16 Dec 2020 22:11:20  INFO basepage.py get_element [ line:36 ] 开始查找(&#x27;xpath&#x27;, &quot;//div[@class=&#x27;layui-layer-content&#x27;]//button[text()=&#x27;查看并激活&#x27;]&quot;)元素
+ Wed, 16 Dec 2020 22:11:20  INFO basepage.py click_element [ line:50 ] 开始点击元素(&#x27;xpath&#x27;, &quot;//div[@class=&#x27;layui-layer-content&#x27;]//button[text()=&#x27;查看并激活&#x27;]&quot;)
+ Wed, 16 Dec 2020 22:11:45  INFO basepage.py wait_eleVisible [ line:21 ] 等待元素(&#x27;xpath&#x27;, &#x27;//li[@class=&quot;color_sub&quot;]&#x27;)可见
+ Wed, 16 Dec 2020 22:11:45  INFO basepage.py wait_eleVisible [ line:26 ] 开始时间2020-12-16 22:11:45.963427，结束时间2020-12-16 22:11:45.983376，等待时长0:00:00.019949
+ Wed, 16 Dec 2020 22:11:45  INFO basepage.py get_element [ line:36 ] 开始查找(&#x27;xpath&#x27;, &#x27;//li[@class=&quot;color_sub&quot;]&#x27;)元素
+ Wed, 16 Dec 2020 22:11:45  INFO basepage.py get_element_text [ line:94 ] 获取(&#x27;xpath&#x27;, &#x27;//li[@class=&quot;color_sub&quot;]&#x27;)元素的文本值为4914597462.98元
+<br/> -------------------------------Captured log call-------------------------------- <br/>INFO     root:test_invest.py:82 *********投资用例：正常场景-投资成功*********
+INFO     root:basepage.py:21 等待元素(&#x27;xpath&#x27;, &quot;//input[contains(@class,&#x27;invest-unit-investinput&#x27;)]&quot;)可见
+INFO     root:basepage.py:26 开始时间2020-12-16 22:11:19.487242，结束时间2020-12-16 22:11:19.510177，等待时长0:00:00.022935
+INFO     root:basepage.py:36 开始查找(&#x27;xpath&#x27;, &quot;//input[contains(@class,&#x27;invest-unit-investinput&#x27;)]&quot;)元素
+INFO     root:basepage.py:79 元素(&#x27;xpath&#x27;, &quot;//input[contains(@class,&#x27;invest-unit-investinput&#x27;)]&quot;)的属性data-amount的值为4914598462.98
+INFO     root:basepage.py:21 等待元素(&#x27;xpath&#x27;, &quot;//input[contains(@class,&#x27;invest-unit-investinput&#x27;)]&quot;)可见
+INFO     root:basepage.py:26 开始时间2020-12-16 22:11:19.526134，结束时间2020-12-16 22:11:19.545084，等待时长0:00:00.018950
+INFO     root:basepage.py:36 开始查找(&#x27;xpath&#x27;, &quot;//input[contains(@class,&#x27;invest-unit-investinput&#x27;)]&quot;)元素
+INFO     root:basepage.py:65 给元素(&#x27;xpath&#x27;, &quot;//input[contains(@class,&#x27;invest-unit-investinput&#x27;)]&quot;)输入(1000,)文本值
+INFO     root:basepage.py:21 等待元素(&#x27;xpath&#x27;, &#x27;//button[text()=&quot;投标&quot;]&#x27;)可见
+INFO     root:basepage.py:26 开始时间2020-12-16 22:11:19.609914，结束时间2020-12-16 22:11:19.634857，等待时长0:00:00.024943
+INFO     root:basepage.py:36 开始查找(&#x27;xpath&#x27;, &#x27;//button[text()=&quot;投标&quot;]&#x27;)元素
+INFO     root:basepage.py:50 开始点击元素(&#x27;xpath&#x27;, &#x27;//button[text()=&quot;投标&quot;]&#x27;)
+INFO     root:basepage.py:21 等待元素(&#x27;xpath&#x27;, &quot;//div[@class=&#x27;layui-layer-content&#x27;]//button[text()=&#x27;查看并激活&#x27;]&quot;)可见
+INFO     root:basepage.py:26 开始时间2020-12-16 22:11:19.690695，结束时间2020-12-16 22:11:20.230250，等待时长0:00:00.539555
+INFO     root:basepage.py:36 开始查找(&#x27;xpath&#x27;, &quot;//div[@class=&#x27;layui-layer-content&#x27;]//button[text()=&#x27;查看并激活&#x27;]&quot;)元素
+INFO     root:basepage.py:50 开始点击元素(&#x27;xpath&#x27;, &quot;//div[@class=&#x27;layui-layer-content&#x27;]//button[text()=&#x27;查看并激活&#x27;]&quot;)
+INFO     root:basepage.py:21 等待元素(&#x27;xpath&#x27;, &#x27;//li[@class=&quot;color_sub&quot;]&#x27;)可见
+INFO     root:basepage.py:26 开始时间2020-12-16 22:11:45.963427，结束时间2020-12-16 22:11:45.983376，等待时长0:00:00.019949
+INFO     root:basepage.py:36 开始查找(&#x27;xpath&#x27;, &#x27;//li[@class=&quot;color_sub&quot;]&#x27;)元素
+INFO     root:basepage.py:94 获取(&#x27;xpath&#x27;, &#x27;//li[@class=&quot;color_sub&quot;]&#x27;)元素的文本值为4914597462.98元<br/></div></td></tr></tbody></table></body></html>

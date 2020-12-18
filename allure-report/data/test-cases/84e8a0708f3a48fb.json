@@ -1,0 +1,139 @@
+{
+  "uid" : "84e8a0708f3a48fb",
+  "name" : "test_login_0_failed_wrong_datas[data0]",
+  "fullName" : "testcase.test_1login_pytest.TestLogin#test_login_0_failed_wrong_datas",
+  "historyId" : "98ee763b71a2e5d2e8433e177b71f895",
+  "time" : {
+    "start" : 1608217367100,
+    "stop" : 1608217367389,
+    "duration" : 289
+  },
+  "status" : "passed",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ {
+    "name" : "refresh_page",
+    "time" : {
+      "start" : 1608217367099,
+      "stop" : 1608217367099,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "hasContent" : false,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false
+  }, {
+    "name" : "open_url",
+    "time" : {
+      "start" : 1608217360953,
+      "stop" : 1608217367099,
+      "duration" : 6146
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "hasContent" : false,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false
+  } ],
+  "testStage" : {
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ {
+      "uid" : "d6049d5c80d5e17d",
+      "name" : "log",
+      "source" : "d6049d5c80d5e17d.txt",
+      "type" : "text/plain",
+      "size" : 1790
+    } ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "hasContent" : true,
+    "attachmentsCount" : 1,
+    "shouldDisplayMessage" : false
+  },
+  "afterStages" : [ {
+    "name" : "refresh_page::0",
+    "time" : {
+      "start" : 1608217367391,
+      "stop" : 1608217367397,
+      "duration" : 6
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "hasContent" : false,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false
+  }, {
+    "name" : "open_url::0",
+    "time" : {
+      "start" : 1608217374971,
+      "stop" : 1608217377115,
+      "duration" : 2144
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "hasContent" : false,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false
+  } ],
+  "labels" : [ {
+    "name" : "tag",
+    "value" : "login"
+  }, {
+    "name" : "tag",
+    "value" : "@pytest.mark.usefixtures('refresh_page')"
+  }, {
+    "name" : "parentSuite",
+    "value" : "testcase"
+  }, {
+    "name" : "suite",
+    "value" : "test_1login_pytest"
+  }, {
+    "name" : "subSuite",
+    "value" : "TestLogin"
+  }, {
+    "name" : "host",
+    "value" : "DESKTOP-J6CF24D"
+  }, {
+    "name" : "thread",
+    "value" : "56724-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "testcase.test_1login_pytest"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ {
+    "name" : "data",
+    "value" : "{'user': '18684720553', 'passwd': '', 'check': '请输入密码'}"
+  } ],
+  "links" : [ ],
+  "hidden" : true,
+  "retry" : true,
+  "extra" : {
+    "categories" : [ ],
+    "tags" : [ "login", "@pytest.mark.usefixtures('refresh_page')" ]
+  },
+  "source" : "84e8a0708f3a48fb.json",
+  "parameterValues" : [ "{'user': '18684720553', 'passwd': '', 'check': '请输入密码'}" ]
+}

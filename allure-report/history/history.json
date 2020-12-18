@@ -1,0 +1,362 @@
+{
+  "3fa87e1b4faf6bdec7defaf1ecb0cfc3" : {
+    "statistic" : {
+      "failed" : 0,
+      "broken" : 1,
+      "skipped" : 0,
+      "passed" : 1,
+      "unknown" : 0,
+      "total" : 2
+    },
+    "items" : [ {
+      "uid" : "fcf2d4fd3b30fc84",
+      "reportUrl" : "http://localhost:8080/job/po_web_pytest_allure/9/allure/#testresult/fcf2d4fd3b30fc84",
+      "status" : "passed",
+      "time" : {
+        "start" : 1608299451776,
+        "stop" : 1608299477613,
+        "duration" : 25837
+      }
+    }, {
+      "uid" : "68dac9e2dd143840",
+      "reportUrl" : "http://localhost:8080/job/po_web_pytest_allure/8/allure/#testresult/68dac9e2dd143840",
+      "status" : "broken",
+      "statusDetails" : "selenium.common.exceptions.SessionNotCreatedException: Message: session not created\nfrom timeout: Timed out receiving message from renderer: 600.000\n  (Session info: chrome=87.0.4280.88)",
+      "time" : {
+        "start" : 1608297310674,
+        "stop" : 1608297310674,
+        "duration" : 0
+      }
+    } ]
+  },
+  "6a46fcdafac322ca966e3107b2e7a7bd" : {
+    "statistic" : {
+      "failed" : 0,
+      "broken" : 1,
+      "skipped" : 0,
+      "passed" : 1,
+      "unknown" : 0,
+      "total" : 2
+    },
+    "items" : [ {
+      "uid" : "f89092dd62afbbc9",
+      "reportUrl" : "http://localhost:8080/job/po_web_pytest_allure/9/allure/#testresult/f89092dd62afbbc9",
+      "status" : "passed",
+      "time" : {
+        "start" : 1608299394830,
+        "stop" : 1608299395518,
+        "duration" : 688
+      }
+    }, {
+      "uid" : "749e192c710c85ef",
+      "reportUrl" : "http://localhost:8080/job/po_web_pytest_allure/8/allure/#testresult/749e192c710c85ef",
+      "status" : "broken",
+      "statusDetails" : "selenium.common.exceptions.SessionNotCreatedException: Message: session not created\nfrom timeout: Timed out receiving message from renderer: 600.000\n  (Session info: chrome=87.0.4280.88)",
+      "time" : {
+        "start" : 1608296704914,
+        "stop" : 1608296704914,
+        "duration" : 0
+      }
+    } ]
+  },
+  "308aaeb32698655c72872f8225ec1a01" : {
+    "statistic" : {
+      "failed" : 0,
+      "broken" : 1,
+      "skipped" : 0,
+      "passed" : 1,
+      "unknown" : 0,
+      "total" : 2
+    },
+    "items" : [ {
+      "uid" : "b9f14a68f69560e",
+      "reportUrl" : "http://localhost:8080/job/po_web_pytest_allure/9/allure/#testresult/b9f14a68f69560e",
+      "status" : "passed",
+      "time" : {
+        "start" : 1608299395716,
+        "stop" : 1608299396402,
+        "duration" : 686
+      }
+    }, {
+      "uid" : "a5d8becc9cadefa0",
+      "reportUrl" : "http://localhost:8080/job/po_web_pytest_allure/8/allure/#testresult/a5d8becc9cadefa0",
+      "status" : "broken",
+      "statusDetails" : "selenium.common.exceptions.SessionNotCreatedException: Message: session not created\nfrom timeout: Timed out receiving message from renderer: 600.000\n  (Session info: chrome=87.0.4280.88)",
+      "time" : {
+        "start" : 1608296704988,
+        "stop" : 1608296704988,
+        "duration" : 0
+      }
+    } ]
+  },
+  "98ee763b71a2e5d2e8433e177b71f895" : {
+    "statistic" : {
+      "failed" : 0,
+      "broken" : 1,
+      "skipped" : 0,
+      "passed" : 1,
+      "unknown" : 0,
+      "total" : 2
+    },
+    "items" : [ {
+      "uid" : "640b21d35a6878c0",
+      "reportUrl" : "http://localhost:8080/job/po_web_pytest_allure/9/allure/#testresult/640b21d35a6878c0",
+      "status" : "passed",
+      "time" : {
+        "start" : 1608299392841,
+        "stop" : 1608299393141,
+        "duration" : 300
+      }
+    }, {
+      "uid" : "8fa077334e0caa56",
+      "reportUrl" : "http://localhost:8080/job/po_web_pytest_allure/8/allure/#testresult/8fa077334e0caa56",
+      "status" : "broken",
+      "statusDetails" : "selenium.common.exceptions.SessionNotCreatedException: Message: session not created\nfrom timeout: Timed out receiving message from renderer: 600.000\n  (Session info: chrome=87.0.4280.88)",
+      "time" : {
+        "start" : 1608296098258,
+        "stop" : 1608296098258,
+        "duration" : 0
+      }
+    } ]
+  },
+  "68cf2b0989aa4e51d177a21c2d251b6c" : {
+    "statistic" : {
+      "failed" : 0,
+      "broken" : 1,
+      "skipped" : 0,
+      "passed" : 1,
+      "unknown" : 0,
+      "total" : 2
+    },
+    "items" : [ {
+      "uid" : "8d12cd85b15c8cca",
+      "reportUrl" : "http://localhost:8080/job/po_web_pytest_allure/9/allure/#testresult/8d12cd85b15c8cca",
+      "status" : "passed",
+      "time" : {
+        "start" : 1608299394058,
+        "stop" : 1608299394241,
+        "duration" : 183
+      }
+    }, {
+      "uid" : "583f184e6ae215b0",
+      "reportUrl" : "http://localhost:8080/job/po_web_pytest_allure/8/allure/#testresult/583f184e6ae215b0",
+      "status" : "broken",
+      "statusDetails" : "selenium.common.exceptions.SessionNotCreatedException: Message: session not created\nfrom timeout: Timed out receiving message from renderer: 600.000\n  (Session info: chrome=87.0.4280.88)",
+      "time" : {
+        "start" : 1608296704626,
+        "stop" : 1608296704626,
+        "duration" : 0
+      }
+    } ]
+  },
+  "e808f409f9a6a0d9576803deec618e46" : {
+    "statistic" : {
+      "failed" : 0,
+      "broken" : 1,
+      "skipped" : 0,
+      "passed" : 1,
+      "unknown" : 0,
+      "total" : 2
+    },
+    "items" : [ {
+      "uid" : "dcadfb109bbc0def",
+      "reportUrl" : "http://localhost:8080/job/po_web_pytest_allure/9/allure/#testresult/dcadfb109bbc0def",
+      "status" : "passed",
+      "time" : {
+        "start" : 1608299424394,
+        "stop" : 1608299428991,
+        "duration" : 4597
+      }
+    }, {
+      "uid" : "f5bc2b8f39217e4f",
+      "reportUrl" : "http://localhost:8080/job/po_web_pytest_allure/8/allure/#testresult/f5bc2b8f39217e4f",
+      "status" : "broken",
+      "statusDetails" : "selenium.common.exceptions.SessionNotCreatedException: Message: session not created\nfrom timeout: Timed out receiving message from renderer: 600.000\n  (Session info: chrome=87.0.4280.88)",
+      "time" : {
+        "start" : 1608297310554,
+        "stop" : 1608297310554,
+        "duration" : 0
+      }
+    } ]
+  },
+  "50b62d68a5c78b16f277d604e09ea628" : {
+    "statistic" : {
+      "failed" : 0,
+      "broken" : 1,
+      "skipped" : 0,
+      "passed" : 1,
+      "unknown" : 0,
+      "total" : 2
+    },
+    "items" : [ {
+      "uid" : "9221c5c4af2946e2",
+      "reportUrl" : "http://localhost:8080/job/po_web_pytest_allure/9/allure/#testresult/9221c5c4af2946e2",
+      "status" : "passed",
+      "time" : {
+        "start" : 1608299393654,
+        "stop" : 1608299393833,
+        "duration" : 179
+      }
+    }, {
+      "uid" : "f99ebe27ee3d90fb",
+      "reportUrl" : "http://localhost:8080/job/po_web_pytest_allure/8/allure/#testresult/f99ebe27ee3d90fb",
+      "status" : "broken",
+      "statusDetails" : "selenium.common.exceptions.SessionNotCreatedException: Message: session not created\nfrom timeout: Timed out receiving message from renderer: 600.000\n  (Session info: chrome=87.0.4280.88)",
+      "time" : {
+        "start" : 1608296704472,
+        "stop" : 1608296704472,
+        "duration" : 0
+      }
+    } ]
+  },
+  "a36133c378b3a5afdbb3e7c51818e254" : {
+    "statistic" : {
+      "failed" : 0,
+      "broken" : 1,
+      "skipped" : 0,
+      "passed" : 1,
+      "unknown" : 0,
+      "total" : 2
+    },
+    "items" : [ {
+      "uid" : "dbb601ef0fe4b1d3",
+      "reportUrl" : "http://localhost:8080/job/po_web_pytest_allure/9/allure/#testresult/dbb601ef0fe4b1d3",
+      "status" : "passed",
+      "time" : {
+        "start" : 1608299442473,
+        "stop" : 1608299447489,
+        "duration" : 5016
+      }
+    }, {
+      "uid" : "c5ee2890508cfd47",
+      "reportUrl" : "http://localhost:8080/job/po_web_pytest_allure/8/allure/#testresult/c5ee2890508cfd47",
+      "status" : "broken",
+      "statusDetails" : "selenium.common.exceptions.SessionNotCreatedException: Message: session not created\nfrom timeout: Timed out receiving message from renderer: 600.000\n  (Session info: chrome=87.0.4280.88)",
+      "time" : {
+        "start" : 1608297310625,
+        "stop" : 1608297310625,
+        "duration" : 0
+      }
+    } ]
+  },
+  "39d42cf2c7c141d97498c560376ba8de" : {
+    "statistic" : {
+      "failed" : 0,
+      "broken" : 1,
+      "skipped" : 0,
+      "passed" : 1,
+      "unknown" : 0,
+      "total" : 2
+    },
+    "items" : [ {
+      "uid" : "797565e7bb02ff9d",
+      "reportUrl" : "http://localhost:8080/job/po_web_pytest_allure/9/allure/#testresult/797565e7bb02ff9d",
+      "status" : "passed",
+      "time" : {
+        "start" : 1608299394432,
+        "stop" : 1608299394615,
+        "duration" : 183
+      }
+    }, {
+      "uid" : "d4c44af2d728a1e1",
+      "reportUrl" : "http://localhost:8080/job/po_web_pytest_allure/8/allure/#testresult/d4c44af2d728a1e1",
+      "status" : "broken",
+      "statusDetails" : "selenium.common.exceptions.SessionNotCreatedException: Message: session not created\nfrom timeout: Timed out receiving message from renderer: 600.000\n  (Session info: chrome=87.0.4280.88)",
+      "time" : {
+        "start" : 1608296704750,
+        "stop" : 1608296704750,
+        "duration" : 0
+      }
+    } ]
+  },
+  "927c5b8192699a1d43136b38a24cf63d" : {
+    "statistic" : {
+      "failed" : 0,
+      "broken" : 1,
+      "skipped" : 0,
+      "passed" : 1,
+      "unknown" : 0,
+      "total" : 2
+    },
+    "items" : [ {
+      "uid" : "2724de103761a363",
+      "reportUrl" : "http://localhost:8080/job/po_web_pytest_allure/9/allure/#testresult/2724de103761a363",
+      "status" : "passed",
+      "time" : {
+        "start" : 1608299432994,
+        "stop" : 1608299438471,
+        "duration" : 5477
+      }
+    }, {
+      "uid" : "3613ed0f5e83226c",
+      "reportUrl" : "http://localhost:8080/job/po_web_pytest_allure/8/allure/#testresult/3613ed0f5e83226c",
+      "status" : "broken",
+      "statusDetails" : "selenium.common.exceptions.SessionNotCreatedException: Message: session not created\nfrom timeout: Timed out receiving message from renderer: 600.000\n  (Session info: chrome=87.0.4280.88)",
+      "time" : {
+        "start" : 1608297310586,
+        "stop" : 1608297310586,
+        "duration" : 0
+      }
+    } ]
+  },
+  "b02b37708606b3cffe23de3f4e6f6bde" : {
+    "statistic" : {
+      "failed" : 0,
+      "broken" : 1,
+      "skipped" : 0,
+      "passed" : 1,
+      "unknown" : 0,
+      "total" : 2
+    },
+    "items" : [ {
+      "uid" : "8057664d88e7f150",
+      "reportUrl" : "http://localhost:8080/job/po_web_pytest_allure/9/allure/#testresult/8057664d88e7f150",
+      "status" : "passed",
+      "time" : {
+        "start" : 1608299415799,
+        "stop" : 1608299420511,
+        "duration" : 4712
+      }
+    }, {
+      "uid" : "c391adb10b6c257d",
+      "reportUrl" : "http://localhost:8080/job/po_web_pytest_allure/8/allure/#testresult/c391adb10b6c257d",
+      "status" : "broken",
+      "statusDetails" : "selenium.common.exceptions.SessionNotCreatedException: Message: session not created\nfrom timeout: Timed out receiving message from renderer: 600.000\n  (Session info: chrome=87.0.4280.88)",
+      "time" : {
+        "start" : 1608296705199,
+        "stop" : 1608296705199,
+        "duration" : 0
+      }
+    } ]
+  },
+  "1ca2a0bcdd063cb4082bd327f249bc82" : {
+    "statistic" : {
+      "failed" : 0,
+      "broken" : 1,
+      "skipped" : 0,
+      "passed" : 1,
+      "unknown" : 0,
+      "total" : 2
+    },
+    "items" : [ {
+      "uid" : "57715a5fb55e78e3",
+      "reportUrl" : "http://localhost:8080/job/po_web_pytest_allure/9/allure/#testresult/57715a5fb55e78e3",
+      "status" : "passed",
+      "time" : {
+        "start" : 1608299396614,
+        "stop" : 1608299399451,
+        "duration" : 2837
+      }
+    }, {
+      "uid" : "8baf2f18e9879dae",
+      "reportUrl" : "http://localhost:8080/job/po_web_pytest_allure/8/allure/#testresult/8baf2f18e9879dae",
+      "status" : "broken",
+      "statusDetails" : "selenium.common.exceptions.SessionNotCreatedException: Message: session not created\nfrom timeout: Timed out receiving message from renderer: 600.000\n  (Session info: chrome=87.0.4280.88)",
+      "time" : {
+        "start" : 1608296705118,
+        "stop" : 1608296705118,
+        "duration" : 0
+      }
+    } ]
+  }
+}

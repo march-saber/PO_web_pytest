@@ -1,0 +1,43 @@
+INFO     root:basepage.py:21 等待元素('xpath', "//input[@name='phone']")可见
+INFO     root:basepage.py:26 开始时间2020-12-17 22:48:05.568611，结束时间2020-12-17 22:48:05.590520，等待时长0:00:00.021909
+INFO     root:basepage.py:36 开始查找('xpath', "//input[@name='phone']")元素
+INFO     root:basepage.py:65 给元素('xpath', "//input[@name='phone']")输入('18684720553',)文本值
+INFO     root:basepage.py:21 等待元素('xpath', "//input[@name='password']")可见
+INFO     root:basepage.py:26 开始时间2020-12-17 22:48:05.639390，结束时间2020-12-17 22:48:05.659365，等待时长0:00:00.019975
+INFO     root:basepage.py:36 开始查找('xpath', "//input[@name='password']")元素
+INFO     root:basepage.py:65 给元素('xpath', "//input[@name='password']")输入('python',)文本值
+INFO     root:basepage.py:21 等待元素('xpath', '//button[@type="button"]')可见
+INFO     root:basepage.py:26 开始时间2020-12-17 22:48:05.703247，结束时间2020-12-17 22:48:05.718207，等待时长0:00:00.014960
+INFO     root:basepage.py:36 开始查找('xpath', '//button[@type="button"]')元素
+INFO     root:basepage.py:50 开始点击元素('xpath', '//button[@type="button"]')
+INFO     root:basepage.py:21 等待元素('xpath', '//a[@class="btn btn-special"]')可见
+INFO     root:basepage.py:26 开始时间2020-12-17 22:48:05.751150，结束时间2020-12-17 22:48:25.369197，等待时长0:00:19.618047
+INFO     root:basepage.py:21 等待元素('xpath', '//a[@class="btn btn-special"]')可见
+INFO     root:basepage.py:26 开始时间2020-12-17 22:48:25.370195，结束时间2020-12-17 22:48:25.381164，等待时长0:00:00.010969
+INFO     root:basepage.py:36 开始查找('xpath', '//a[@class="btn btn-special"]')元素
+INFO     root:basepage.py:50 开始点击元素('xpath', '//a[@class="btn btn-special"]')
+INFO     root:test_invest.py:64 *********投资用例：异常场景：投资金额为非100的整数倍、错误的格式等*********
+INFO     root:basepage.py:21 等待元素('xpath', "//input[contains(@class,'invest-unit-investinput')]")可见
+INFO     root:basepage.py:26 开始时间2020-12-17 22:48:30.722611，结束时间2020-12-17 22:48:30.739566，等待时长0:00:00.016955
+INFO     root:basepage.py:36 开始查找('xpath', "//input[contains(@class,'invest-unit-investinput')]")元素
+INFO     root:basepage.py:79 元素('xpath', "//input[contains(@class,'invest-unit-investinput')]")的属性data-amount的值为4914579263.26
+INFO     root:basepage.py:21 等待元素('xpath', "//input[contains(@class,'invest-unit-investinput')]")可见
+INFO     root:basepage.py:26 开始时间2020-12-17 22:48:30.748541，结束时间2020-12-17 22:48:30.758515，等待时长0:00:00.009974
+INFO     root:basepage.py:36 开始查找('xpath', "//input[contains(@class,'invest-unit-investinput')]")元素
+INFO     root:basepage.py:65 给元素('xpath', "//input[contains(@class,'invest-unit-investinput')]")输入(-10,)文本值
+INFO     root:basepage.py:21 等待元素('xpath', '//button[text()="投标"]')可见
+INFO     root:basepage.py:26 开始时间2020-12-17 22:48:30.802398，结束时间2020-12-17 22:48:30.826335，等待时长0:00:00.023937
+INFO     root:basepage.py:36 开始查找('xpath', '//button[text()="投标"]')元素
+INFO     root:basepage.py:50 开始点击元素('xpath', '//button[text()="投标"]')
+INFO     root:basepage.py:21 等待元素('xpath', '//div[contains(@class,"layui-layer-dialog")]//div[@class="text-center"]')可见
+INFO     root:basepage.py:26 开始时间2020-12-17 22:48:30.862269，结束时间2020-12-17 22:48:31.385875，等待时长0:00:00.523606
+INFO     root:basepage.py:36 开始查找('xpath', '//div[contains(@class,"layui-layer-dialog")]//div[@class="text-center"]')元素
+INFO     root:basepage.py:94 获取('xpath', '//div[contains(@class,"layui-layer-dialog")]//div[@class="text-center"]')元素的文本值为请正确填写投标金额
+INFO     root:basepage.py:21 等待元素('xpath', '//div[contains(@class,"layui-layer-dialog")]//a')可见
+INFO     root:basepage.py:26 开始时间2020-12-17 22:48:31.401832，结束时间2020-12-17 22:48:31.418787，等待时长0:00:00.016955
+INFO     root:basepage.py:36 开始查找('xpath', '//div[contains(@class,"layui-layer-dialog")]//a')元素
+INFO     root:basepage.py:50 开始点击元素('xpath', '//div[contains(@class,"layui-layer-dialog")]//a')
+INFO     root:basepage.py:21 等待元素('xpath', "//input[contains(@class,'invest-unit-investinput')]")可见
+INFO     root:basepage.py:26 开始时间2020-12-17 22:48:41.614470，结束时间2020-12-17 22:48:41.635414，等待时长0:00:00.020944
+INFO     root:basepage.py:36 开始查找('xpath', "//input[contains(@class,'invest-unit-investinput')]")元素
+INFO     root:basepage.py:79 元素('xpath', "//input[contains(@class,'invest-unit-investinput')]")的属性data-amount的值为4914579263.26

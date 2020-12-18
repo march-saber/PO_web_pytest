@@ -1,0 +1,25 @@
+INFO     root:test_invest.py:64 *********投资用例：异常场景：投资金额为非100的整数倍、错误的格式等*********
+INFO     root:basepage.py:21 等待元素('xpath', "//input[contains(@class,'invest-unit-investinput')]")可见
+INFO     root:basepage.py:26 开始时间2020-12-17 23:50:19.121413，结束时间2020-12-17 23:50:19.207642，等待时长0:00:00.086229
+INFO     root:basepage.py:36 开始查找('xpath', "//input[contains(@class,'invest-unit-investinput')]")元素
+INFO     root:basepage.py:79 元素('xpath', "//input[contains(@class,'invest-unit-investinput')]")的属性data-amount的值为4914573863.26
+INFO     root:basepage.py:21 等待元素('xpath', "//input[contains(@class,'invest-unit-investinput')]")可见
+INFO     root:basepage.py:26 开始时间2020-12-17 23:50:19.254667，结束时间2020-12-17 23:50:19.349550，等待时长0:00:00.094883
+INFO     root:basepage.py:36 开始查找('xpath', "//input[contains(@class,'invest-unit-investinput')]")元素
+INFO     root:basepage.py:65 给元素('xpath', "//input[contains(@class,'invest-unit-investinput')]")输入(50,)文本值
+INFO     root:basepage.py:21 等待元素('xpath', '//button[text()="投标"]')可见
+INFO     root:basepage.py:26 开始时间2020-12-17 23:50:19.505171，结束时间2020-12-17 23:50:19.553044，等待时长0:00:00.047873
+INFO     root:basepage.py:36 开始查找('xpath', '//button[text()="投标"]')元素
+INFO     root:basepage.py:50 开始点击元素('xpath', '//button[text()="投标"]')
+INFO     root:basepage.py:21 等待元素('xpath', '//div[contains(@class,"layui-layer-dialog")]//div[@class="text-center"]')可见
+INFO     root:basepage.py:26 开始时间2020-12-17 23:50:19.663800，结束时间2020-12-17 23:50:20.266761，等待时长0:00:00.602961
+INFO     root:basepage.py:36 开始查找('xpath', '//div[contains(@class,"layui-layer-dialog")]//div[@class="text-center"]')元素
+INFO     root:basepage.py:94 获取('xpath', '//div[contains(@class,"layui-layer-dialog")]//div[@class="text-center"]')元素的文本值为投标金额必须为100的倍数
+INFO     root:basepage.py:21 等待元素('xpath', '//div[contains(@class,"layui-layer-dialog")]//a')可见
+INFO     root:basepage.py:26 开始时间2020-12-17 23:50:20.318644，结束时间2020-12-17 23:50:20.353530，等待时长0:00:00.034886
+INFO     root:basepage.py:36 开始查找('xpath', '//div[contains(@class,"layui-layer-dialog")]//a')元素
+INFO     root:basepage.py:50 开始点击元素('xpath', '//div[contains(@class,"layui-layer-dialog")]//a')
+INFO     root:basepage.py:21 等待元素('xpath', "//input[contains(@class,'invest-unit-investinput')]")可见
+INFO     root:basepage.py:26 开始时间2020-12-17 23:50:25.136297，结束时间2020-12-17 23:50:25.174195，等待时长0:00:00.037898
+INFO     root:basepage.py:36 开始查找('xpath', "//input[contains(@class,'invest-unit-investinput')]")元素
+INFO     root:basepage.py:79 元素('xpath', "//input[contains(@class,'invest-unit-investinput')]")的属性data-amount的值为4914573863.26

@@ -1,0 +1,15 @@
+ Wed, 16 Dec 2020 23:30:26  INFO basepage.py wait_eleVisible [ line:21 ] 等待元素('xpath', "//input[@name='phone']")可见
+ Wed, 16 Dec 2020 23:30:26  INFO basepage.py wait_eleVisible [ line:26 ] 开始时间2020-12-16 23:30:26.938161，结束时间2020-12-16 23:30:26.953120，等待时长0:00:00.014959
+ Wed, 16 Dec 2020 23:30:26  INFO basepage.py get_element [ line:36 ] 开始查找('xpath', "//input[@name='phone']")元素
+ Wed, 16 Dec 2020 23:30:26  INFO basepage.py input_text [ line:65 ] 给元素('xpath', "//input[@name='phone']")输入('18684720553',)文本值
+ Wed, 16 Dec 2020 23:30:27  INFO basepage.py wait_eleVisible [ line:21 ] 等待元素('xpath', "//input[@name='password']")可见
+ Wed, 16 Dec 2020 23:30:27  INFO basepage.py wait_eleVisible [ line:26 ] 开始时间2020-12-16 23:30:27.026925，结束时间2020-12-16 23:30:27.039888，等待时长0:00:00.012963
+ Wed, 16 Dec 2020 23:30:27  INFO basepage.py get_element [ line:36 ] 开始查找('xpath', "//input[@name='password']")元素
+ Wed, 16 Dec 2020 23:30:27  INFO basepage.py input_text [ line:65 ] 给元素('xpath', "//input[@name='password']")输入('python',)文本值
+ Wed, 16 Dec 2020 23:30:27  INFO basepage.py wait_eleVisible [ line:21 ] 等待元素('xpath', '//button[@type="button"]')可见
+ Wed, 16 Dec 2020 23:30:27  INFO basepage.py wait_eleVisible [ line:26 ] 开始时间2020-12-16 23:30:27.111698，结束时间2020-12-16 23:30:27.126690，等待时长0:00:00.014992
+ Wed, 16 Dec 2020 23:30:27  INFO basepage.py get_element [ line:36 ] 开始查找('xpath', '//button[@type="button"]')元素
+ Wed, 16 Dec 2020 23:30:27  INFO basepage.py click_element [ line:50 ] 开始点击元素('xpath', '//button[@type="button"]')
+ Wed, 16 Dec 2020 23:30:27  INFO basepage.py wait_eleVisible [ line:21 ] 等待元素('xpath', '//a[text()="关于我们"]')可见
+ Wed, 16 Dec 2020 23:30:27  INFO basepage.py wait_eleVisible [ line:26 ] 开始时间2020-12-16 23:30:27.166551，结束时间2020-12-16 23:30:27.184501，等待时长0:00:00.017950
+ Wed, 16 Dec 2020 23:30:27  INFO basepage.py get_element [ line:36 ] 开始查找('xpath', '//a[@href="/Member/index.html"]')元素

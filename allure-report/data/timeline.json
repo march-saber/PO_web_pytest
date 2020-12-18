@@ -1,0 +1,1449 @@
+{
+  "uid" : "ab17fc5a4eb3bca4b216b548c7f9fcbc",
+  "name" : "timeline",
+  "children" : [ {
+    "name" : "DESKTOP-J6CF24D",
+    "children" : [ {
+      "name" : "25668-MainThread",
+      "children" : [ {
+        "name" : "test_invest_0_failed_by_No100[data0]",
+        "uid" : "20485a2729a0eb93",
+        "parentUid" : "5af512707108b5df755182c6e5def364",
+        "status" : "broken",
+        "time" : {
+          "start" : 1608296705199,
+          "stop" : 1608296705199,
+          "duration" : 0
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "{'money': -10, 'check': '请正确填写投标金额'}" ]
+      }, {
+        "name" : "test_login_1_failed_error_data[data1]",
+        "uid" : "37bfdd7c4be968a2",
+        "parentUid" : "5af512707108b5df755182c6e5def364",
+        "status" : "broken",
+        "time" : {
+          "start" : 1608296704988,
+          "stop" : 1608296704988,
+          "duration" : 0
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "{'user': '18684720553', 'passwd': 'python11', 'check': '帐号或密码错误!'}" ]
+      }, {
+        "name" : "test_invest_0_failed_by_No100[data3]",
+        "uid" : "d52bcbb0e83903",
+        "parentUid" : "5af512707108b5df755182c6e5def364",
+        "status" : "broken",
+        "time" : {
+          "start" : 1608297310625,
+          "stop" : 1608297310625,
+          "duration" : 0
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "{'money': 50, 'check': '投标金额必须为100的倍数'}" ]
+      }, {
+        "name" : "test_login_0_failed_wrong_datas[data3]",
+        "uid" : "701961b0ab76f323",
+        "parentUid" : "5af512707108b5df755182c6e5def364",
+        "status" : "broken",
+        "time" : {
+          "start" : 1608296704750,
+          "stop" : 1608296704750,
+          "duration" : 0
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "{'user': '186847055311', 'passwd': 'python', 'check': '请输入正确的手机号'}" ]
+      }, {
+        "name" : "test_login_0_failed_wrong_datas[data2]",
+        "uid" : "c226fcf24b851d2b",
+        "parentUid" : "5af512707108b5df755182c6e5def364",
+        "status" : "broken",
+        "time" : {
+          "start" : 1608296704626,
+          "stop" : 1608296704626,
+          "duration" : 0
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "{'user': '186847', 'passwd': 'python', 'check': '请输入正确的手机号'}" ]
+      }, {
+        "name" : "test_invest_0_failed_by_No100[data2]",
+        "uid" : "5464cfeea096cc3b",
+        "parentUid" : "5af512707108b5df755182c6e5def364",
+        "status" : "broken",
+        "time" : {
+          "start" : 1608297310586,
+          "stop" : 1608297310586,
+          "duration" : 0
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "{'money': ' ', 'check': '请正确填写投标金额'}" ]
+      }, {
+        "name" : "test_login_0_failed_wrong_datas[data0]",
+        "uid" : "877bf15aa3810b41",
+        "parentUid" : "5af512707108b5df755182c6e5def364",
+        "status" : "broken",
+        "time" : {
+          "start" : 1608296098258,
+          "stop" : 1608296098258,
+          "duration" : 0
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "{'user': '18684720553', 'passwd': '', 'check': '请输入密码'}" ]
+      }, {
+        "name" : "test_login_2_success",
+        "uid" : "15c8673d7ffff555",
+        "parentUid" : "5af512707108b5df755182c6e5def364",
+        "status" : "broken",
+        "time" : {
+          "start" : 1608296705118,
+          "stop" : 1608296705118,
+          "duration" : 0
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ ]
+      }, {
+        "name" : "test_invest_0_failed_by_No100[data1]",
+        "uid" : "937987d89ed9e9da",
+        "parentUid" : "5af512707108b5df755182c6e5def364",
+        "status" : "broken",
+        "time" : {
+          "start" : 1608297310554,
+          "stop" : 1608297310554,
+          "duration" : 0
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "{'money': 0, 'check': '请正确填写投标金额'}" ]
+      }, {
+        "name" : "test_invest_1_success",
+        "uid" : "19c86f285f0c3e6e",
+        "parentUid" : "5af512707108b5df755182c6e5def364",
+        "status" : "broken",
+        "time" : {
+          "start" : 1608297310674,
+          "stop" : 1608297310674,
+          "duration" : 0
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ ]
+      }, {
+        "name" : "test_login_0_failed_wrong_datas[data1]",
+        "uid" : "b59baabf3d2a4dbf",
+        "parentUid" : "5af512707108b5df755182c6e5def364",
+        "status" : "broken",
+        "time" : {
+          "start" : 1608296704472,
+          "stop" : 1608296704472,
+          "duration" : 0
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "{'user': '', 'passwd': 'python', 'check': '请输入手机号'}" ]
+      }, {
+        "name" : "test_login_1_failed_error_data[data0]",
+        "uid" : "9460a0b76ce5ef62",
+        "parentUid" : "5af512707108b5df755182c6e5def364",
+        "status" : "broken",
+        "time" : {
+          "start" : 1608296704914,
+          "stop" : 1608296704914,
+          "duration" : 0
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "{'user': '18684720559', 'passwd': 'python', 'check': '此账号没有经过授权，请联系管理员!'}" ]
+      } ],
+      "uid" : "5af512707108b5df755182c6e5def364"
+    }, {
+      "name" : "50220-MainThread",
+      "children" : [ {
+        "name" : "test_invest_0_failed_by_No100[data0]",
+        "uid" : "bd6d7b9601fcf409",
+        "parentUid" : "6964cdedde24fedab64cda983a3edf09",
+        "status" : "passed",
+        "time" : {
+          "start" : 1608220186439,
+          "stop" : 1608220192737,
+          "duration" : 6298
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "{'money': -10, 'check': '请正确填写投标金额'}" ]
+      }, {
+        "name" : "test_invest_0_failed_by_No100[data3]",
+        "uid" : "4963febd33cc9827",
+        "parentUid" : "6964cdedde24fedab64cda983a3edf09",
+        "status" : "passed",
+        "time" : {
+          "start" : 1608220219120,
+          "stop" : 1608220225224,
+          "duration" : 6104
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "{'money': 50, 'check': '投标金额必须为100的倍数'}" ]
+      }, {
+        "name" : "test_login_0_failed_wrong_datas[data1]",
+        "uid" : "7824708633fce0ab",
+        "parentUid" : "6964cdedde24fedab64cda983a3edf09",
+        "status" : "broken",
+        "time" : {
+          "start" : 1608220170158,
+          "stop" : 1608220170158,
+          "duration" : 0
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "{'user': '', 'passwd': 'python', 'check': '请输入手机号'}" ]
+      }, {
+        "name" : "test_invest_0_failed_by_No100[data1]",
+        "uid" : "9b7487c5d5f6a26a",
+        "parentUid" : "6964cdedde24fedab64cda983a3edf09",
+        "status" : "passed",
+        "time" : {
+          "start" : 1608220197349,
+          "stop" : 1608220203552,
+          "duration" : 6203
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "{'money': 0, 'check': '请正确填写投标金额'}" ]
+      }, {
+        "name" : "test_login_1_failed_error_data[data1]",
+        "uid" : "3218f09e90a0d4da",
+        "parentUid" : "6964cdedde24fedab64cda983a3edf09",
+        "status" : "broken",
+        "time" : {
+          "start" : 1608220170660,
+          "stop" : 1608220170660,
+          "duration" : 0
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "{'user': '18684720553', 'passwd': 'python11', 'check': '帐号或密码错误!'}" ]
+      }, {
+        "name" : "test_login_1_failed_error_data[data0]",
+        "uid" : "db3222819ef75685",
+        "parentUid" : "6964cdedde24fedab64cda983a3edf09",
+        "status" : "broken",
+        "time" : {
+          "start" : 1608220170524,
+          "stop" : 1608220170524,
+          "duration" : 0
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "{'user': '18684720559', 'passwd': 'python', 'check': '此账号没有经过授权，请联系管理员!'}" ]
+      }, {
+        "name" : "test_login_0_failed_wrong_datas[data3]",
+        "uid" : "a0406c8c17f26d0d",
+        "parentUid" : "6964cdedde24fedab64cda983a3edf09",
+        "status" : "broken",
+        "time" : {
+          "start" : 1608220170395,
+          "stop" : 1608220170395,
+          "duration" : 0
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "{'user': '186847055311', 'passwd': 'python', 'check': '请输入正确的手机号'}" ]
+      }, {
+        "name" : "test_invest_0_failed_by_No100[data2]",
+        "uid" : "e2fb7521aa7ec97b",
+        "parentUid" : "6964cdedde24fedab64cda983a3edf09",
+        "status" : "passed",
+        "time" : {
+          "start" : 1608220208347,
+          "stop" : 1608220214364,
+          "duration" : 6017
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "{'money': ' ', 'check': '请正确填写投标金额'}" ]
+      }, {
+        "name" : "test_login_0_failed_wrong_datas[data2]",
+        "uid" : "e7cd0567ec8e3785",
+        "parentUid" : "6964cdedde24fedab64cda983a3edf09",
+        "status" : "broken",
+        "time" : {
+          "start" : 1608220170278,
+          "stop" : 1608220170278,
+          "duration" : 0
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "{'user': '186847', 'passwd': 'python', 'check': '请输入正确的手机号'}" ]
+      }, {
+        "name" : "test_login_2_success",
+        "uid" : "22341271083f3e5f",
+        "parentUid" : "6964cdedde24fedab64cda983a3edf09",
+        "status" : "broken",
+        "time" : {
+          "start" : 1608220170790,
+          "stop" : 1608220170790,
+          "duration" : 0
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ ]
+      }, {
+        "name" : "test_login_0_failed_wrong_datas[data0]",
+        "uid" : "a723fff48033ee6b",
+        "parentUid" : "6964cdedde24fedab64cda983a3edf09",
+        "status" : "broken",
+        "time" : {
+          "start" : 1608219563134,
+          "stop" : 1608219563134,
+          "duration" : 0
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "{'user': '18684720553', 'passwd': '', 'check': '请输入密码'}" ]
+      }, {
+        "name" : "test_invest_1_success",
+        "uid" : "ef118bb00e655a5d",
+        "parentUid" : "6964cdedde24fedab64cda983a3edf09",
+        "status" : "broken",
+        "time" : {
+          "start" : 1608220230131,
+          "stop" : 1608220253402,
+          "duration" : 23271
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ ]
+      } ],
+      "uid" : "6964cdedde24fedab64cda983a3edf09"
+    }, {
+      "name" : "59848-MainThread",
+      "children" : [ {
+        "name" : "test_login_1_failed_error_data[data0]",
+        "uid" : "bab0c6fd0241f493",
+        "parentUid" : "8ba1f62689834f629e9f477f6ad35d6a",
+        "status" : "passed",
+        "time" : {
+          "start" : 1608298464208,
+          "stop" : 1608298464975,
+          "duration" : 767
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "{'user': '18684720559', 'passwd': 'python', 'check': '此账号没有经过授权，请联系管理员!'}" ]
+      }, {
+        "name" : "test_login_0_failed_wrong_datas[data3]",
+        "uid" : "e79109f2d2fab1c3",
+        "parentUid" : "8ba1f62689834f629e9f477f6ad35d6a",
+        "status" : "passed",
+        "time" : {
+          "start" : 1608298463604,
+          "stop" : 1608298463862,
+          "duration" : 258
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "{'user': '186847055311', 'passwd': 'python', 'check': '请输入正确的手机号'}" ]
+      }, {
+        "name" : "test_invest_0_failed_by_No100[data1]",
+        "uid" : "222e755729e21ace",
+        "parentUid" : "8ba1f62689834f629e9f477f6ad35d6a",
+        "status" : "passed",
+        "time" : {
+          "start" : 1608298537228,
+          "stop" : 1608298543362,
+          "duration" : 6134
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "{'money': 0, 'check': '请正确填写投标金额'}" ]
+      }, {
+        "name" : "test_login_0_failed_wrong_datas[data1]",
+        "uid" : "7cd090e93ed042c7",
+        "parentUid" : "8ba1f62689834f629e9f477f6ad35d6a",
+        "status" : "passed",
+        "time" : {
+          "start" : 1608298461660,
+          "stop" : 1608298461939,
+          "duration" : 279
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "{'user': '', 'passwd': 'python', 'check': '请输入手机号'}" ]
+      }, {
+        "name" : "test_login_2_success",
+        "uid" : "f63973d56c23bfac",
+        "parentUid" : "8ba1f62689834f629e9f477f6ad35d6a",
+        "status" : "passed",
+        "time" : {
+          "start" : 1608298467210,
+          "stop" : 1608298477850,
+          "duration" : 10640
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ ]
+      }, {
+        "name" : "test_login_1_failed_error_data[data1]",
+        "uid" : "1ed92a5f5bdca728",
+        "parentUid" : "8ba1f62689834f629e9f477f6ad35d6a",
+        "status" : "passed",
+        "time" : {
+          "start" : 1608298466221,
+          "stop" : 1608298466972,
+          "duration" : 751
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "{'user': '18684720553', 'passwd': 'python11', 'check': '帐号或密码错误!'}" ]
+      }, {
+        "name" : "test_invest_0_failed_by_No100[data0]",
+        "uid" : "acefbbd7a2be8bf9",
+        "parentUid" : "8ba1f62689834f629e9f477f6ad35d6a",
+        "status" : "passed",
+        "time" : {
+          "start" : 1608298527150,
+          "stop" : 1608298532806,
+          "duration" : 5656
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "{'money': -10, 'check': '请正确填写投标金额'}" ]
+      }, {
+        "name" : "test_invest_1_success",
+        "uid" : "2f2c3761f8030c66",
+        "parentUid" : "8ba1f62689834f629e9f477f6ad35d6a",
+        "status" : "broken",
+        "time" : {
+          "start" : 1608298567383,
+          "stop" : 1608298928762,
+          "duration" : 361379
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ ]
+      }, {
+        "name" : "test_invest_0_failed_by_No100[data2]",
+        "uid" : "3d514f483183ef71",
+        "parentUid" : "8ba1f62689834f629e9f477f6ad35d6a",
+        "status" : "passed",
+        "time" : {
+          "start" : 1608298547715,
+          "stop" : 1608298553484,
+          "duration" : 5769
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "{'money': ' ', 'check': '请正确填写投标金额'}" ]
+      }, {
+        "name" : "test_login_0_failed_wrong_datas[data0]",
+        "uid" : "f2edf89babf26e5c",
+        "parentUid" : "8ba1f62689834f629e9f477f6ad35d6a",
+        "status" : "passed",
+        "time" : {
+          "start" : 1608298458641,
+          "stop" : 1608298458928,
+          "duration" : 287
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "{'user': '18684720553', 'passwd': '', 'check': '请输入密码'}" ]
+      }, {
+        "name" : "test_login_0_failed_wrong_datas[data2]",
+        "uid" : "b2ed7421e51b541d",
+        "parentUid" : "8ba1f62689834f629e9f477f6ad35d6a",
+        "status" : "passed",
+        "time" : {
+          "start" : 1608298462923,
+          "stop" : 1608298463162,
+          "duration" : 239
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "{'user': '186847', 'passwd': 'python', 'check': '请输入正确的手机号'}" ]
+      }, {
+        "name" : "test_invest_0_failed_by_No100[data3]",
+        "uid" : "e5bebc16bc4fbc0d",
+        "parentUid" : "8ba1f62689834f629e9f477f6ad35d6a",
+        "status" : "passed",
+        "time" : {
+          "start" : 1608298558033,
+          "stop" : 1608298563164,
+          "duration" : 5131
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "{'money': 50, 'check': '投标金额必须为100的倍数'}" ]
+      } ],
+      "uid" : "8ba1f62689834f629e9f477f6ad35d6a"
+    }, {
+      "name" : "53180-MainThread",
+      "children" : [ {
+        "name" : "test_login_2_success",
+        "uid" : "383db606075eca66",
+        "parentUid" : "61960a96614ea3f6c4bc141c83f1d3f7",
+        "status" : "passed",
+        "time" : {
+          "start" : 1608132626938,
+          "stop" : 1608132629983,
+          "duration" : 3045
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ ]
+      }, {
+        "name" : "test_login_1_failed_error_data[data1]",
+        "uid" : "930b4c47d0054c8b",
+        "parentUid" : "61960a96614ea3f6c4bc141c83f1d3f7",
+        "status" : "passed",
+        "time" : {
+          "start" : 1608132625942,
+          "stop" : 1608132626716,
+          "duration" : 774
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "{'user': '18684720553', 'passwd': 'python11', 'check': '帐号或密码错误!'}" ]
+      }, {
+        "name" : "test_login_0_failed_wrong_datas[data0]",
+        "uid" : "21c4024779ea3c91",
+        "parentUid" : "61960a96614ea3f6c4bc141c83f1d3f7",
+        "status" : "passed",
+        "time" : {
+          "start" : 1608132622563,
+          "stop" : 1608132622887,
+          "duration" : 324
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "{'user': '18684720553', 'passwd': '', 'check': '请输入密码'}" ]
+      }, {
+        "name" : "test_invest_0_failed_by_No100[data0]",
+        "uid" : "4d0fe402fda2572",
+        "parentUid" : "61960a96614ea3f6c4bc141c83f1d3f7",
+        "status" : "passed",
+        "time" : {
+          "start" : 1608132647507,
+          "stop" : 1608132652288,
+          "duration" : 4781
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "{'money': -10, 'check': '请正确填写投标金额'}" ]
+      }, {
+        "name" : "test_login_1_failed_error_data[data0]",
+        "uid" : "b34febac5dc966ee",
+        "parentUid" : "61960a96614ea3f6c4bc141c83f1d3f7",
+        "status" : "passed",
+        "time" : {
+          "start" : 1608132624949,
+          "stop" : 1608132625724,
+          "duration" : 775
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "{'user': '18684720559', 'passwd': 'python', 'check': '此账号没有经过授权，请联系管理员!'}" ]
+      }, {
+        "name" : "test_invest_1_success",
+        "uid" : "da041f1dacbcaaab",
+        "parentUid" : "61960a96614ea3f6c4bc141c83f1d3f7",
+        "status" : "passed",
+        "time" : {
+          "start" : 1608132683162,
+          "stop" : 1608132713346,
+          "duration" : 30184
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ ]
+      }, {
+        "name" : "test_login_0_failed_wrong_datas[data1]",
+        "uid" : "fc52a1f338f27685",
+        "parentUid" : "61960a96614ea3f6c4bc141c83f1d3f7",
+        "status" : "passed",
+        "time" : {
+          "start" : 1608132623322,
+          "stop" : 1608132623580,
+          "duration" : 258
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "{'user': '', 'passwd': 'python', 'check': '请输入手机号'}" ]
+      }, {
+        "name" : "test_invest_0_failed_by_No100[data3]",
+        "uid" : "f79e8eae5665e7c8",
+        "parentUid" : "61960a96614ea3f6c4bc141c83f1d3f7",
+        "status" : "passed",
+        "time" : {
+          "start" : 1608132674537,
+          "stop" : 1608132679243,
+          "duration" : 4706
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "{'money': 50, 'check': '投标金额必须为100的倍数'}" ]
+      }, {
+        "name" : "test_login_0_failed_wrong_datas[data2]",
+        "uid" : "ca4ac347d8760dca",
+        "parentUid" : "61960a96614ea3f6c4bc141c83f1d3f7",
+        "status" : "passed",
+        "time" : {
+          "start" : 1608132623830,
+          "stop" : 1608132624102,
+          "duration" : 272
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "{'user': '186847', 'passwd': 'python', 'check': '请输入正确的手机号'}" ]
+      }, {
+        "name" : "test_invest_0_failed_by_No100[data2]",
+        "uid" : "c4528c2e70fa82ff",
+        "parentUid" : "61960a96614ea3f6c4bc141c83f1d3f7",
+        "status" : "passed",
+        "time" : {
+          "start" : 1608132665271,
+          "stop" : 1608132670396,
+          "duration" : 5125
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "{'money': ' ', 'check': '请正确填写投标金额'}" ]
+      }, {
+        "name" : "test_invest_0_failed_by_No100[data1]",
+        "uid" : "7bbf6f2af99e7197",
+        "parentUid" : "61960a96614ea3f6c4bc141c83f1d3f7",
+        "status" : "passed",
+        "time" : {
+          "start" : 1608132656367,
+          "stop" : 1608132661015,
+          "duration" : 4648
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "{'money': 0, 'check': '请正确填写投标金额'}" ]
+      }, {
+        "name" : "test_login_0_failed_wrong_datas[data3]",
+        "uid" : "ebde28cefa0de010",
+        "parentUid" : "61960a96614ea3f6c4bc141c83f1d3f7",
+        "status" : "passed",
+        "time" : {
+          "start" : 1608132624399,
+          "stop" : 1608132624669,
+          "duration" : 270
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "{'user': '186847055311', 'passwd': 'python', 'check': '请输入正确的手机号'}" ]
+      } ],
+      "uid" : "61960a96614ea3f6c4bc141c83f1d3f7"
+    }, {
+      "name" : "52788-MainThread",
+      "children" : [ {
+        "name" : "test_login_1_failed_error_data[data1]",
+        "uid" : "cd4509d4d219a762",
+        "parentUid" : "0d3d661a3515fc524863b6adf132fa56",
+        "status" : "broken",
+        "time" : {
+          "start" : 1608216465291,
+          "stop" : 1608216465291,
+          "duration" : 0
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "{'user': '18684720553', 'passwd': 'python11', 'check': '帐号或密码错误!'}" ]
+      }, {
+        "name" : "test_invest_0_failed_by_No100[data2]",
+        "uid" : "a39cc478a88ec255",
+        "parentUid" : "0d3d661a3515fc524863b6adf132fa56",
+        "status" : "passed",
+        "time" : {
+          "start" : 1608216537234,
+          "stop" : 1608216542542,
+          "duration" : 5308
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "{'money': ' ', 'check': '请正确填写投标金额'}" ]
+      }, {
+        "name" : "test_invest_1_success",
+        "uid" : "8d684c8da70abb60",
+        "parentUid" : "0d3d661a3515fc524863b6adf132fa56",
+        "status" : "passed",
+        "time" : {
+          "start" : 1608216558878,
+          "stop" : 1608216668156,
+          "duration" : 109278
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ ]
+      }, {
+        "name" : "test_login_0_failed_wrong_datas[data0]",
+        "uid" : "982eda88545aa532",
+        "parentUid" : "0d3d661a3515fc524863b6adf132fa56",
+        "status" : "broken",
+        "time" : {
+          "start" : 1608215857368,
+          "stop" : 1608215857368,
+          "duration" : 0
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "{'user': '18684720553', 'passwd': '', 'check': '请输入密码'}" ]
+      }, {
+        "name" : "test_invest_0_failed_by_No100[data0]",
+        "uid" : "29b0d611bbb92ca2",
+        "parentUid" : "0d3d661a3515fc524863b6adf132fa56",
+        "status" : "passed",
+        "time" : {
+          "start" : 1608216510723,
+          "stop" : 1608216521647,
+          "duration" : 10924
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "{'money': -10, 'check': '请正确填写投标金额'}" ]
+      }, {
+        "name" : "test_invest_0_failed_by_No100[data1]",
+        "uid" : "85663f6bb8eee103",
+        "parentUid" : "0d3d661a3515fc524863b6adf132fa56",
+        "status" : "passed",
+        "time" : {
+          "start" : 1608216526489,
+          "stop" : 1608216532265,
+          "duration" : 5776
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "{'money': 0, 'check': '请正确填写投标金额'}" ]
+      }, {
+        "name" : "test_login_1_failed_error_data[data0]",
+        "uid" : "afe7b90a27fb792e",
+        "parentUid" : "0d3d661a3515fc524863b6adf132fa56",
+        "status" : "broken",
+        "time" : {
+          "start" : 1608216465259,
+          "stop" : 1608216465259,
+          "duration" : 0
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "{'user': '18684720559', 'passwd': 'python', 'check': '此账号没有经过授权，请联系管理员!'}" ]
+      }, {
+        "name" : "test_login_0_failed_wrong_datas[data3]",
+        "uid" : "a13d63606e11f2e5",
+        "parentUid" : "0d3d661a3515fc524863b6adf132fa56",
+        "status" : "broken",
+        "time" : {
+          "start" : 1608216465224,
+          "stop" : 1608216465224,
+          "duration" : 0
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "{'user': '186847055311', 'passwd': 'python', 'check': '请输入正确的手机号'}" ]
+      }, {
+        "name" : "test_login_0_failed_wrong_datas[data2]",
+        "uid" : "47623f12922104fe",
+        "parentUid" : "0d3d661a3515fc524863b6adf132fa56",
+        "status" : "broken",
+        "time" : {
+          "start" : 1608216465164,
+          "stop" : 1608216465164,
+          "duration" : 0
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "{'user': '186847', 'passwd': 'python', 'check': '请输入正确的手机号'}" ]
+      }, {
+        "name" : "test_login_2_success",
+        "uid" : "f3d29909e21ad295",
+        "parentUid" : "0d3d661a3515fc524863b6adf132fa56",
+        "status" : "broken",
+        "time" : {
+          "start" : 1608216465322,
+          "stop" : 1608216465322,
+          "duration" : 0
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ ]
+      }, {
+        "name" : "test_login_0_failed_wrong_datas[data1]",
+        "uid" : "f20e23606d424e1",
+        "parentUid" : "0d3d661a3515fc524863b6adf132fa56",
+        "status" : "broken",
+        "time" : {
+          "start" : 1608216465129,
+          "stop" : 1608216465129,
+          "duration" : 0
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "{'user': '', 'passwd': 'python', 'check': '请输入手机号'}" ]
+      }, {
+        "name" : "test_invest_0_failed_by_No100[data3]",
+        "uid" : "e9caba8d65a6869e",
+        "parentUid" : "0d3d661a3515fc524863b6adf132fa56",
+        "status" : "passed",
+        "time" : {
+          "start" : 1608216546860,
+          "stop" : 1608216553067,
+          "duration" : 6207
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "{'money': 50, 'check': '投标金额必须为100的倍数'}" ]
+      } ],
+      "uid" : "0d3d661a3515fc524863b6adf132fa56"
+    }, {
+      "name" : "56724-MainThread",
+      "children" : [ {
+        "name" : "test_login_0_failed_wrong_datas[data0]",
+        "uid" : "84e8a0708f3a48fb",
+        "parentUid" : "742c9c4f68b2af22a8a25c2f3fe548e9",
+        "status" : "passed",
+        "time" : {
+          "start" : 1608217367100,
+          "stop" : 1608217367389,
+          "duration" : 289
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "{'user': '18684720553', 'passwd': '', 'check': '请输入密码'}" ]
+      }, {
+        "name" : "test_login_1_failed_error_data[data0]",
+        "uid" : "2fac105c27896c43",
+        "parentUid" : "742c9c4f68b2af22a8a25c2f3fe548e9",
+        "status" : "passed",
+        "time" : {
+          "start" : 1608217369253,
+          "stop" : 1608217370076,
+          "duration" : 823
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "{'user': '18684720559', 'passwd': 'python', 'check': '此账号没有经过授权，请联系管理员!'}" ]
+      }, {
+        "name" : "test_login_2_success",
+        "uid" : "2460118ee539d3af",
+        "parentUid" : "742c9c4f68b2af22a8a25c2f3fe548e9",
+        "status" : "passed",
+        "time" : {
+          "start" : 1608217371432,
+          "stop" : 1608217374516,
+          "duration" : 3084
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ ]
+      }, {
+        "name" : "test_invest_0_failed_by_No100[data3]",
+        "uid" : "fc09d31d1dc28b4b",
+        "parentUid" : "742c9c4f68b2af22a8a25c2f3fe548e9",
+        "status" : "passed",
+        "time" : {
+          "start" : 1608217419133,
+          "stop" : 1608217424366,
+          "duration" : 5233
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "{'money': 50, 'check': '投标金额必须为100的倍数'}" ]
+      }, {
+        "name" : "test_invest_1_success",
+        "uid" : "e3c0448483e8c9aa",
+        "parentUid" : "742c9c4f68b2af22a8a25c2f3fe548e9",
+        "status" : "passed",
+        "time" : {
+          "start" : 1608217428571,
+          "stop" : 1608217454960,
+          "duration" : 26389
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ ]
+      }, {
+        "name" : "test_invest_0_failed_by_No100[data0]",
+        "uid" : "a2dbddccaae01d88",
+        "parentUid" : "742c9c4f68b2af22a8a25c2f3fe548e9",
+        "status" : "passed",
+        "time" : {
+          "start" : 1608217391201,
+          "stop" : 1608217396237,
+          "duration" : 5036
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "{'money': -10, 'check': '请正确填写投标金额'}" ]
+      }, {
+        "name" : "test_invest_0_failed_by_No100[data1]",
+        "uid" : "2f374b140ea0577c",
+        "parentUid" : "742c9c4f68b2af22a8a25c2f3fe548e9",
+        "status" : "passed",
+        "time" : {
+          "start" : 1608217400455,
+          "stop" : 1608217405432,
+          "duration" : 4977
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "{'money': 0, 'check': '请正确填写投标金额'}" ]
+      }, {
+        "name" : "test_login_0_failed_wrong_datas[data2]",
+        "uid" : "f8f5e0ce79d3554b",
+        "parentUid" : "742c9c4f68b2af22a8a25c2f3fe548e9",
+        "status" : "passed",
+        "time" : {
+          "start" : 1608217368188,
+          "stop" : 1608217368470,
+          "duration" : 282
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "{'user': '186847', 'passwd': 'python', 'check': '请输入正确的手机号'}" ]
+      }, {
+        "name" : "test_login_0_failed_wrong_datas[data3]",
+        "uid" : "864036f37a88c1ef",
+        "parentUid" : "742c9c4f68b2af22a8a25c2f3fe548e9",
+        "status" : "passed",
+        "time" : {
+          "start" : 1608217368715,
+          "stop" : 1608217368983,
+          "duration" : 268
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "{'user': '186847055311', 'passwd': 'python', 'check': '请输入正确的手机号'}" ]
+      }, {
+        "name" : "test_login_1_failed_error_data[data1]",
+        "uid" : "19fd69eb5235fb5",
+        "parentUid" : "742c9c4f68b2af22a8a25c2f3fe548e9",
+        "status" : "passed",
+        "time" : {
+          "start" : 1608217370301,
+          "stop" : 1608217371137,
+          "duration" : 836
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "{'user': '18684720553', 'passwd': 'python11', 'check': '帐号或密码错误!'}" ]
+      }, {
+        "name" : "test_invest_0_failed_by_No100[data2]",
+        "uid" : "e1de7022d021733a",
+        "parentUid" : "742c9c4f68b2af22a8a25c2f3fe548e9",
+        "status" : "passed",
+        "time" : {
+          "start" : 1608217405451,
+          "stop" : 1608217414793,
+          "duration" : 9342
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "{'money': ' ', 'check': '请正确填写投标金额'}" ]
+      }, {
+        "name" : "test_login_0_failed_wrong_datas[data1]",
+        "uid" : "d1335b7441023b5c",
+        "parentUid" : "742c9c4f68b2af22a8a25c2f3fe548e9",
+        "status" : "passed",
+        "time" : {
+          "start" : 1608217367401,
+          "stop" : 1608217367916,
+          "duration" : 515
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "{'user': '', 'passwd': 'python', 'check': '请输入手机号'}" ]
+      } ],
+      "uid" : "742c9c4f68b2af22a8a25c2f3fe548e9"
+    }, {
+      "name" : "39100-MainThread",
+      "children" : [ {
+        "name" : "test_login_1_failed_error_data[data1]",
+        "uid" : "48d747b44840758b",
+        "parentUid" : "8dff5feb385f3448ee5c89990ae86ec9",
+        "status" : "passed",
+        "time" : {
+          "start" : 1608218585444,
+          "stop" : 1608218586557,
+          "duration" : 1113
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "{'user': '18684720553', 'passwd': 'python11', 'check': '帐号或密码错误!'}" ]
+      }, {
+        "name" : "test_login_0_failed_wrong_datas[data3]",
+        "uid" : "84f206adbc0083d5",
+        "parentUid" : "8dff5feb385f3448ee5c89990ae86ec9",
+        "status" : "passed",
+        "time" : {
+          "start" : 1608218582853,
+          "stop" : 1608218583451,
+          "duration" : 598
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "{'user': '186847055311', 'passwd': 'python', 'check': '请输入正确的手机号'}" ]
+      }, {
+        "name" : "test_login_1_failed_error_data[data0]",
+        "uid" : "1bff1ddc142686a",
+        "parentUid" : "8dff5feb385f3448ee5c89990ae86ec9",
+        "status" : "passed",
+        "time" : {
+          "start" : 1608218583465,
+          "stop" : 1608218584965,
+          "duration" : 1500
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "{'user': '18684720559', 'passwd': 'python', 'check': '此账号没有经过授权，请联系管理员!'}" ]
+      }, {
+        "name" : "test_login_2_success",
+        "uid" : "dd172934da6afb21",
+        "parentUid" : "8dff5feb385f3448ee5c89990ae86ec9",
+        "status" : "passed",
+        "time" : {
+          "start" : 1608218586965,
+          "stop" : 1608218590963,
+          "duration" : 3998
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ ]
+      }, {
+        "name" : "test_login_0_failed_wrong_datas[data0]",
+        "uid" : "1d9c0f315fcc39e9",
+        "parentUid" : "8dff5feb385f3448ee5c89990ae86ec9",
+        "status" : "passed",
+        "time" : {
+          "start" : 1608218579360,
+          "stop" : 1608218580048,
+          "duration" : 688
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "{'user': '18684720553', 'passwd': '', 'check': '请输入密码'}" ]
+      }, {
+        "name" : "test_invest_0_failed_by_No100[data0]",
+        "uid" : "65bb2f7740c94785",
+        "parentUid" : "8dff5feb385f3448ee5c89990ae86ec9",
+        "status" : "broken",
+        "time" : {
+          "start" : 1608218594958,
+          "stop" : 1608218594958,
+          "duration" : 0
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "{'money': -10, 'check': '请正确填写投标金额'}" ]
+      }, {
+        "name" : "test_login_0_failed_wrong_datas[data1]",
+        "uid" : "b43c7fe6bf9d9743",
+        "parentUid" : "8dff5feb385f3448ee5c89990ae86ec9",
+        "status" : "passed",
+        "time" : {
+          "start" : 1608218580070,
+          "stop" : 1608218581134,
+          "duration" : 1064
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "{'user': '', 'passwd': 'python', 'check': '请输入手机号'}" ]
+      }, {
+        "name" : "test_invest_1_success",
+        "uid" : "21cc27b2fc6746d9",
+        "parentUid" : "8dff5feb385f3448ee5c89990ae86ec9",
+        "status" : "broken",
+        "time" : {
+          "start" : 1608219202666,
+          "stop" : 1608219202666,
+          "duration" : 0
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ ]
+      }, {
+        "name" : "test_login_0_failed_wrong_datas[data2]",
+        "uid" : "f525ecda264ddac6",
+        "parentUid" : "8dff5feb385f3448ee5c89990ae86ec9",
+        "status" : "passed",
+        "time" : {
+          "start" : 1608218581812,
+          "stop" : 1608218582374,
+          "duration" : 562
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "{'user': '186847', 'passwd': 'python', 'check': '请输入正确的手机号'}" ]
+      }, {
+        "name" : "test_invest_0_failed_by_No100[data1]",
+        "uid" : "9516743217dd1d0",
+        "parentUid" : "8dff5feb385f3448ee5c89990ae86ec9",
+        "status" : "broken",
+        "time" : {
+          "start" : 1608219202228,
+          "stop" : 1608219202228,
+          "duration" : 0
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "{'money': 0, 'check': '请正确填写投标金额'}" ]
+      }, {
+        "name" : "test_invest_0_failed_by_No100[data3]",
+        "uid" : "4671da672834cfc2",
+        "parentUid" : "8dff5feb385f3448ee5c89990ae86ec9",
+        "status" : "broken",
+        "time" : {
+          "start" : 1608219202523,
+          "stop" : 1608219202523,
+          "duration" : 0
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "{'money': 50, 'check': '投标金额必须为100的倍数'}" ]
+      }, {
+        "name" : "test_invest_0_failed_by_No100[data2]",
+        "uid" : "b997b1460844eb",
+        "parentUid" : "8dff5feb385f3448ee5c89990ae86ec9",
+        "status" : "broken",
+        "time" : {
+          "start" : 1608219202372,
+          "stop" : 1608219202372,
+          "duration" : 0
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "{'money': ' ', 'check': '请正确填写投标金额'}" ]
+      } ],
+      "uid" : "8dff5feb385f3448ee5c89990ae86ec9"
+    }, {
+      "name" : "59000-MainThread",
+      "children" : [ {
+        "name" : "test_login_2_success",
+        "uid" : "57715a5fb55e78e3",
+        "parentUid" : "756819883cbd0eb1056b945363f73bda",
+        "status" : "passed",
+        "time" : {
+          "start" : 1608299396614,
+          "stop" : 1608299399451,
+          "duration" : 2837
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ ]
+      }, {
+        "name" : "test_login_0_failed_wrong_datas[data2]",
+        "uid" : "8d12cd85b15c8cca",
+        "parentUid" : "756819883cbd0eb1056b945363f73bda",
+        "status" : "passed",
+        "time" : {
+          "start" : 1608299394058,
+          "stop" : 1608299394241,
+          "duration" : 183
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "{'user': '186847', 'passwd': 'python', 'check': '请输入正确的手机号'}" ]
+      }, {
+        "name" : "test_login_0_failed_wrong_datas[data3]",
+        "uid" : "797565e7bb02ff9d",
+        "parentUid" : "756819883cbd0eb1056b945363f73bda",
+        "status" : "passed",
+        "time" : {
+          "start" : 1608299394432,
+          "stop" : 1608299394615,
+          "duration" : 183
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "{'user': '186847055311', 'passwd': 'python', 'check': '请输入正确的手机号'}" ]
+      }, {
+        "name" : "test_login_0_failed_wrong_datas[data1]",
+        "uid" : "9221c5c4af2946e2",
+        "parentUid" : "756819883cbd0eb1056b945363f73bda",
+        "status" : "passed",
+        "time" : {
+          "start" : 1608299393654,
+          "stop" : 1608299393833,
+          "duration" : 179
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "{'user': '', 'passwd': 'python', 'check': '请输入手机号'}" ]
+      }, {
+        "name" : "test_invest_0_failed_by_No100[data3]",
+        "uid" : "dbb601ef0fe4b1d3",
+        "parentUid" : "756819883cbd0eb1056b945363f73bda",
+        "status" : "passed",
+        "time" : {
+          "start" : 1608299442473,
+          "stop" : 1608299447489,
+          "duration" : 5016
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "{'money': 50, 'check': '投标金额必须为100的倍数'}" ]
+      }, {
+        "name" : "test_login_1_failed_error_data[data0]",
+        "uid" : "f89092dd62afbbc9",
+        "parentUid" : "756819883cbd0eb1056b945363f73bda",
+        "status" : "passed",
+        "time" : {
+          "start" : 1608299394830,
+          "stop" : 1608299395518,
+          "duration" : 688
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "{'user': '18684720559', 'passwd': 'python', 'check': '此账号没有经过授权，请联系管理员!'}" ]
+      }, {
+        "name" : "test_login_1_failed_error_data[data1]",
+        "uid" : "b9f14a68f69560e",
+        "parentUid" : "756819883cbd0eb1056b945363f73bda",
+        "status" : "passed",
+        "time" : {
+          "start" : 1608299395716,
+          "stop" : 1608299396402,
+          "duration" : 686
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "{'user': '18684720553', 'passwd': 'python11', 'check': '帐号或密码错误!'}" ]
+      }, {
+        "name" : "test_invest_0_failed_by_No100[data2]",
+        "uid" : "2724de103761a363",
+        "parentUid" : "756819883cbd0eb1056b945363f73bda",
+        "status" : "passed",
+        "time" : {
+          "start" : 1608299432994,
+          "stop" : 1608299438471,
+          "duration" : 5477
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "{'money': ' ', 'check': '请正确填写投标金额'}" ]
+      }, {
+        "name" : "test_invest_1_success",
+        "uid" : "fcf2d4fd3b30fc84",
+        "parentUid" : "756819883cbd0eb1056b945363f73bda",
+        "status" : "passed",
+        "time" : {
+          "start" : 1608299451776,
+          "stop" : 1608299477613,
+          "duration" : 25837
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ ]
+      }, {
+        "name" : "test_invest_0_failed_by_No100[data0]",
+        "uid" : "8057664d88e7f150",
+        "parentUid" : "756819883cbd0eb1056b945363f73bda",
+        "status" : "passed",
+        "time" : {
+          "start" : 1608299415799,
+          "stop" : 1608299420511,
+          "duration" : 4712
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "{'money': -10, 'check': '请正确填写投标金额'}" ]
+      }, {
+        "name" : "test_login_0_failed_wrong_datas[data0]",
+        "uid" : "640b21d35a6878c0",
+        "parentUid" : "756819883cbd0eb1056b945363f73bda",
+        "status" : "passed",
+        "time" : {
+          "start" : 1608299392841,
+          "stop" : 1608299393141,
+          "duration" : 300
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "{'user': '18684720553', 'passwd': '', 'check': '请输入密码'}" ]
+      }, {
+        "name" : "test_invest_0_failed_by_No100[data1]",
+        "uid" : "dcadfb109bbc0def",
+        "parentUid" : "756819883cbd0eb1056b945363f73bda",
+        "status" : "passed",
+        "time" : {
+          "start" : 1608299424394,
+          "stop" : 1608299428991,
+          "duration" : 4597
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "{'money': 0, 'check': '请正确填写投标金额'}" ]
+      } ],
+      "uid" : "756819883cbd0eb1056b945363f73bda"
+    }, {
+      "name" : "7508-MainThread",
+      "children" : [ {
+        "name" : "test_login_1_failed_error_data[data1]",
+        "uid" : "72b36063e0a90046",
+        "parentUid" : "6fde39a74f1702cbdb0fc941ed819e1a",
+        "status" : "passed",
+        "time" : {
+          "start" : 1608217606472,
+          "stop" : 1608217607182,
+          "duration" : 710
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "{'user': '18684720553', 'passwd': 'python11', 'check': '帐号或密码错误!'}" ]
+      }, {
+        "name" : "test_invest_0_failed_by_No100[data3]",
+        "uid" : "1ad3ca6301617973",
+        "parentUid" : "6fde39a74f1702cbdb0fc941ed819e1a",
+        "status" : "passed",
+        "time" : {
+          "start" : 1608217662950,
+          "stop" : 1608217667884,
+          "duration" : 4934
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "{'money': 50, 'check': '投标金额必须为100的倍数'}" ]
+      }, {
+        "name" : "test_login_0_failed_wrong_datas[data1]",
+        "uid" : "2a92faa994e3bbe3",
+        "parentUid" : "6fde39a74f1702cbdb0fc941ed819e1a",
+        "status" : "passed",
+        "time" : {
+          "start" : 1608217604051,
+          "stop" : 1608217604522,
+          "duration" : 471
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "{'user': '', 'passwd': 'python', 'check': '请输入手机号'}" ]
+      }, {
+        "name" : "test_login_0_failed_wrong_datas[data3]",
+        "uid" : "a1a330c4609f9d88",
+        "parentUid" : "6fde39a74f1702cbdb0fc941ed819e1a",
+        "status" : "passed",
+        "time" : {
+          "start" : 1608217605167,
+          "stop" : 1608217605357,
+          "duration" : 190
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "{'user': '186847055311', 'passwd': 'python', 'check': '请输入正确的手机号'}" ]
+      }, {
+        "name" : "test_invest_0_failed_by_No100[data0]",
+        "uid" : "91ade04cd38c68ed",
+        "parentUid" : "6fde39a74f1702cbdb0fc941ed819e1a",
+        "status" : "passed",
+        "time" : {
+          "start" : 1608217635663,
+          "stop" : 1608217640583,
+          "duration" : 4920
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "{'money': -10, 'check': '请正确填写投标金额'}" ]
+      }, {
+        "name" : "test_login_0_failed_wrong_datas[data2]",
+        "uid" : "69d3b16647e8180b",
+        "parentUid" : "6fde39a74f1702cbdb0fc941ed819e1a",
+        "status" : "passed",
+        "time" : {
+          "start" : 1608217604748,
+          "stop" : 1608217604943,
+          "duration" : 195
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "{'user': '186847', 'passwd': 'python', 'check': '请输入正确的手机号'}" ]
+      }, {
+        "name" : "test_invest_1_success",
+        "uid" : "59ba202f3fa91660",
+        "parentUid" : "6fde39a74f1702cbdb0fc941ed819e1a",
+        "status" : "passed",
+        "time" : {
+          "start" : 1608217671973,
+          "stop" : 1608217698154,
+          "duration" : 26181
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ ]
+      }, {
+        "name" : "test_login_2_success",
+        "uid" : "262abc3c421acc1d",
+        "parentUid" : "6fde39a74f1702cbdb0fc941ed819e1a",
+        "status" : "passed",
+        "time" : {
+          "start" : 1608217607485,
+          "stop" : 1608217612975,
+          "duration" : 5490
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ ]
+      }, {
+        "name" : "test_login_0_failed_wrong_datas[data0]",
+        "uid" : "e4613a3346233435",
+        "parentUid" : "6fde39a74f1702cbdb0fc941ed819e1a",
+        "status" : "passed",
+        "time" : {
+          "start" : 1608217603826,
+          "stop" : 1608217604045,
+          "duration" : 219
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "{'user': '18684720553', 'passwd': '', 'check': '请输入密码'}" ]
+      }, {
+        "name" : "test_login_1_failed_error_data[data0]",
+        "uid" : "6a934031c89e84f5",
+        "parentUid" : "6fde39a74f1702cbdb0fc941ed819e1a",
+        "status" : "passed",
+        "time" : {
+          "start" : 1608217605571,
+          "stop" : 1608217606265,
+          "duration" : 694
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "{'user': '18684720559', 'passwd': 'python', 'check': '此账号没有经过授权，请联系管理员!'}" ]
+      }, {
+        "name" : "test_invest_0_failed_by_No100[data2]",
+        "uid" : "476fb4f881f767e4",
+        "parentUid" : "6fde39a74f1702cbdb0fc941ed819e1a",
+        "status" : "passed",
+        "time" : {
+          "start" : 1608217653996,
+          "stop" : 1608217658817,
+          "duration" : 4821
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "{'money': ' ', 'check': '请正确填写投标金额'}" ]
+      }, {
+        "name" : "test_invest_0_failed_by_No100[data1]",
+        "uid" : "37fadb620963c686",
+        "parentUid" : "6fde39a74f1702cbdb0fc941ed819e1a",
+        "status" : "passed",
+        "time" : {
+          "start" : 1608217644843,
+          "stop" : 1608217649758,
+          "duration" : 4915
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "{'money': 0, 'check': '请正确填写投标金额'}" ]
+      } ],
+      "uid" : "6fde39a74f1702cbdb0fc941ed819e1a"
+    } ],
+    "uid" : "7b0525041dfa3db44cb9a7518c670721"
+  } ]
+}

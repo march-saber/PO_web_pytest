@@ -1,0 +1,142 @@
+{
+  "uid" : "383db606075eca66",
+  "name" : "test_login_2_success",
+  "fullName" : "testcase.test_1login_pytest.TestLogin#test_login_2_success",
+  "historyId" : "1ca2a0bcdd063cb4082bd327f249bc82",
+  "time" : {
+    "start" : 1608132626938,
+    "stop" : 1608132629983,
+    "duration" : 3045
+  },
+  "status" : "passed",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ {
+    "name" : "open_url",
+    "time" : {
+      "start" : 1608132614341,
+      "stop" : 1608132622412,
+      "duration" : 8071
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "hasContent" : false,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false
+  }, {
+    "name" : "refresh_page",
+    "time" : {
+      "start" : 1608132626937,
+      "stop" : 1608132626937,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "hasContent" : false,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false
+  } ],
+  "testStage" : {
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ {
+      "uid" : "dd5999bb9a5c6ae8",
+      "name" : "log",
+      "source" : "dd5999bb9a5c6ae8.txt",
+      "type" : "text/plain",
+      "size" : 1666
+    }, {
+      "uid" : "7d0c7c3264e88b51",
+      "name" : "stderr",
+      "source" : "7d0c7c3264e88b51.txt",
+      "type" : "text/plain",
+      "size" : 2164
+    } ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "hasContent" : true,
+    "attachmentsCount" : 2,
+    "shouldDisplayMessage" : false
+  },
+  "afterStages" : [ {
+    "name" : "open_url::0",
+    "time" : {
+      "start" : 1608132630461,
+      "stop" : 1608132632645,
+      "duration" : 2184
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "hasContent" : false,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false
+  }, {
+    "name" : "refresh_page::0",
+    "time" : {
+      "start" : 1608132629983,
+      "stop" : 1608132630460,
+      "duration" : 477
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "hasContent" : false,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false
+  } ],
+  "labels" : [ {
+    "name" : "tag",
+    "value" : "@pytest.mark.usefixtures('refresh_page')"
+  }, {
+    "name" : "tag",
+    "value" : "login"
+  }, {
+    "name" : "parentSuite",
+    "value" : "testcase"
+  }, {
+    "name" : "suite",
+    "value" : "test_1login_pytest"
+  }, {
+    "name" : "subSuite",
+    "value" : "TestLogin"
+  }, {
+    "name" : "host",
+    "value" : "DESKTOP-J6CF24D"
+  }, {
+    "name" : "thread",
+    "value" : "53180-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "testcase.test_1login_pytest"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ ],
+  "links" : [ ],
+  "hidden" : true,
+  "retry" : true,
+  "extra" : {
+    "categories" : [ ],
+    "tags" : [ "login", "@pytest.mark.usefixtures('refresh_page')" ]
+  },
+  "source" : "383db606075eca66.json",
+  "parameterValues" : [ ]
+}

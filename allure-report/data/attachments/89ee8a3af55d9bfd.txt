@@ -1,0 +1,21 @@
+ Thu, 17 Dec 2020 22:49:18  INFO test_invest.py test_invest_1_success [ line:82 ] *********投资用例：正常场景-投资成功*********
+ Thu, 17 Dec 2020 22:49:18  INFO basepage.py wait_eleVisible [ line:21 ] 等待元素('xpath', "//input[contains(@class,'invest-unit-investinput')]")可见
+ Thu, 17 Dec 2020 22:49:18  INFO basepage.py wait_eleVisible [ line:26 ] 开始时间2020-12-17 22:49:18.877899，结束时间2020-12-17 22:49:18.891829，等待时长0:00:00.013930
+ Thu, 17 Dec 2020 22:49:18  INFO basepage.py get_element [ line:36 ] 开始查找('xpath', "//input[contains(@class,'invest-unit-investinput')]")元素
+ Thu, 17 Dec 2020 22:49:18  INFO basepage.py get_element_attribute [ line:79 ] 元素('xpath', "//input[contains(@class,'invest-unit-investinput')]")的属性data-amount的值为4914579263.26
+ Thu, 17 Dec 2020 22:49:18  INFO basepage.py wait_eleVisible [ line:21 ] 等待元素('xpath', "//input[contains(@class,'invest-unit-investinput')]")可见
+ Thu, 17 Dec 2020 22:49:18  INFO basepage.py wait_eleVisible [ line:26 ] 开始时间2020-12-17 22:49:18.899809，结束时间2020-12-17 22:49:18.910779，等待时长0:00:00.010970
+ Thu, 17 Dec 2020 22:49:18  INFO basepage.py get_element [ line:36 ] 开始查找('xpath', "//input[contains(@class,'invest-unit-investinput')]")元素
+ Thu, 17 Dec 2020 22:49:18  INFO basepage.py input_text [ line:65 ] 给元素('xpath', "//input[contains(@class,'invest-unit-investinput')]")输入(1000,)文本值
+ Thu, 17 Dec 2020 22:49:18  INFO basepage.py wait_eleVisible [ line:21 ] 等待元素('xpath', '//button[text()="投标"]')可见
+ Thu, 17 Dec 2020 22:49:18  INFO basepage.py wait_eleVisible [ line:26 ] 开始时间2020-12-17 22:49:18.949676，结束时间2020-12-17 22:49:18.964636，等待时长0:00:00.014960
+ Thu, 17 Dec 2020 22:49:18  INFO basepage.py get_element [ line:36 ] 开始查找('xpath', '//button[text()="投标"]')元素
+ Thu, 17 Dec 2020 22:49:18  INFO basepage.py click_element [ line:50 ] 开始点击元素('xpath', '//button[text()="投标"]')
+ Thu, 17 Dec 2020 22:49:19  INFO basepage.py wait_eleVisible [ line:21 ] 等待元素('xpath', "//div[@class='layui-layer-content']//button[text()='查看并激活']")可见
+ Thu, 17 Dec 2020 22:49:19  INFO basepage.py wait_eleVisible [ line:26 ] 开始时间2020-12-17 22:49:19.007524，结束时间2020-12-17 22:49:19.531120，等待时长0:00:00.523596
+ Thu, 17 Dec 2020 22:49:19  INFO basepage.py get_element [ line:36 ] 开始查找('xpath', "//div[@class='layui-layer-content']//button[text()='查看并激活']")元素
+ Thu, 17 Dec 2020 22:49:19  INFO basepage.py click_element [ line:50 ] 开始点击元素('xpath', "//div[@class='layui-layer-content']//button[text()='查看并激活']")
+ Thu, 17 Dec 2020 22:51:08  INFO basepage.py wait_eleVisible [ line:21 ] 等待元素('xpath', '//li[@class="color_sub"]')可见
+ Thu, 17 Dec 2020 22:51:08  INFO basepage.py wait_eleVisible [ line:26 ] 开始时间2020-12-17 22:51:08.124324，结束时间2020-12-17 22:51:08.143274，等待时长0:00:00.018950
+ Thu, 17 Dec 2020 22:51:08  INFO basepage.py get_element [ line:36 ] 开始查找('xpath', '//li[@class="color_sub"]')元素
+ Thu, 17 Dec 2020 22:51:08  INFO basepage.py get_element_text [ line:94 ] 获取('xpath', '//li[@class="color_sub"]')元素的文本值为4914578263.26元

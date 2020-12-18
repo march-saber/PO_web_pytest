@@ -1,0 +1,145 @@
+{
+  "uid" : "29b0d611bbb92ca2",
+  "name" : "test_invest_0_failed_by_No100[data0]",
+  "fullName" : "testcase.test_invest.TestInvest#test_invest_0_failed_by_No100",
+  "historyId" : "b02b37708606b3cffe23de3f4e6f6bde",
+  "time" : {
+    "start" : 1608216510723,
+    "stop" : 1608216521647,
+    "duration" : 10924
+  },
+  "status" : "passed",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ {
+    "name" : "open_invest_url",
+    "time" : {
+      "start" : 1608216465354,
+      "stop" : 1608216510722,
+      "duration" : 45368
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "hasContent" : false,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false
+  }, {
+    "name" : "refresh_invest_page",
+    "time" : {
+      "start" : 1608216510722,
+      "stop" : 1608216510722,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "hasContent" : false,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false
+  } ],
+  "testStage" : {
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ {
+      "uid" : "beaeb2c988a3b4af",
+      "name" : "log",
+      "source" : "beaeb2c988a3b4af.txt",
+      "type" : "text/plain",
+      "size" : 4907
+    }, {
+      "uid" : "f76d8f3431cc7e40",
+      "name" : "stderr",
+      "source" : "f76d8f3431cc7e40.txt",
+      "type" : "text/plain",
+      "size" : 6764
+    } ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "hasContent" : true,
+    "attachmentsCount" : 2,
+    "shouldDisplayMessage" : false
+  },
+  "afterStages" : [ {
+    "name" : "open_invest_url::0",
+    "time" : {
+      "start" : 1608216694486,
+      "stop" : 1608216696659,
+      "duration" : 2173
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "hasContent" : false,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false
+  }, {
+    "name" : "refresh_invest_page::0",
+    "time" : {
+      "start" : 1608216521647,
+      "stop" : 1608216526486,
+      "duration" : 4839
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "hasContent" : false,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false
+  } ],
+  "labels" : [ {
+    "name" : "tag",
+    "value" : "smoke1"
+  }, {
+    "name" : "tag",
+    "value" : "@pytest.mark.usefixtures('refresh_invest_page')"
+  }, {
+    "name" : "parentSuite",
+    "value" : "testcase"
+  }, {
+    "name" : "suite",
+    "value" : "test_invest"
+  }, {
+    "name" : "subSuite",
+    "value" : "TestInvest"
+  }, {
+    "name" : "host",
+    "value" : "DESKTOP-J6CF24D"
+  }, {
+    "name" : "thread",
+    "value" : "52788-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "testcase.test_invest"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ {
+    "name" : "data",
+    "value" : "{'money': -10, 'check': '请正确填写投标金额'}"
+  } ],
+  "links" : [ ],
+  "hidden" : true,
+  "retry" : true,
+  "extra" : {
+    "categories" : [ ],
+    "tags" : [ "smoke1", "@pytest.mark.usefixtures('refresh_invest_page')" ]
+  },
+  "source" : "29b0d611bbb92ca2.json",
+  "parameterValues" : [ "{'money': -10, 'check': '请正确填写投标金额'}" ]
+}

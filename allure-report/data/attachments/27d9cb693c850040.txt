@@ -1,0 +1,67 @@
+[32mINFO    [0m root:test_invest.py:82 *********投资用例：正常场景-投资成功*********
+[32mINFO    [0m root:basepage.py:21 等待元素('xpath', "//input[contains(@class,'invest-unit-investinput')]")可见
+[32mINFO    [0m root:basepage.py:26 开始时间2020-12-18 21:36:07.384248，结束时间2020-12-18 21:36:07.401203，等待时长0:00:00.016955
+[32mINFO    [0m root:basepage.py:36 开始查找('xpath', "//input[contains(@class,'invest-unit-investinput')]")元素
+[32mINFO    [0m root:basepage.py:79 元素('xpath', "//input[contains(@class,'invest-unit-investinput')]")的属性data-amount的值为4914562800.26
+[32mINFO    [0m root:basepage.py:21 等待元素('xpath', "//input[contains(@class,'invest-unit-investinput')]")可见
+[32mINFO    [0m root:basepage.py:26 开始时间2020-12-18 21:36:07.415166，结束时间2020-12-18 21:36:07.429129，等待时长0:00:00.013963
+[32mINFO    [0m root:basepage.py:36 开始查找('xpath', "//input[contains(@class,'invest-unit-investinput')]")元素
+[32mINFO    [0m root:basepage.py:65 给元素('xpath', "//input[contains(@class,'invest-unit-investinput')]")输入(1000,)文本值
+[32mINFO    [0m root:basepage.py:21 等待元素('xpath', '//button[text()="投标"]')可见
+[32mINFO    [0m root:basepage.py:26 开始时间2020-12-18 21:36:07.499939，结束时间2020-12-18 21:36:07.534852，等待时长0:00:00.034913
+[32mINFO    [0m root:basepage.py:36 开始查找('xpath', '//button[text()="投标"]')元素
+[32mINFO    [0m root:basepage.py:50 开始点击元素('xpath', '//button[text()="投标"]')
+[32mINFO    [0m root:basepage.py:21 等待元素('xpath', "//div[@class='layui-layer-content']//button[text()='查看并激活']")可见
+[32mINFO    [0m root:basepage.py:26 开始时间2020-12-18 21:36:07.630591，结束时间2020-12-18 21:36:08.191092，等待时长0:00:00.560501
+[32mINFO    [0m root:basepage.py:36 开始查找('xpath', "//div[@class='layui-layer-content']//button[text()='查看并激活']")元素
+[32mINFO    [0m root:basepage.py:50 开始点击元素('xpath', "//div[@class='layui-layer-content']//button[text()='查看并激活']")
+[31m[1mERROR   [0m root:basepage.py:54 元素('xpath', "//div[@class='layui-layer-content']//button[text()='查看并激活']")点击失败
+Traceback (most recent call last):
+  File "F:\PycharmProjects\POitem1\Common\basepage.py", line 52, in click_element
+    ele.click()
+  File "d:\python\python37\lib\site-packages\selenium\webdriver\remote\webelement.py", line 80, in click
+    self._execute(Command.CLICK_ELEMENT)
+  File "d:\python\python37\lib\site-packages\selenium\webdriver\remote\webelement.py", line 633, in _execute
+    return self._parent.execute(command, params)
+  File "d:\python\python37\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 321, in execute
+    self.error_handler.check_response(response)
+  File "d:\python\python37\lib\site-packages\selenium\webdriver\remote\errorhandler.py", line 242, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.TimeoutException: Message: timeout: Timed out receiving message from renderer: 300.000
+  (Session info: chrome=87.0.4280.88)
+
+[31m[1mERROR   [0m root:basepage.py:110 网页截屏失败
+Traceback (most recent call last):
+  File "F:\PycharmProjects\POitem1\Common\basepage.py", line 52, in click_element
+    ele.click()
+  File "d:\python\python37\lib\site-packages\selenium\webdriver\remote\webelement.py", line 80, in click
+    self._execute(Command.CLICK_ELEMENT)
+  File "d:\python\python37\lib\site-packages\selenium\webdriver\remote\webelement.py", line 633, in _execute
+    return self._parent.execute(command, params)
+  File "d:\python\python37\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 321, in execute
+    self.error_handler.check_response(response)
+  File "d:\python\python37\lib\site-packages\selenium\webdriver\remote\errorhandler.py", line 242, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.TimeoutException: Message: timeout: Timed out receiving message from renderer: 300.000
+  (Session info: chrome=87.0.4280.88)
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "F:\PycharmProjects\POitem1\Common\basepage.py", line 107, in save_web_screenshot
+    self.driver.save_screenshot(screenshot_dir + '/' + filepath)
+  File "d:\python\python37\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 1055, in save_screenshot
+    return self.get_screenshot_as_file(filename)
+  File "d:\python\python37\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 1032, in get_screenshot_as_file
+    png = self.get_screenshot_as_png()
+  File "d:\python\python37\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 1064, in get_screenshot_as_png
+    return base64.b64decode(self.get_screenshot_as_base64().encode('ascii'))
+  File "d:\python\python37\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 1074, in get_screenshot_as_base64
+    return self.execute(Command.SCREENSHOT)['value']
+  File "d:\python\python37\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 321, in execute
+    self.error_handler.check_response(response)
+  File "d:\python\python37\lib\site-packages\selenium\webdriver\remote\errorhandler.py", line 242, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.TimeoutException: Message: timeout: Timed out receiving message from renderer: 10.000
+  (Session info: chrome=87.0.4280.88)

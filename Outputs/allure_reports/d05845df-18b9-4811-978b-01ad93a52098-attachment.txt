@@ -1,0 +1,16 @@
+[32mINFO    [0m root:basepage.py:21 等待元素('xpath', "//input[@name='phone']")可见
+[32mINFO    [0m root:basepage.py:26 开始时间2020-12-16 23:30:25.942825，结束时间2020-12-16 23:30:25.958785，等待时长0:00:00.015960
+[32mINFO    [0m root:basepage.py:36 开始查找('xpath', "//input[@name='phone']")元素
+[32mINFO    [0m root:basepage.py:65 给元素('xpath', "//input[@name='phone']")输入('18684720553',)文本值
+[32mINFO    [0m root:basepage.py:21 等待元素('xpath', "//input[@name='password']")可见
+[32mINFO    [0m root:basepage.py:26 开始时间2020-12-16 23:30:26.033581，结束时间2020-12-16 23:30:26.045548，等待时长0:00:00.011967
+[32mINFO    [0m root:basepage.py:36 开始查找('xpath', "//input[@name='password']")元素
+[32mINFO    [0m root:basepage.py:65 给元素('xpath', "//input[@name='password']")输入('python11',)文本值
+[32mINFO    [0m root:basepage.py:21 等待元素('xpath', '//button[@type="button"]')可见
+[32mINFO    [0m root:basepage.py:26 开始时间2020-12-16 23:30:26.119354，结束时间2020-12-16 23:30:26.135308，等待时长0:00:00.015954
+[32mINFO    [0m root:basepage.py:36 开始查找('xpath', '//button[@type="button"]')元素
+[32mINFO    [0m root:basepage.py:50 开始点击元素('xpath', '//button[@type="button"]')
+[32mINFO    [0m root:basepage.py:21 等待元素('xpath', "//div[@class='layui-layer-content']")可见
+[32mINFO    [0m root:basepage.py:26 开始时间2020-12-16 23:30:26.179192，结束时间2020-12-16 23:30:26.701793，等待时长0:00:00.522601
+[32mINFO    [0m root:basepage.py:36 开始查找('xpath', "//div[@class='layui-layer-content']")元素
+[32mINFO    [0m root:basepage.py:94 获取('xpath', "//div[@class='layui-layer-content']")元素的文本值为帐号或密码错误!

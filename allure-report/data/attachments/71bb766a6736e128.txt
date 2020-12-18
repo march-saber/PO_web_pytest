@@ -1,0 +1,21 @@
+INFO     root:test_invest.py:82 *********投资用例：正常场景-投资成功*********
+INFO     root:basepage.py:21 等待元素('xpath', "//input[contains(@class,'invest-unit-investinput')]")可见
+INFO     root:basepage.py:26 开始时间2020-12-17 22:49:18.877899，结束时间2020-12-17 22:49:18.891829，等待时长0:00:00.013930
+INFO     root:basepage.py:36 开始查找('xpath', "//input[contains(@class,'invest-unit-investinput')]")元素
+INFO     root:basepage.py:79 元素('xpath', "//input[contains(@class,'invest-unit-investinput')]")的属性data-amount的值为4914579263.26
+INFO     root:basepage.py:21 等待元素('xpath', "//input[contains(@class,'invest-unit-investinput')]")可见
+INFO     root:basepage.py:26 开始时间2020-12-17 22:49:18.899809，结束时间2020-12-17 22:49:18.910779，等待时长0:00:00.010970
+INFO     root:basepage.py:36 开始查找('xpath', "//input[contains(@class,'invest-unit-investinput')]")元素
+INFO     root:basepage.py:65 给元素('xpath', "//input[contains(@class,'invest-unit-investinput')]")输入(1000,)文本值
+INFO     root:basepage.py:21 等待元素('xpath', '//button[text()="投标"]')可见
+INFO     root:basepage.py:26 开始时间2020-12-17 22:49:18.949676，结束时间2020-12-17 22:49:18.964636，等待时长0:00:00.014960
+INFO     root:basepage.py:36 开始查找('xpath', '//button[text()="投标"]')元素
+INFO     root:basepage.py:50 开始点击元素('xpath', '//button[text()="投标"]')
+INFO     root:basepage.py:21 等待元素('xpath', "//div[@class='layui-layer-content']//button[text()='查看并激活']")可见
+INFO     root:basepage.py:26 开始时间2020-12-17 22:49:19.007524，结束时间2020-12-17 22:49:19.531120，等待时长0:00:00.523596
+INFO     root:basepage.py:36 开始查找('xpath', "//div[@class='layui-layer-content']//button[text()='查看并激活']")元素
+INFO     root:basepage.py:50 开始点击元素('xpath', "//div[@class='layui-layer-content']//button[text()='查看并激活']")
+INFO     root:basepage.py:21 等待元素('xpath', '//li[@class="color_sub"]')可见
+INFO     root:basepage.py:26 开始时间2020-12-17 22:51:08.124324，结束时间2020-12-17 22:51:08.143274，等待时长0:00:00.018950
+INFO     root:basepage.py:36 开始查找('xpath', '//li[@class="color_sub"]')元素
+INFO     root:basepage.py:94 获取('xpath', '//li[@class="color_sub"]')元素的文本值为4914578263.26元
